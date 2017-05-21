@@ -4,7 +4,7 @@
   "description": "An example React + Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js",
+    "start": "electron ./src/main.js",
     "dev": "node server.js",
     "postinstall": "webpack -p --config webpack.config.js"
   },
@@ -30,6 +30,8 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
-    "electron-debug": "^1.1.0"
+    "electron-debug": "^1.1.0",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0"
   }
 }
