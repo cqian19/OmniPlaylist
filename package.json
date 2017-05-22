@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "electron-debug": "^1.1.0",
+    "react-bootstrap": "^0.31.0",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0"
   }

@@ -1,6 +1,7 @@
 import '../assets/stylesheets/base.scss';
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './Header';
+import NavBarContainer from '../containers/NavBarContainer';
 
 class App extends React.Component {
 
@@ -10,7 +11,10 @@ class App extends React.Component {
 
     render() {
         return(
-          <Header />
+            <div>
+                <Header />
+                <NavBarContainer />
+            </div>
         )
     }
 }
