@@ -2,6 +2,7 @@ import '../assets/stylesheets/base.scss';
 import React from 'react';
 import Header from './Header';
 import NavBarContainer from '../containers/NavBarContainer';
+import ImportBarContainer from '../containers/ImportBarContainer';
 
 class App extends React.Component {
 
@@ -14,6 +15,7 @@ class App extends React.Component {
             <div>
                 <Header />
                 <NavBarContainer />
+                <ImportBarContainer />
             </div>
         )
     }

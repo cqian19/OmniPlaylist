@@ -30,7 +30,9 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "electron-debug": "^1.1.0",
+    "es6-promise-promise": "^1.0.0",
     "react-bootstrap": "^0.31.0",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0"
