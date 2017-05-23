@@ -3,10 +3,11 @@
  */
 
 import { connect } from 'react-redux';
-import { getVideos } from '../core/playlist';
+import { getIndex, getVideos } from '../core/playlist';
 import Playlist from '../components/Playlist';
 
 const mapStateToProps = (state) => ({
+    index: getIndex(state),
     videos: getVideos(state)
 });
 

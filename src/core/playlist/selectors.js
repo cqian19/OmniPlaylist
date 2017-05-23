@@ -9,3 +9,7 @@ export function getPlaylist(store){
 export function getVideos(store) {
     return getPlaylist(store).videos;
 }
+
+export function getIndex(store) {
+    return getPlaylist(store).index;
+}

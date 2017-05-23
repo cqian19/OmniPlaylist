@@ -12,5 +12,5 @@ export default combineReducers({
     header: headerReducer,
     navbar: navbarReducer,
     importbar: importbarReducer,
-    playlist: playlistReducer
+    playlist: playlistReducer,
 })
