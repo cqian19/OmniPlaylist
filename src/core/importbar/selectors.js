@@ -9,3 +9,11 @@ export function getImportBar(store) {
 export function getError(store){
     return getImportBar(store).error;
 }
+
+export function getValidationState(store){
+    return getImportBar(store).validationState;
+}
+
+export function getVideos(store){
+    return getImportBar(store).videos;
+}

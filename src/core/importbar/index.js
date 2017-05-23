@@ -2,5 +2,6 @@
  * Created by cqian19 on 5/21/2017.
  */
 
-export { getImportBar, getError } from './selectors'
-export { linkFailed, importPlaylist } from './actions'
+export { getImportBar, getError, getVideos, getValidationState } from './selectors'
+export { linkFailed, importPlaylist, resetForm } from './actions'
+export { importbarReducer } from './reducer'

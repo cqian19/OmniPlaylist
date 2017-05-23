@@ -24,39 +24,40 @@ export class YoutubeVideo {
 
 class YoutubeAPI {
 
-    urlPattern = '/(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/[0-9.\-A-Za-z]+\?[-a-zA-Z0-9@:%_\+.~#?&//=]*?list=([0-9.\-A-Za-z]+)/';
+    static urlPattern = /(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/[0-9.\-A-Za-z]+\?[-a-zA-Z0-9@:%_\+.~#?&//=]*?list=([0-9.\-A-Za-z]+)/;
 
-    static validateLink(link) {
-        const linkMatch = this.urlPattern.test(link);
+    static validateLink = (link) => {
+        return YoutubeAPI.urlPattern.test(link);
+    };
+
+    static _extractPlaylistId = (link)  => {
+        // Assumes link is valid
+        return YoutubeAPI.urlPattern.exec(link)[1];
+    };
+
+    static getVideosFromResponse(response) {
+        return response.items
     }
 
-    static _extractPlaylistId(link) {
-        // Assumes link is valid
-        return this.urlPattern.exec(link)[0];
-    }
-
-    static getPlaylist(link) {
-        // Assumes link is valid
-        axios.get("https://www.googleapis.com/youtube/v3/playlistItems", {
+    static fetchPlaylist(link) {
+        // Assumes link is valid, returns a Promise
+        /* Response form:
+         --data
+         --items
+             --[Objects]
+                 --snippet
+                 --title <-- Video title
+                 --resourceId
+                     -- videoId <-- video link id
+                 --thumbnails
+                 --default
+                     --url <-- video thumbnail url */
+        return axios.get("https://www.googleapis.com/youtube/v3/playlistItems", {
             params: {
                 part: 'snippet',
                 playlistId: this._extractPlaylistId(link),
                 key: key
             }
-        }).then(function(response){
-            /* Response form:
-                --data
-                    --items
-                        --[Objects]
-                            --snippet
-                                --title <-- Video title
-                                --resourceId
-                                    -- videoId <-- video link id
-                                --thumbnails
-                                    --default
-                                        --url <-- video thumbnail url
-             */
-            console.log(response);
         });
     }
 }

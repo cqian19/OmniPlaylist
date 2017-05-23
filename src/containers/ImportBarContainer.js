@@ -3,21 +3,36 @@
  */
 
 import { connect } from 'react-redux';
-import { getError, linkFailed, importPlaylist } from '../core/importbar';
+import {
+    getError,
+    getValidationState,
+    getVideos,
+    linkFailed,
+    importPlaylist,
+    resetForm
+} from '../core/importbar';
 import ImportBar from '../components/ImportBar';
 
 const mapStateToProps = (state) => ({
-    error: getError(state)
+    error: getError(state),
+    validationState: getValidationState(state),
+    videos: getVideos(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
 
     handleImport: (link) => {
-        dispatch();
+        dispatch(importPlaylist(link));
     },
+
     linkFailed: () => {
-        dispatch(linkFailed())
+        dispatch(linkFailed());
+    },
+
+    resetForm: () => {
+        dispatch(resetForm());
     }
+
 });
 
-export default connect(null, mapDispatchToProps)(ImportBar)
+export default connect(mapStateToProps, mapDispatchToProps)(ImportBar)

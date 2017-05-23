@@ -5,8 +5,10 @@
 import { combineReducers } from 'redux';
 import { headerReducer } from './header';
 import { navbarReducer } from './navbar';
+import { importbarReducer } from './importbar';
 
 export default combineReducers({
     header: headerReducer,
-    navbar: navbarReducer
+    navbar: navbarReducer,
+    importbar: importbarReducer
 })

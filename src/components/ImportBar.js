@@ -2,17 +2,22 @@
  * Created by cqian19 on 5/21/2017.
  */
 import React from 'react';
+import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+
 import YoutubeAPI from '../api/youtube-api';
+import Error from './Error';
 
 class ImportBar extends React.Component {
 
     state = {
-        value: ''
+        value: '',
+        validationState: null
     };
 
     handleSubmit = (event) => {
-        link = this.state.value;
-        if (!YoutubeAPI.validateLink(event)) {
+        event.preventDefault();
+        const link = this.state.value;
+        if (!YoutubeAPI.validateLink(link)) {
             this.props.linkFailed();
         } else {
             this.props.handleImport(link);
@@ -23,12 +28,36 @@ class ImportBar extends React.Component {
         this.state.value = event.target.value;
     };
 
+    componentWillUpdate = (nextProps, nextState) => {
+        const _this = this;
+        const newValidationState = nextProps.validationState;
+        if (newValidationState !== this.state.validationState) {
+            this.state.validationState = nextProps.validationState;
+            if (newValidationState === 'success'){
+                setTimeout(function() {
+                    _this.textInput.value="";
+                }, 1500);
+                setTimeout(_this.props.resetForm, 3000);
+            }
+        }
+    };
+
     render() {
         return (
-            <form onSubmit={this.handleSubmit} className="import">
-                <button>Import</button>
-                <input type="text" onChange={this.handleChange}/>
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit} className="import">
+                    <button type="submit">
+                        Import
+                    </button>
+                    <FormGroup validationState={this.state.validationState}>
+                        <FormControl inputRef={(input) => { this.textInput = input; }}
+                                     type="text"
+                                     onChange={this.handleChange}
+                        />
+                    </FormGroup>
+                </form>
+                <Error error={this.props.error}/>
+            </div>
         )
     }
 }

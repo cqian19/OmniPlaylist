@@ -9,4 +9,6 @@ export const NAVS = ["Play", "Playlists"];
 export const APP_LOAD = 'APP_LOAD';
 
 export const LINK_FAILED = 'LINK_FAILED';
-export const IMPORT_PLAYLIST = 'IMPORT_PLAYLIST';
+export const IMPORT_SUCCESS = 'IMPORT_SUCCESS';
+export const IMPORT_FAILED = 'IMPORT_FAILED';
+export const RESET_IMPORT_FORM ='RESET_IMPORT_FORM';
