@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import {
     getError,
     getValidationState,
-    getVideos,
     linkFailed,
     importPlaylist,
     resetForm
@@ -16,7 +15,6 @@ import ImportBar from '../components/ImportBar';
 const mapStateToProps = (state) => ({
     error: getError(state),
     validationState: getValidationState(state),
-    videos: getVideos(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

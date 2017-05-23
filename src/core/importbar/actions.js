@@ -2,7 +2,6 @@
  * Created by cqian19 on 5/21/2017.
  */
 
-import axios from 'axios';
 import { LINK_FAILED, IMPORT_SUCCESS, IMPORT_FAILED, RESET_IMPORT_FORM } from '../constants';
 import  YoutubeAPI, { YoutubeVideo } from '../../api/youtube-api';
 
@@ -13,13 +12,15 @@ export function linkFailed() {
 }
 
 function importSuccess(response){
+    console.log("Success");
+    console.log(YoutubeAPI.getVideosFromResponse(response));
     return {
         type: IMPORT_SUCCESS,
         videos: YoutubeAPI.getVideosFromResponse(response),
     }
 }
 
-function importError(error){
+function importError(){
     return {
         type: IMPORT_FAILED
     }

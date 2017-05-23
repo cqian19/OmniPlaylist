@@ -12,7 +12,7 @@ class NavBar extends React.Component {
             <div className="navbar">
                 <Nav bsStyle="pills" activeKey ={1} justified onSelect={this.props.handleSelect}>
                     {this.props.navs.map((nav) =>
-                        <NavItem eventKey={nav.key}>{nav.text}</NavItem>
+                        <NavItem key={nav.key} eventKey={nav.key}>{nav.text}</NavItem>
                     )}
                 </Nav>
             </div>

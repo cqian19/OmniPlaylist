@@ -36,27 +36,28 @@ class YoutubeAPI {
     };
 
     static getVideosFromResponse(response) {
-        return response.items
+        return response.data.items.map((videoResponse) => new YoutubeVideo(videoResponse));
     }
 
     static fetchPlaylist(link) {
         // Assumes link is valid, returns a Promise
         /* Response form:
          --data
-         --items
-             --[Objects]
-                 --snippet
-                 --title <-- Video title
-                 --resourceId
-                     -- videoId <-- video link id
-                 --thumbnails
-                 --default
-                     --url <-- video thumbnail url */
+             --items
+                 --[Objects]
+                     --snippet
+                     --title <-- Video title
+                     --resourceId
+                         -- videoId <-- video link id
+                     --thumbnails
+                     --default
+                         --url <-- video thumbnail url */
         return axios.get("https://www.googleapis.com/youtube/v3/playlistItems", {
             params: {
                 part: 'snippet',
                 playlistId: this._extractPlaylistId(link),
-                key: key
+                key,
+                maxResults: 50
             }
         });
     }
