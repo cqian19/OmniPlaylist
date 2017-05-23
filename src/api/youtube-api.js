@@ -43,7 +43,9 @@ class YoutubeAPI {
         // Assumes link is valid, returns a Promise
         /* Response form:
          --data
-             --items
+            --nextPageToken
+            --prevPageToken
+            --items
                  --[Objects]
                      --snippet
                      --title <-- Video title

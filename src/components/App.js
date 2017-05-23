@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './Header';
 import NavBarContainer from '../containers/NavBarContainer';
 import ImportBarContainer from '../containers/ImportBarContainer';
+import PlayerContainer from '../containers/PlayerContainer';
 import PlaylistContainer from '../containers/PlaylistContainer';
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
                 <Header />
                 <NavBarContainer />
                 <ImportBarContainer />
+                <PlayerContainer />
                 <PlaylistContainer/>
             </div>
         )

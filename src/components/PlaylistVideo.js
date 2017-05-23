@@ -9,7 +9,10 @@ class PlaylistVideo extends React.Component {
     render() {
         const video = this.props.video;
         return (
-            <div>{video.title}</div>
+            <div className="playlist-video">
+                <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>
+                {video.title}
+            </div>
         )
     }
 }

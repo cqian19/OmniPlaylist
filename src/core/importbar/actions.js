@@ -12,8 +12,6 @@ export function linkFailed() {
 }
 
 function importSuccess(response){
-    console.log("Success");
-    console.log(YoutubeAPI.getVideosFromResponse(response));
     return {
         type: IMPORT_SUCCESS,
         videos: YoutubeAPI.getVideosFromResponse(response),

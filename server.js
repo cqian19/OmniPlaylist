@@ -15,7 +15,7 @@ app.use(webpackHotMiddleware(compiler));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/dist/index.html')
+  response.sendFile(__dirname + '/src/assets/pages/index.html')
 });
 
 app.listen(PORT, function(error) {
