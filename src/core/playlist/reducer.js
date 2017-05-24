@@ -10,31 +10,35 @@ import {
     ON_VIDEO_SKIP,
     ON_VIDEO_PREV
 } from '../constants';
-import { getVideos } from '.';
+import { getStateVideos } from '.';
 
 const defaultState = {
     videos: [],
     index: 0
 };
 
-function nextVideoIndex(index) {
-    return index + 1;
+function nextVideoIndex(state, action) {
+    const videoIndex = action.index;
+    const videoLength = getStateVideos(state).length;
+    return videoLength === 0 ? 0 : (videoIndex + 1) % videoLength;
 }
 
-function prevVideoIndex(index) {
-    return Math.max(0, index - 1);
+function prevVideoIndex(state, action) {
+    const videoIndex = action.index;
+    const videoLength = getStateVideos(state).length;
+    return videoLength === 0 ? 0 : (videoIndex + videoLength - 1);
 }
 
 export function playlistReducer(state = defaultState, action) {
     switch(action.type) {
         case IMPORT_SUCCESS:
-            return {...state, videos: action.videos};
+            return {...state, videos: action.videos, index: action.index};
         case ON_PLAYLIST_CHANGE:
         case ON_VIDEO_SWITCH:
         case ON_VIDEO_SKIP : case ON_VIDEO_END:
-            return {...state, index: nextVideoIndex(action.index)};
+            return {...state, index: nextVideoIndex(state, action)};
         case ON_VIDEO_PREV:
-            return {...state, index: prevVideoIndex(action.index)};
+            return {...state, index: prevVideoIndex(state, action)};
         default:
             return state;
     }

@@ -4,7 +4,12 @@
 
 import { connect } from 'react-redux';
 import Player from '../components/Player';
-import { getVideos, getIndex, onVideoEnd } from '../core/playlist';
+import {
+    getVideos,
+    getIndex,
+    onVideoEnd,
+    onVideoPrev,
+    onVideoSkip } from '../core/playlist';
 
 
 const mapStateToProps = (state) => ({
@@ -15,6 +20,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onEnded: (curIndex) => {
         dispatch(onVideoEnd(curIndex));
+    },
+    onPrev: (curIndex) => {
+        dispatch(onVideoPrev(curIndex));
+    },
+    onSkip: (curIndex) => {
+        dispatch(onVideoSkip(curIndex));
     }
 });
 

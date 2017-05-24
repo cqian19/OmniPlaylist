@@ -3,7 +3,7 @@
  */
 
 import { LINK_FAILED, IMPORT_SUCCESS, IMPORT_FAILED, RESET_IMPORT_FORM } from '../constants';
-import  YoutubeAPI, { YoutubeVideo } from '../../api/youtube-api';
+import  YoutubeAPI, { YoutubeVideo } from '../../api/YoutubeAPI';
 
 export function linkFailed() {
     return {
@@ -11,10 +11,11 @@ export function linkFailed() {
     }
 }
 
-function importSuccess(response){
+function importSuccess(link, response){
     return {
         type: IMPORT_SUCCESS,
         videos: YoutubeAPI.getVideosFromResponse(response),
+        index: YoutubeAPI.getPlaylistIndexFromLink(link)
     }
 }
 
@@ -27,7 +28,7 @@ function importError(){
 export function importPlaylist(link) {
     return function(dispatch) {
         return YoutubeAPI.fetchPlaylist(link).then(
-            response => dispatch(importSuccess(response)),
+            response => dispatch(importSuccess(link, response)),
             error => dispatch(importError(error))
         )
     }

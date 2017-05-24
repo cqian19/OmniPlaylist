@@ -10,4 +10,9 @@ export {
     onVideoPrev
 } from './actions';
 export { playlistReducer } from './reducer';
-export { getIndex, getPlaylist, getVideos } from './selectors';
+export {
+    getIndex,
+    getPlaylist,
+    getVideos,
+    getStateVideos
+} from './selectors';

@@ -13,3 +13,8 @@ export function getVideos(store) {
 export function getIndex(store) {
     return getPlaylist(store).index;
 }
+
+export function getStateVideos(state) {
+    console.log(state);
+    return state.videos;
+}
