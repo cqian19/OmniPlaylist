@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 const key = "AIzaSyBFeCSptMDugs4MIx-GGD3JmwFz1IDyIGI";
 
 export class YoutubeVideo {
@@ -24,7 +23,7 @@ export class YoutubeVideo {
 
 class YoutubeAPI {
 
-    static urlPattern = /(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/[0-9.\-A-Za-z]+\?[-a-zA-Z0-9@:%_\+.~#?&//=]*?list=([0-9.\-A-Za-z]+)/;
+    static urlPattern = /(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/[0-9.\-A-Za-z]+\?[-a-zA-Z0-9@:%_\+.~#?&//=]*?list=([0-9.\-A-Za-z_]+)/;
 
     static validateLink = (link) => {
         return YoutubeAPI.urlPattern.test(link);
