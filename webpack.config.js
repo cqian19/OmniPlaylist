@@ -3,11 +3,14 @@ var path = require('path');
 
 module.exports = {
   entry: [
-    './src/index'
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server',
+      './src/index',
   ],
   module: {
     loaders: [
-      { test: /\.js?$/, loader: 'babel', exclude: /node_modules/ },
+      { test: /\.js?$/, loaders: ['babel'], exclude: /node_modules/ },
       { test: /\.s?css$/, loader: 'style!css!sass' },
     ]
   },
