@@ -15,6 +15,5 @@ export function getIndex(store) {
 }
 
 export function getStateVideos(state) {
-    console.log(state);
     return state.videos;
 }

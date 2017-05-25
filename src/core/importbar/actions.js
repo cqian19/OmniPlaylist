@@ -2,40 +2,86 @@
  * Created by cqian19 on 5/21/2017.
  */
 
-import { LINK_FAILED, IMPORT_SUCCESS, IMPORT_FAILED, RESET_IMPORT_FORM } from '../constants';
-import  YoutubeAPI, { YoutubeVideo } from '../../api/YoutubeAPI';
+import {
+    RENDER_TYPES,
+    LINK_FAILED,
+    ADD_PLAYLIST_SUCCESS,
+    ADD_VIDEO_SUCCESS,
+    IMPORT_SUCCESS,
+    IMPORT_FAILED,
+    RESET_IMPORT_FORM
+} from '../constants';
+import  APIHandler from '../../api/APIHandler';
 
-export function linkFailed() {
+
+export function resetForm() {
     return {
-        type: LINK_FAILED
+        type: RESET_IMPORT_FORM
     }
 }
 
-function importSuccess(link, response){
+function importSuccess(){
     return {
         type: IMPORT_SUCCESS,
-        videos: YoutubeAPI.getVideosFromResponse(response),
-        index: YoutubeAPI.getPlaylistIndexFromLink(link)
     }
 }
 
 function importError(){
+    /* Request for video/playlist failed */
     return {
         type: IMPORT_FAILED
     }
 }
 
-export function importPlaylist(link) {
+function linkFailed() {
+    /* Link fails to match the format of links to a video or playlist of all the supported APIs */
+    return {
+        type: LINK_FAILED
+    }
+}
+
+export function doImport(link) {
+    let [ renderType, domainType ] = APIHandler.getRenderAndDomainType(link);
+    if (renderType === RENDER_TYPES.INVALID) {
+        return linkFailed();
+    } else {
+        return importVideos(link, renderType, domainType);
+    }
+}
+
+function importVideos(link, renderType, domainType) {
     return function(dispatch) {
-        return YoutubeAPI.fetchPlaylist(link).then(
-            response => dispatch(importSuccess(link, response)),
+        return APIHandler.fetchVideos(link, renderType, domainType).then(
+            response => (function() {
+                switch(renderType) {
+                    case RENDER_TYPES.VIDEO:
+                        dispatch(addVideo(link, response, domainType));
+                        break;
+                    case RENDER_TYPES.PLAYLIST:
+                        dispatch(addPlaylist(link, response, domainType));
+                        break;
+                }
+                dispatch(importSuccess());
+            })(),
             error => dispatch(importError(error))
         )
     }
 }
 
-export function resetForm() {
+function addPlaylist(link, response, domainType) {
+    const videos = APIHandler.getVideosFromResponse(response, RENDER_TYPES.PLAYLIST, domainType);
+    const index = APIHandler.getPlaylistIndexFromLink(link, domainType);
     return {
-        type: RESET_IMPORT_FORM
+        type: ADD_PLAYLIST_SUCCESS,
+        index,
+        videos
+    }
+}
+
+function addVideo(link, response, domainType) {
+    const video = APIHandler.getVideosFromResponse(response, RENDER_TYPES.VIDEO, domainType);
+    return {
+        type: ADD_VIDEO_SUCCESS,
+        video
     }
 }

@@ -14,7 +14,7 @@ import {
 
 const mapStateToProps = (state) => ({
     videos: getVideos(state),
-    index: getVideos(state).length === 0 ? 0 : getIndex(state) % getVideos(state).length
+    index: getIndex(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

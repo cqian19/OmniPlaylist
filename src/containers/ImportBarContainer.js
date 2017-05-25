@@ -6,8 +6,7 @@ import { connect } from 'react-redux';
 import {
     getError,
     getValidationState,
-    linkFailed,
-    importPlaylist,
+    doImport,
     resetForm
 } from '../core/importbar';
 import ImportBar from '../components/ImportBar';
@@ -20,11 +19,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 
     handleImport: (link) => {
-        dispatch(importPlaylist(link));
-    },
-
-    linkFailed: () => {
-        dispatch(linkFailed());
+        dispatch(doImport(link));
     },
 
     resetForm: () => {

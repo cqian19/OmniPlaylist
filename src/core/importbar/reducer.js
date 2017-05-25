@@ -2,7 +2,12 @@
  * Created by cqian19 on 5/21/2017.
  */
 
-import { LINK_FAILED, IMPORT_SUCCESS, IMPORT_FAILED, RESET_IMPORT_FORM } from '../constants';
+import {
+    LINK_FAILED,
+    IMPORT_SUCCESS,
+    IMPORT_FAILED,
+    RESET_IMPORT_FORM,
+} from '../constants';
 
 const defaultState = {
     'error': '',

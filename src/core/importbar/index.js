@@ -3,5 +3,5 @@
  */
 
 export { getImportBar, getError, getValidationState } from './selectors'
-export { linkFailed, importPlaylist, resetForm } from './actions'
+export { doImport, resetForm } from './actions'
 export { importbarReducer } from './reducer'

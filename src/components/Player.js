@@ -52,7 +52,21 @@ class Player extends React.Component {
 
     render() {
         return (
-            <div height="400" width="600" className="player" ref={(e)=> { this.iframe = e; }}>
+            <div className="player">
+                <div className="player__main">
+                    <div height="400" width="600" className="player" ref={(e)=> { this.iframe = e; }}>
+                    </div>
+                </div>
+                <div className="player__footer">
+                    {/* Previous Video Button */}
+                    <button onClick={this.props.onPrev}>
+                        <i className="glyphicon glyphicon-fast-backward"/>
+                    </button>
+                    {/* Skip Video Button */}
+                    <button onClick={this.props.onSkip}>
+                        <i className="glyphicon glyphicon-fast-forward"/>
+                    </button>
+                </div>
             </div>
         )
     }

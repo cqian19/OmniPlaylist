@@ -4,7 +4,7 @@
 import React from 'react';
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
-import YoutubeAPI from '../api/youtube-api';
+import APIHandler from '../api/APIHandler';
 import Error from './Error';
 
 class ImportBar extends React.Component {
@@ -17,11 +17,7 @@ class ImportBar extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const link = this.state.value;
-        if (!YoutubeAPI.validateLink(link)) {
-            this.props.linkFailed();
-        } else {
-            this.props.handleImport(link);
-        }
+        this.props.handleImport(link);
     };
 
     handleChange = (event) => {
