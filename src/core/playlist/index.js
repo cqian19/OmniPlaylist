@@ -4,7 +4,7 @@
 
 export {
     onPlaylistSwitch,
-    onVideoSwitch,
+    onVideoClick,
     onVideoEnd,
     onVideoSkip,
     onVideoPrev
@@ -14,5 +14,6 @@ export {
     getIndex,
     getPlaylist,
     getVideos,
-    getStateVideos
+    getStateVideos,
+    getStateIndex
 } from './selectors';

@@ -15,6 +15,8 @@ class Playlist extends React.Component {
                     <PlaylistVideo
                         key={index}
                         video={video}
+                        index={index}
+                        onVideoClick={this.props.onVideoClick}
                     />
                 ))}
             </div>

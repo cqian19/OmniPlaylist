@@ -9,14 +9,23 @@ import {
     ON_VIDEO_SKIP,
     ON_VIDEO_SWITCH
 } from '../constants';
+import { getStateIndex } from '.';
 
-
-export function onVideoSwitch(index) {
+export function onVideoClick(index) {
+    return (dispatch, getState) => {
+        // Video clicked in playlist is not currently playing
+        if (getStateIndex(getState()) !== index) {
+            dispatch(onVideoSwitch(index));
+        }
+    }
+}
+function onVideoSwitch(index) {
     return {
         type: ON_VIDEO_SWITCH,
         index
     }
 }
+
 export function onPlaylistSwitch(){
     return {
         type: ON_PLAYLIST_CHANGE

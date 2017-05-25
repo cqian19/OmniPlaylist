@@ -40,6 +40,7 @@ export function playlistReducer(state = defaultState, action) {
             return {...state, videos: videos.concat([action.video]), index: videos.length};
         case ON_PLAYLIST_CHANGE:
         case ON_VIDEO_SWITCH:
+            return {...state, index: action.index};
         case ON_VIDEO_SKIP : case ON_VIDEO_END:
             return {...state, index: nextVideoIndex(state, action)};
         case ON_VIDEO_PREV:

@@ -14,6 +14,10 @@ export function getIndex(store) {
     return getPlaylist(store).index;
 }
 
+export function getStateIndex(state) {
+    return state.index;
+}
+
 export function getStateVideos(state) {
     return state.videos;
 }

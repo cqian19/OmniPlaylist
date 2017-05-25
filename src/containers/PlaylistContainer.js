@@ -3,7 +3,8 @@
  */
 
 import { connect } from 'react-redux';
-import { getIndex, getVideos } from '../core/playlist';
+
+import { onVideoClick, getIndex, getVideos } from '../core/playlist';
 import Playlist from '../components/Playlist';
 
 const mapStateToProps = (state) => ({
@@ -12,7 +13,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+    onVideoClick(index) {
+        dispatch(onVideoClick(index));
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist);
