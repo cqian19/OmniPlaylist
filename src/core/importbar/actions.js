@@ -13,7 +13,6 @@ import {
 } from '../constants';
 import  APIHandler from '../../api/APIHandler';
 
-
 export function resetForm() {
     return {
         type: RESET_IMPORT_FORM

@@ -2,12 +2,15 @@
  * Created by cqian19 on 5/21/2017.
  */
 
+
 /* ENUMS */
 
 // Determines domain of video and how it should be played
 export const DOMAIN_TYPES = {
     'YOUTUBE': 'YOUTUBE'
 };
+
+
 
 // Determines if link is to a playlist or to a video, or to neither
 export const RENDER_TYPES = {

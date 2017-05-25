@@ -10,6 +10,7 @@ const key = "AIzaSyBFeCSptMDugs4MIx-GGD3JmwFz1IDyIGI";
 
 export class YoutubeVideo extends BaseVideo {
 
+
     constructor(videoResponse, renderType){
         super(videoResponse);
         this._video = videoResponse;
@@ -38,7 +39,7 @@ export class YoutubeVideo extends BaseVideo {
 
 }
 
-class YoutubeAPI extends BaseAPI {
+export class YoutubeAPI extends BaseAPI {
 
     static urlPlaylistPattern = /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/[0-9.\-A-Za-z]+\?[-a-zA-Z0-9@:%+.~#?&\/=]*?list=[0-9.\-A-Za-z_]+/;
     static urlVideoPattern = /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/watch\?v=[0-9.\-A-Za-z]+$/;
@@ -114,5 +115,3 @@ class YoutubeAPI extends BaseAPI {
         });
     }
 }
-
-export default YoutubeAPI;
