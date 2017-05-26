@@ -18,8 +18,10 @@ class App extends React.Component {
                 <Header />
                 <NavBarContainer />
                 <ImportBarContainer />
-                <PlayerContainer />
-                <PlaylistContainer/>
+                <div className="container-fluid">
+                    <PlayerContainer />
+                    <PlaylistContainer/>
+                </div>
             </div>
         )
     }

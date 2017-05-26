@@ -10,13 +10,14 @@ class Playlist extends React.Component {
 
     render(){
         return (
-            <div className="playlist">
+            <div className="playlist col-md-6">
                 {this.props.videos.map((video, index) => (
                     <PlaylistVideo
                         key={index}
                         video={video}
                         index={index}
                         onVideoClick={this.props.onVideoClick}
+                        active={index===this.props.index}
                     />
                 ))}
             </div>

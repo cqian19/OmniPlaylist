@@ -4,8 +4,13 @@ const electron = require('electron');
 // Module to control application life.
 const app = require('app');
 // Module to create native browser window.
-const BrowserWindow = require('browser-window');
+const BrowserWindow = require('browser-window',{
+    "web-preferences": {
+        "web-security": false
+    }
+});
 
+require('./header')('https://www.youtube.com/');
 require('electron-debug')({showDevTools: true});
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -17,7 +22,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({width: 800, height: 600});
 
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/assets/pages/index.html');
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();

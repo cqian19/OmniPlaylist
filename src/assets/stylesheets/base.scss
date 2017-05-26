@@ -1,4 +1,23 @@
+
+
 h1 {
   font-family: helvetica;
   font-weight: 200;
+}
+
+@media (min-width: 1200px) {
+  .container{
+    width: 1050px;
+  }
+}
+
+.active {
+  background-color: lightblue;
+}
+
+.playlist-video {
+  &:hover{
+    background-color: lightblue;
+
+  }
 }
