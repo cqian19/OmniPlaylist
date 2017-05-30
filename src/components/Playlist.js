@@ -10,7 +10,7 @@ class Playlist extends React.Component {
 
     render(){
         return (
-            <div className="playlist col-md-6">
+            <div className="playlist width-collapse">
                 {this.props.videos.map((video, index) => (
                     <PlaylistVideo
                         key={index}

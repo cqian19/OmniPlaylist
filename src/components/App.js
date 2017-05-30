@@ -14,11 +14,11 @@ class App extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="container-fluid">
                 <Header />
                 <NavBarContainer />
                 <ImportBarContainer />
-                <div className="container-fluid">
+                <div className="video-container">
                     <PlayerContainer />
                     <PlaylistContainer/>
                 </div>

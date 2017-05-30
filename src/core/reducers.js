@@ -7,10 +7,12 @@ import { headerReducer } from './header';
 import { navbarReducer } from './navbar';
 import { importbarReducer } from './importbar';
 import { playlistReducer } from './playlist';
+import { videoplayerReducer } from './videoplayer';
 
 export default combineReducers({
     header: headerReducer,
     navbar: navbarReducer,
     importbar: importbarReducer,
     playlist: playlistReducer,
+    videoplayer: videoplayerReducer
 })

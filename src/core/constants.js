@@ -5,14 +5,14 @@
 
 /* ENUMS */
 
-// Determines domain of video and how it should be played
+// Determines domain of videoplayer and how it should be played
 export const DOMAIN_TYPES = {
     'YOUTUBE': 'YOUTUBE'
 };
 
 
 
-// Determines if link is to a playlist or to a video, or to neither
+// Determines if link is to a playlist or to a videoplayer, or to neither
 export const RENDER_TYPES = {
     'INVALID': 'INVALID',
     'VIDEO': 'VIDEO',
@@ -22,7 +22,8 @@ export const RENDER_TYPES = {
 /* CONSTANTS */
 export const APP_TITLE = 'Youtube Playlist Manager';
 export const NAVS = ["Play", "Playlists"];
-
+export const BASE_VIDEO_HEIGHT = 400;
+export const BASE_VIDEO_WIDTH = 600;
 
 /* ACTION TYPES */
 export const APP_LOAD = 'APP_LOAD';
@@ -39,3 +40,5 @@ export const ON_VIDEO_SKIP = 'ON_VIDEO_SKIP';
 export const ON_VIDEO_END = 'ON_VIDEO_END';
 export const ON_VIDEO_SWITCH = 'ON_VIDEO_SWITCH';
 export const ON_PLAYLIST_CHANGE = 'ON_PLAYLIST_CHANGE';
+
+export const ON_VIDEO_SAVE_SIZE = 'ON_VIDEO_SAVE_SIZE';

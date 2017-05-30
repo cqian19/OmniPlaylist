@@ -15,7 +15,9 @@ class PlaylistVideo extends React.Component {
         return (
             <div className={"playlist-video " + (this.props.active ? "active" : "")} onClick={this.handleClick}>
                 <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>
-                {video.title}
+                <div className="playlist-video-info">
+                    {video.title}
+                </div>
             </div>
         )
     }

@@ -36,7 +36,6 @@ export class YoutubeVideo extends BaseVideo {
     get thumbnail() {
         return this._thumbnail;
     }
-
 }
 
 export class YoutubeAPI extends BaseAPI {
@@ -100,10 +99,10 @@ export class YoutubeAPI extends BaseAPI {
                      --snippet
                          --title <-- Video title
                          --resourceId
-                             -- videoId <-- video link id
+                             -- videoId <-- videoplayer link id
                          --thumbnails
                          --default
-                             --url <-- video thumbnail url
+                             --url <-- videoplayer thumbnail url
                     --id <-- playlist id*/
         return axios.get("https://www.googleapis.com/youtube/v3/playlistItems", {
             params: {

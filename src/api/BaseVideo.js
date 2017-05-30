@@ -13,6 +13,9 @@ class BaseVideo {
     get thumbnail() {}
     get title() {}
 
+    equals(video) {
+        return this.domainType === video.domainType && this.id === video.id;
+    }
 }
 
 export default BaseVideo;

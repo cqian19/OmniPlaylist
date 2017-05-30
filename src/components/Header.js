@@ -9,7 +9,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <div className="header">
+            <div className="header height-collapse">
                 <h1>
                     { APP_TITLE }
                 </h1>

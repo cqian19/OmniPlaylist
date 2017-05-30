@@ -3,8 +3,11 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import YoutubeVideoPlayer from 'youtube-player';
+
+import ResizableVideoContainer from '../../containers/ResizableVideoContainer';
 
 const stateNames = {
     '-1': 'unstarted',
@@ -12,18 +15,17 @@ const stateNames = {
     1: 'playing',
     2: 'paused',
     3: 'buffering',
-    5: 'video cued'
+    5: 'videoplayer cued'
 };
 
 export class YoutubePlayer extends React.Component {
 
     _initializePlayer() {
         const player = YoutubeVideoPlayer(this.iframe);
-        const _this = this;
-        player.on('stateChange', function (event) {
+        player.on('stateChange', (event) => {
             switch (stateNames[event.data]) {
                 case 'ended':
-                    return _this.props.onEnded(_this.props.index);
+                    return this.props.onEnded(this.props.index);
                 default:
                     return;
             }
@@ -41,10 +43,10 @@ export class YoutubePlayer extends React.Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        return nextProps.videos !== [] &&
+        return (nextProps.videos !== [] &&
             (nextProps.index !== this.props.index ||
                 nextProps.videos !== this.props.videos
-            );
+            ));
     }
 
     componentWillUpdate(nextProps) {
@@ -55,10 +57,12 @@ export class YoutubePlayer extends React.Component {
         return (
             <div className="player__inner">
                 <div className="player__main">
-                    <div height="400" width="600" className="player" ref={(e) => {
-                        this.iframe = e;
-                    }}>
-                    </div>
+                    <ResizableVideoContainer>
+                        <div id="player-video" ref={(e) => {
+                            this.iframe = e;
+                        }}>
+                        </div>
+                    </ResizableVideoContainer>
                 </div>
                 <div className="player__footer">
                     {/* Previous Video Button */}

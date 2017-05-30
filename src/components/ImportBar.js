@@ -40,12 +40,12 @@ class ImportBar extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit} className="import">
-                    <button type="submit">
+            <div className="import-bar">
+                <form onSubmit={this.handleSubmit} className="height-collapse-small import-form">
+                    <button className="btn btn-inverse import-button col-xs-2" type="submit">
                         Import
                     </button>
-                    <FormGroup validationState={this.state.validationState}>
+                    <FormGroup className="col-xs-10" validationState={this.state.validationState}>
                         <FormControl inputRef={(input) => { this.textInput = input; }}
                                      type="text"
                                      onChange={this.handleChange}

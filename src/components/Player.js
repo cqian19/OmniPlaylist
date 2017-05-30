@@ -17,10 +17,9 @@ class Player extends React.Component {
         }
     }
 
-
     render() {
         return (
-            <div className="player col-md-6">
+            <div className="player">
                 {this.playerSection()}
             </div>
         )

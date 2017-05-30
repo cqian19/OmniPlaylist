@@ -9,7 +9,7 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div className="navbar">
+            <div className="navbar height-collapse">
                 <Nav bsStyle="pills" activeKey ={1} justified onSelect={this.props.handleSelect}>
                     {this.props.navs.map((nav) =>
                         <NavItem key={nav.key} eventKey={nav.key}>{nav.text}</NavItem>

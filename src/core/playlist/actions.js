@@ -19,7 +19,7 @@ export function onVideoClick(index) {
         }
     }
 }
-function onVideoSwitch(index) {
+export function onVideoSwitch(index) {
     return {
         type: ON_VIDEO_SWITCH,
         index
