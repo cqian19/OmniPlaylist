@@ -1,0 +1,27 @@
+
+@media (max-width: 768px) {
+  .navbar {
+    min-height: 100px;
+  }
+}
+
+.navbar {
+  margin-bottom: 0;
+  // Buttons in navigation
+  .nav li[role=presentation] {
+    a[role=button] {
+      border: 2px solid $purple-0;
+      &:hover {
+        background-color: $purple-0;
+      }
+      &:active {
+        background-color: $purple-1;
+        color: white;
+      }
+    }
+
+    &.active a[role=button]{
+      background-color: $purple-1;
+    }
+  }
+}

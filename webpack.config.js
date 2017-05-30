@@ -12,6 +12,7 @@ module.exports = {
     loaders: [
       { test: /\.js?$/, loaders: ['babel'], exclude: /node_modules/ },
       { test: /\.s?css$/, loader: 'style!css!sass' },
+      { test: /\.json$/,  loader: 'json-loader' }
     ]
   },
   resolve: {
@@ -22,6 +23,7 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  target: 'electron',
   devServer: {
     contentBase: './dist',
     hot: true

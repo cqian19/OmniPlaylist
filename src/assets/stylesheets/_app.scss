@@ -1,0 +1,10 @@
+
+#root {
+  height: inherit;
+
+  .container-fluid {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+}

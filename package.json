@@ -4,7 +4,7 @@
   "description": "An example React + Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ./src/main.js",
+    "start": "webpack && electron ./src/main.js",
     "dev": "webpack-dev-server",
     "postinstall": "webpack -p --config webpack.config.js"
   },
@@ -34,6 +34,7 @@
     "electron-debug": "^1.1.0",
     "electron-referer": "^0.3.0",
     "es6-promise-promise": "^1.0.0",
+    "json-loader": "^0.5.4",
     "react-bootstrap": "^0.31.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-redux": "^5.0.5",

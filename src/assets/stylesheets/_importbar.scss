@@ -1,0 +1,33 @@
+
+
+.import-form {
+  height: 40px;
+  // Import button
+  .import-button {
+    background-color: $blue-3;
+    border: 0;
+    color: white;
+    float: left;
+    height: inherit;
+
+    &:hover {
+      background-color: $blue-2;
+    }
+    &:active {
+      background-color: $blue-3;
+    }
+  }
+  // Search bar
+  .form-group {
+    float: left;
+    height: inherit;
+    padding-right: 1px;
+    input {
+      background-color: $blue-0;
+      border: 4px solid $blue-1;
+      color: white;
+      height: inherit;
+      min-width: 300px;
+    }
+  }
+}

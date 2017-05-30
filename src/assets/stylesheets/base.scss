@@ -1,4 +1,18 @@
+@import
+  'utilities/_colors.scss',
+  'app',
+  'importbar',
+  'navbar',
+  'video'
+;
 
+html, body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
 
 h1 {
   font-family: helvetica;
@@ -11,13 +25,26 @@ h1 {
   }
 }
 
-.active {
-  background-color: lightblue;
+
+@media (max-height: 500px) {
+  .height-collapse {
+    display: none;
+  }
 }
 
-.playlist-video {
-  &:hover{
-    background-color: lightblue;
-
+@media (max-height: 450px) {
+  .height-collapse-small {
+    display: none;
   }
+}
+
+@media(max-width: 700px) {
+  .width-collapse {
+    display: none;
+  }
+}
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
 }

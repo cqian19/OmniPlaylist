@@ -1,0 +1,44 @@
+
+.video-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.player {
+  padding: 0 !important;
+}
+
+.playlist{
+  background-color: $purple-0;
+  border: 1px solid;
+  flex: 1 1 auto;
+  margin-left: 2px;
+  min-width: 250px;
+  overflow: auto;
+}
+
+.playlist-video {
+  height: 110px;
+  margin-bottom: 5px;
+
+  .thumbnail {
+    height: 100px;
+    float:left;
+    margin-bottom: 0;
+  }
+
+  .playlist-video-info {
+    margin-left: 2px;
+  }
+
+  > .active {
+    background-color: lightblue;
+  }
+  &:hover{
+    background-color: lightblue;
+  }
+}
+
+#player-video {
+  resize: both;
+}
