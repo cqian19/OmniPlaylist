@@ -43,10 +43,10 @@ export class YoutubePlayer extends React.Component {
     }
 
     shouldComponentUpdate(nextProps) {
+        // Update if the next video being shown is not the one currently on
         return (nextProps.videos !== [] &&
-            (nextProps.index !== this.props.index ||
-                nextProps.videos !== this.props.videos
-            ));
+            !(nextProps.videos[nextProps.index].equals(this.props.videos[this.props.index]))
+        );
     }
 
     componentWillUpdate(nextProps) {

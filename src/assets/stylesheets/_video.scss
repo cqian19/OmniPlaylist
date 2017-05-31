@@ -2,6 +2,7 @@
 .video-container {
   display: flex;
   flex-grow: 1;
+  margin-bottom: 15px;
 }
 
 .player {
@@ -9,12 +10,16 @@
 }
 
 .playlist{
-  background-color: $purple-0;
   border: 1px solid;
   flex: 1 1 auto;
   margin-left: 2px;
   min-width: 250px;
   overflow: auto;
+}
+
+#player-video {
+  height: inherit;
+  width: inherit;
 }
 
 .playlist-video {
@@ -31,15 +36,15 @@
     margin-left: 2px;
   }
 
-  > .active {
-    background-color: lightblue;
+  button {
+    z-index: 2;
+  }
+
+  &.active {
+    background-color: $purple-0;
   }
   &:hover{
-    background-color: lightblue;
+    background-color: $purple-0;
   }
-}
 
-#player-video {
-  height: inherit;
-  width: inherit;
 }

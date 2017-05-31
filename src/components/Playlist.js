@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import PlaylistVideo from './PlaylistVideo';
+import PlaylistVideoContainer from '../containers/PlaylistVideoContainer';
 
 class Playlist extends React.Component {
 
@@ -12,12 +12,9 @@ class Playlist extends React.Component {
         return (
             <div className="playlist width-collapse">
                 {this.props.videos.map((video, index) => (
-                    <PlaylistVideo
-                        key={index}
+                    <PlaylistVideoContainer
                         video={video}
                         index={index}
-                        onVideoClick={this.props.onVideoClick}
-                        active={index===this.props.index}
                     />
                 ))}
             </div>

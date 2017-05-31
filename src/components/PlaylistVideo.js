@@ -6,17 +6,17 @@ import React from 'react';
 
 class PlaylistVideo extends React.Component {
 
-    handleClick = () => {
-        this.props.onVideoClick(this.props.index);
-    }
-
     render() {
         const video = this.props.video;
         return (
-            <div className={"playlist-video " + (this.props.active ? "active" : "")} onClick={this.handleClick}>
+            <div className={"playlist-video " + (this.props.active ? "active" : "")} onClick={this.props.onVideoClick} >
                 <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>
-                <div className="playlist-video-info">
-                    {video.title}
+                <div className="playlist-video-desc">
+                    <div className="playlist-video-title">
+                        {video.title}
+                    </div>
+                    <button className="video-up glyphicon glyphicon-arrow-up" onClick={this.props.onVideoUpClick}/>
+                    <button className="video-down glyphicon glyphicon-arrow-down" onClick={this.props.onVideoDownClick}/>
                 </div>
             </div>
         )

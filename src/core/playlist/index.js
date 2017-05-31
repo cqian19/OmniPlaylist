@@ -5,6 +5,8 @@
 export {
     onPlaylistSwitch,
     onVideoClick,
+    onVideoUpClick,
+    onVideoDownClick,
     onVideoEnd,
     onVideoSkip,
     onVideoPrev

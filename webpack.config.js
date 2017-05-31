@@ -34,6 +34,11 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
         Promise: 'es6-promise-promise'
+    }),
+    new webpack.DefinePlugin({
+        "process.env": {
+            NODE_ENV: JSON.stringify("production")
+        }
     })
   ]
 };
