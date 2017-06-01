@@ -9,7 +9,8 @@ export {
     onVideoDownClick,
     onVideoEnd,
     onVideoSkip,
-    onVideoPrev
+    onVideoPrev,
+    onVideoMove
 } from './actions';
 export { playlistReducer } from './reducer';
 export {

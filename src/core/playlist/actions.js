@@ -10,7 +10,8 @@ import {
     ON_VIDEO_PREV,
     ON_VIDEO_SKIP,
     ON_VIDEO_SWITCH,
-    ON_VIDEO_ACTION_FAILED
+    ON_VIDEO_ACTION_FAILED,
+    ON_VIDEO_MOVE
 } from '../constants';
 import { getIndex, getVideos } from '.';
 
@@ -37,12 +38,13 @@ export function onPlaylistSwitch(){
     }
 }
 
-export function onVideoUpClick(index) {
+export function onVideoUpClick(startIndex, endIndex) {
     /* Up button on video is clicked, move this video before the previous one on the playlist */
-    if (index !== 0) {
+    if (startIndex !== 0) {
         return {
             type: ON_VIDEO_UP_CLICK,
-            index
+            startIndex,
+            endIndex
         }
     } else {
         return {
@@ -51,15 +53,16 @@ export function onVideoUpClick(index) {
     }
 }
 
-export function onVideoDownClick(index) {
+export function onVideoDownClick(startIndex, endIndex) {
     /* Down button on video is clicked, move this video after the next video */
     return (dispatch, getState) => {
         const playlistLength = getVideos(getState()).length;
         // Video is not last on the playlist, can be shifted down
-        if (index !== playlistLength - 1) {
+        if (startIndex !== playlistLength - 1) {
             dispatch({
                 type: ON_VIDEO_DOWN_CLICK,
-                index
+                startIndex,
+                endIndex
             });
         } else {
             dispatch({
@@ -88,5 +91,13 @@ export function onVideoEnd(index) {
     return {
         type: ON_VIDEO_END,
         index
+    }
+}
+
+export function onVideoMove(startIndex, endIndex) {
+    return {
+        type: ON_VIDEO_MOVE,
+        startIndex,
+        endIndex
     }
 }

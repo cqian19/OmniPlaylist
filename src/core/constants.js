@@ -41,6 +41,7 @@ export const ON_VIDEO_PREV = 'ON_VIDEO_PREV';
 export const ON_VIDEO_SKIP = 'ON_VIDEO_SKIP';
 export const ON_VIDEO_END = 'ON_VIDEO_END';
 export const ON_VIDEO_SWITCH = 'ON_VIDEO_SWITCH';
+export const ON_VIDEO_MOVE = 'ON_VIDEO_MOVE';
 export const ON_VIDEO_ACTION_FAILED = 'ON_VIDEO_ACTION_FAILED';
 export const ON_PLAYLIST_CHANGE = 'ON_PLAYLIST_CHANGE';
 

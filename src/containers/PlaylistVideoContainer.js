@@ -9,6 +9,7 @@ import {
     onVideoClick,
     onVideoUpClick,
     onVideoDownClick,
+    onVideoMove,
     getIndex
 } from '../core/playlist';
 
@@ -21,16 +22,18 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onVideoClick(event) {
-        event.stopPropagation();
         dispatch(onVideoClick(ownProps.index));
     },
     onVideoUpClick(event) {
         event.stopPropagation();
-        dispatch(onVideoUpClick(ownProps.index));
+        dispatch(onVideoUpClick(ownProps.index, ownProps.index-1));
     },
     onVideoDownClick(event) {
         event.stopPropagation();
-        dispatch(onVideoDownClick(ownProps.index));
+        dispatch(onVideoDownClick(ownProps.index, ownProps.index+1));
+    },
+    onVideoMove(startIndex, endIndex) {
+        dispatch(onVideoMove(startIndex, endIndex));
     }
 });
 

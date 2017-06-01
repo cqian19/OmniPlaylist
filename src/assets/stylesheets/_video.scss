@@ -43,6 +43,11 @@
   &.active {
     background-color: $purple-0;
   }
+
+  &.dragging {
+    background-color: $yellow-0;
+  }
+
   &:hover{
     background-color: $purple-0;
   }

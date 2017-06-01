@@ -12,6 +12,7 @@ import {
     ON_VIDEO_END,
     ON_VIDEO_SKIP,
     ON_VIDEO_PREV,
+    ON_VIDEO_MOVE,
     ON_VIDEO_ACTION_FAILED
 } from '../constants';
 import { getStateVideos, getStateIndex } from '.';
@@ -34,43 +35,59 @@ function prevVideoIndex(state, action) {
 }
 
 function swapUp(state, action) {
-    const videos = getStateVideos(state).slice(); // Copy of videos
-    const index = action.index; // Index of video to swap up
-    [videos[index], videos[index-1]] = [videos[index-1], videos[index]];
+    const videos = getStateVideos(state).slice(); // Copy
+    const index = action.startIndex; // Index of video to swap up
+    [videos[index], videos[index - 1]] = [videos[index-1], videos[index]];
     return videos;
 }
 
 function swapDown(state, action) {
-    const videos = getStateVideos(state).slice(); // Copy of videos
-    const index = action.index; // Index of video to swap down
-    [videos[index], videos[index+1]] = [videos[index+1], videos[index]];
+    const videos = getStateVideos(state).slice();
+    const index = action.startIndex; // Index of video to swap down
+    [videos[index], videos[index + 1]] = [videos[index + 1], videos[index]];
     return videos;
 }
 
-function chooseUpIndex(state, action) {
-    const swapIndex = action.index;
+function chooseAfterMoveIndex(state, action) {
+    const [startIndex, endIndex] = [action.startIndex, action.endIndex];
     const currentIndex = getStateIndex(state);
-    if (swapIndex === currentIndex) {
-        // Video has been moved up playlist
+    if (startIndex === currentIndex) {
+        // The current playing video was reordered, return its new index
+        return endIndex;
+    } else if (startIndex < currentIndex && endIndex >= currentIndex) {
+        // The moved video was moved down past the currently playing video, move current playing video up
         return currentIndex - 1;
-    } else if (swapIndex === currentIndex + 1) {
-        // The next video has been moved up, so our index for this video increases
-        return currentIndex + 1;
+    } else if (startIndex > currentIndex && endIndex <= currentIndex) {
+        // The moved video was moved up past the currently playing video, shift current playing video down
+        return currentIndex + 1
+    } else {
+        // Current playing video index not affected
+        return currentIndex;
     }
-    return currentIndex;
 }
 
-function chooseDownIndex(state, action) {
-    const swapIndex = action.index;
-    const currentIndex = getStateIndex(state);
-    if (swapIndex === currentIndex) {
-        // Video has been moved down
-        return currentIndex + 1;
-    } else if (swapIndex === currentIndex - 1) {
-        // The previous video has been moved down, so our index for this video decreases
-        return currentIndex - 1;
+function makeNewVideoOrdering(state, action) {
+    // Video moved from startIndex position to endIndex position
+    const [startIndex, endIndex] = [action.startIndex, action.endIndex];
+    const videos = getStateVideos(state);
+    let newVideos;
+    // Video moved down on playlist
+    if(startIndex < endIndex) {
+        newVideos = [].concat(
+            videos.slice(0, startIndex), // Keep all videos up to where the video used to be
+            videos.slice(startIndex + 1, endIndex + 1),  // Move these videos down
+            [videos[startIndex]], // Insert moved video here
+            videos.slice(endIndex + 1)); // Keep all remaining videos in their spot
+    } else {
+    // Video moved up on playlist
+        newVideos = [].concat(
+            videos.slice(0, endIndex), // Keep all videos up to the spot the video moved to
+            [videos[startIndex]], // Insert video here
+            videos.slice(endIndex, startIndex), // Insert all videos after, skipping the video that just moved
+            videos.slice(startIndex+1)
+        );
     }
-    return currentIndex;
+    return newVideos;
 }
 
 export function playlistReducer(state = defaultState, action) {
@@ -79,18 +96,18 @@ export function playlistReducer(state = defaultState, action) {
         case ADD_PLAYLIST_SUCCESS:
             return {...state, videos: action.videos, index: action.index};
         case ADD_VIDEO_SUCCESS:
-            /* Current behavior is to push video to playlist, go to index of pushed video */
+            // Current behavior is to push video to playlist, go to index of pushed video
             videos = getStateVideos(state);
             return {...state, videos: videos.concat([action.video]), index: videos.length};
         case ON_PLAYLIST_CHANGE:
         case ON_VIDEO_UP_CLICK:
             videos = swapUp(state, action);
-            index = chooseUpIndex(state, action);
-            return {...state, videos, index:index};
+            index = chooseAfterMoveIndex(state, action);
+            return {...state, videos, index};
         case ON_VIDEO_DOWN_CLICK:
             videos = swapDown(state, action);
-            index = chooseDownIndex(state, action);
-            return {...state, videos, index:index};
+            index = chooseAfterMoveIndex(state, action);
+            return {...state, videos, index};
         case ON_VIDEO_SWITCH:
             return {...state, index: action.index};
         case ON_VIDEO_SKIP : case ON_VIDEO_END:
@@ -99,6 +116,10 @@ export function playlistReducer(state = defaultState, action) {
         case ON_VIDEO_PREV:
             index = prevVideoIndex(state, action);
             return {...state, index};
+        case ON_VIDEO_MOVE:
+            videos = makeNewVideoOrdering(state, action);
+            index = chooseAfterMoveIndex(state, action);
+            return {...state, index, videos};
         case ON_VIDEO_ACTION_FAILED:
         default:
             return state;

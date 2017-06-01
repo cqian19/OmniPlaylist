@@ -1,5 +1,9 @@
 import '../assets/stylesheets/base.scss';
 import React from 'react';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
+
 import Header from './Header';
 import NavBarContainer from '../containers/NavBarContainer';
 import ImportBarContainer from '../containers/ImportBarContainer';
@@ -27,4 +31,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default DragDropContext(HTML5Backend)(App);
