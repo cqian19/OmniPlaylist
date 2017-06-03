@@ -64,7 +64,6 @@ class ResizableVideo extends React.Component {
         });
     }
 
-
     render() {
         return(
             <div>
@@ -72,6 +71,7 @@ class ResizableVideo extends React.Component {
                     width={this.state.width}
                     height={this.state.height}
                     onResize={this._onInnerResize}
+                    className="resizable-video-container"
                 >
                     {this.props.children}
                 </Resizable>

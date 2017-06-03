@@ -9,23 +9,25 @@ import {
     getIndex,
     onVideoEnd,
     onVideoPrev,
-    onVideoSkip } from '../core/playlist';
+    onVideoSkip
+} from '../core/playlist';
 
 
-const mapStateToProps = (state) => ({
-    videos: getVideos(state),
-    index: getIndex(state)
-});
+const mapStateToProps = function(state) {
+    const videos = getVideos(state);
+    const index = getIndex(state);
+    return {videos, index, ...videos.length && {video: videos[index]}}
+};
 
 const mapDispatchToProps = (dispatch) => ({
-    onEnded: (curIndex) => {
-        dispatch(onVideoEnd(curIndex));
+    onEnded: () => {
+        dispatch(onVideoEnd());
     },
-    onPrev: (curIndex) => {
-        dispatch(onVideoPrev(curIndex));
+    onPrev: () => {
+        dispatch(onVideoPrev());
     },
-    onSkip: (curIndex) => {
-        dispatch(onVideoSkip(curIndex));
+    onSkip: () => {
+        dispatch(onVideoSkip());
     }
 });
 

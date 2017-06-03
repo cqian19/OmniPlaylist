@@ -12,16 +12,14 @@ const ScrollingComponent = withScrolling('div');
 class Playlist extends React.Component {
 
     render(){
-        const videos = this.props.videos.map((video,index) => (
-            <PlaylistVideoContainer
-                video={video}
-                index={index}
-            />
-        ));
-
         return (
             <ScrollingComponent className="playlist width-collapse">
-                {videos}
+                {this.props.videos.map((video,index) => (
+                    <PlaylistVideoContainer
+                        video={video}
+                        index={index}
+                    />
+                ))}
             </ScrollingComponent>
         )
     }

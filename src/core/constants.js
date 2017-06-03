@@ -7,7 +7,8 @@
 
 // Determines domain of videoplayer and how it should be played
 export const DOMAIN_TYPES = {
-    'YOUTUBE': 'YOUTUBE'
+    'YOUTUBE': 'YOUTUBE',
+    'VIMEO': 'VIMEO'
 };
 
 

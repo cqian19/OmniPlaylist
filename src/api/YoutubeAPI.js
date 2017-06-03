@@ -10,31 +10,14 @@ const key = "AIzaSyBFeCSptMDugs4MIx-GGD3JmwFz1IDyIGI";
 
 export class YoutubeVideo extends BaseVideo {
 
-
     constructor(videoResponse, renderType){
-        super(videoResponse);
-        this._video = videoResponse;
-        this._title = this._video.snippet.title;
-        this._thumbnail = this._video.snippet.thumbnails.default.url;
+        super();
+        this.title = videoResponse.snippet.title;
+        this.thumbnail = videoResponse.snippet.thumbnails.default.url;
         // videoResponse.id of playlist items returns the playlist id, not the video id
-        this._id = (renderType === RENDER_TYPES.VIDEO ?
-                        this._video.id : this._video.snippet.resourceId.videoId);
-    }
-
-    get domainType() {
-        return DOMAIN_TYPE;
-    }
-
-    get title(){
-        return this._title;
-    }
-
-    get id() {
-        return this._id
-    }
-
-    get thumbnail() {
-        return this._thumbnail;
+        this.id = (renderType === RENDER_TYPES.VIDEO ?
+                        videoResponse.id : videoResponse.snippet.resourceId.videoId);
+        this.domainType = DOMAIN_TYPE;
     }
 }
 

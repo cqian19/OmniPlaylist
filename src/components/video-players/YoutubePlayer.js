@@ -7,8 +7,6 @@ import ReactDOM from 'react-dom';
 
 import YoutubeVideoPlayer from 'youtube-player';
 
-import ResizableVideoContainer from '../../containers/ResizableVideoContainer';
-
 const stateNames = {
     '-1': 'unstarted',
     0: 'ended',
@@ -18,6 +16,7 @@ const stateNames = {
     5: 'videoplayer cued'
 };
 
+/* API reference: https://github.com/gajus/youtube-player */
 export class YoutubePlayer extends React.Component {
 
     _initializePlayer() {
@@ -25,7 +24,7 @@ export class YoutubePlayer extends React.Component {
         player.on('stateChange', (event) => {
             switch (stateNames[event.data]) {
                 case 'ended':
-                    return this.props.onEnded(this.props.index);
+                    return this.props.onEnded();
                 default:
                     return;
             }
@@ -34,46 +33,36 @@ export class YoutubePlayer extends React.Component {
     }
 
     _playVideo(props=this.props) {
-        this.player.loadVideoById(props.videos[props.index].id);
+        this.player.loadVideoById(props.video.id);
     }
 
     componentDidMount() {
-        this.player = this.player || this._initializePlayer();
+        this.player = this._initializePlayer();
         this._playVideo();
-    }
-
-    shouldComponentUpdate(nextProps) {
-        // Update if the next video being shown is not the one currently on
-        return (nextProps.videos !== [] &&
-            !(nextProps.videos[nextProps.index].equals(this.props.videos[this.props.index]))
-        );
     }
 
     componentWillUpdate(nextProps) {
         this._playVideo(nextProps);
     }
 
+
+    componentWillUnmount() {
+        this.player.destroy();
+    }
+
+    /* Long note here:
+     Apparently the youtube-player.destroy method is not called synchronously and will cause a
+     "DOMexception: Failed to execute 'removeChild' ... The node to be removed is not a child of this node"
+     when componentWillUnmount is called, since it can't undo the transformation of the div
+     into an iframe in time, and that original div won't be found. So the current solution is to wrap
+     the player-video div in another div, which will be found.
+     */
     render() {
         return (
-            <div className="player__inner">
-                <div className="player__main">
-                    <ResizableVideoContainer>
-                        <div id="player-video" ref={(e) => {
-                            this.iframe = e;
-                        }}>
-                        </div>
-                    </ResizableVideoContainer>
-                </div>
-                <div className="player__footer">
-                    {/* Previous Video Button */}
-                    <button onClick={this.props.onPrev}>
-                        <i className="glyphicon glyphicon-fast-backward"/>
-                    </button>
-                    {/* Skip Video Button */}
-                    <button onClick={this.props.onSkip}>
-                        <i className="glyphicon glyphicon-fast-forward"/>
-                    </button>
-                </div>
+            <div>
+                <div id="player-video" ref={(e) => {
+                    this.iframe = e;
+                }}/>
             </div>
         );
     }

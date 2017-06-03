@@ -9,8 +9,12 @@ class BaseAPI {
 
     static RENDER_TYPES = RENDER_TYPES;
 
-    static _isVideoLink(link){};
-    static _isPlaylistLink(link){};
+    static _isVideoLink(link){
+        return false;
+    };
+    static _isPlaylistLink(link){
+        return false;
+    };
     static getRenderAndDomainType(link){};
     static getVideoFromResponse(response){};
     static getPlaylistFromResponse(response){};

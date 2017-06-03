@@ -3,3 +3,4 @@
  */
 
 export { YoutubePlayer } from './YoutubePlayer';
+export { VimeoPlayer } from './VimeoPlayer';

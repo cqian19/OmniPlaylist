@@ -2,13 +2,9 @@
  * Created by cqian19 on 5/23/2017.
  */
 
-import { DOMAIN_TO_API } from '../core/domain-map-constants';
+import { APIS, DOMAIN_TO_API } from '../core/domain-map-constants';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 import { YoutubeAPI } from '.';
-
-const APIS = [
-    YoutubeAPI
-];
 
 class APIHandler {
 

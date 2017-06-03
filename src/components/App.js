@@ -22,7 +22,7 @@ class App extends React.Component {
                 <Header />
                 <NavBarContainer />
                 <ImportBarContainer />
-                <div className="video-container">
+                <div className="lower-container">
                     <PlayerContainer />
                     <PlaylistContainer/>
                 </div>

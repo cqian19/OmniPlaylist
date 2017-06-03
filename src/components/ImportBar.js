@@ -25,15 +25,12 @@ class ImportBar extends React.Component {
     };
 
     componentWillUpdate = (nextProps, nextState) => {
-        const _this = this;
         const newValidationState = nextProps.validationState;
         if (newValidationState !== this.state.validationState) {
             this.state.validationState = nextProps.validationState;
             if (newValidationState === 'success'){
-                setTimeout(function() {
-                    _this.textInput.value="";
-                }, 1500);
-                setTimeout(_this.props.resetForm, 3000);
+                this.textInput.value = "";
+                setTimeout(this.props.resetForm, 3000);
             }
         }
     };

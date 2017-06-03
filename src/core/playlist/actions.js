@@ -72,25 +72,22 @@ export function onVideoDownClick(startIndex, endIndex) {
     };
 }
 
-export function onVideoSkip(index) {
+export function onVideoSkip() {
     return {
         type: ON_VIDEO_SKIP,
-        index
     }
 }
 
-export function onVideoPrev(index) {
+export function onVideoPrev() {
     return {
         type: ON_VIDEO_PREV,
-        index
     }
 }
 
-export function onVideoEnd(index) {
+export function onVideoEnd() {
     // @param index: the index of the video in the playlist that just ended
     return {
         type: ON_VIDEO_END,
-        index
     }
 }
 

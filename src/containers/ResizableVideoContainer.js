@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     onDismount: (size) => {
-        dispatch(saveVideoSize);
+        dispatch(saveVideoSize(size));
     }
 });
 

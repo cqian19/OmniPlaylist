@@ -23,15 +23,15 @@ const defaultState = {
 };
 
 function nextVideoIndex(state, action) {
-    const videoIndex = action.index;
+    const videoIndex = getStateIndex(state);
     const videoLength = getStateVideos(state).length;
     return videoLength === 0 ? 0 : (videoIndex + 1) % videoLength;
 }
 
 function prevVideoIndex(state, action) {
-    const videoIndex = action.index;
+    const videoIndex = getStateIndex(state);
     const videoLength = getStateVideos(state).length;
-    return videoLength === 0 ? 0 : (videoIndex + videoLength - 1);
+    return videoLength === 0 ? 0 : (videoIndex + videoLength - 1) % videoLength;
 }
 
 function swapUp(state, action) {
@@ -97,8 +97,9 @@ export function playlistReducer(state = defaultState, action) {
             return {...state, videos: action.videos, index: action.index};
         case ADD_VIDEO_SUCCESS:
             // Current behavior is to push video to playlist, go to index of pushed video
-            videos = getStateVideos(state);
-            return {...state, videos: videos.concat([action.video]), index: videos.length};
+            videos = getStateVideos(state).slice();
+            videos.push(action.video);
+            return {...state, videos, index: videos.length - 1};
         case ON_PLAYLIST_CHANGE:
         case ON_VIDEO_UP_CLICK:
             videos = swapUp(state, action);

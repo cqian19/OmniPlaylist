@@ -5,16 +5,19 @@
 const electron = require('electron');
 
 function create(win, referer) {
-    const filter = {
+    const requestFilter = {
         urls: ['https://www.youtube.com/get_video_info?*eurl&*']
     };
-    win.webContents.session.webRequest.onBeforeRequest(filter, (details, callback) => {
+    win.webContents.session.webRequest.onBeforeRequest(requestFilter, (details, callback) => {
         const url = details.url;
         callback({
             redirectURL: url.replace("eurl", "eurl=http://youtube.com")
         })
     });
-    win.webContents.session.webRequest.onBeforeSendHeaders((detail, cb) => {
+    const headerFilter = {
+        urls: ['https://www.youtube.com/*']
+    };
+    win.webContents.session.webRequest.onBeforeSendHeaders(filter, (detail, cb) => {
         let {requestHeaders} = detail;
         requestHeaders = Object.assign(requestHeaders, {
             Referer: requestHeaders.Referer || referer,

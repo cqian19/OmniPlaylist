@@ -1,5 +1,5 @@
 
-.video-container {
+.lower-container {
   display: flex;
   flex-grow: 1;
   margin-bottom: 15px;
@@ -7,7 +7,20 @@
 
 .player {
   padding: 0 !important;
+
+  .resizable-video-container {
+    div {
+      height: inherit;
+      width: inherit;
+    }
+    iframe {
+      height: inherit;
+      width: inherit;
+    }
+  }
 }
+
+
 
 .playlist{
   border: 1px solid;
@@ -17,19 +30,15 @@
   overflow: auto;
 }
 
-#player-video {
-  height: inherit;
-  width: inherit;
-}
-
 .playlist-video {
-  height: 110px;
+  height: 130px;
   margin-bottom: 5px;
 
   .thumbnail {
-    height: 100px;
+    height: 120px;
     float:left;
-    margin-bottom: 0;
+    margin: 5px;
+    width: 200px;
   }
 
   .playlist-video-info {

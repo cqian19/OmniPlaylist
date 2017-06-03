@@ -51,7 +51,8 @@ export function doImport(link) {
 function importVideos(link, renderType, domainType) {
     return function(dispatch) {
         return APIHandler.fetchVideos(link, renderType, domainType).then(
-            response => (function() {
+            (response) => {
+                // dispatch(importSuccess());
                 switch(renderType) {
                     case RENDER_TYPES.VIDEO:
                         dispatch(addVideo(link, response, domainType));
@@ -60,8 +61,7 @@ function importVideos(link, renderType, domainType) {
                         dispatch(addPlaylist(link, response, domainType));
                         break;
                 }
-                dispatch(importSuccess());
-            })(),
+            },
             error => dispatch(importError(error))
         )
     }

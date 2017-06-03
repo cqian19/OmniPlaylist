@@ -11,12 +11,8 @@ import {
 import Playlist from '../components/Playlist';
 
 const mapStateToProps = (state) => ({
-    index: getIndex(state),
-    videos: getVideos(state)
+    videos: getVideos(state),
+    index: getIndex(state)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Playlist);
+export default connect(mapStateToProps)(Playlist);

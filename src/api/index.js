@@ -3,3 +3,4 @@
  */
 
 export { YoutubeAPI } from './YoutubeAPI';
+export { VimeoAPI } from './VimeoAPI';
