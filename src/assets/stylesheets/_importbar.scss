@@ -1,8 +1,13 @@
 
 
+.import-bar {
+  margin-top: 1px;
+  padding-left: 2px;
+}
+
 .import-form {
   height: 40px;
-  // Import button
+
   .import-button {
     background-color: $blue-3;
     border: 0;

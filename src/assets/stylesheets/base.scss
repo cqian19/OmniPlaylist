@@ -3,7 +3,8 @@
   'app',
   'importbar',
   'navbar',
-  'video'
+  'player',
+  'sidebar'
 ;
 
 html, body {
@@ -47,4 +48,14 @@ h1 {
 .container-fluid {
   margin: 0;
   padding: 0;
+}
+
+.icon-btn {
+  background-color: whitesmoke;
+  border: 1px solid $blue-1;
+  &:hover {
+    background-color: $purple-0;
+    color: black;
+    opacity: 0.7;
+  }
 }

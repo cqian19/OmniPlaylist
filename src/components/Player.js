@@ -41,13 +41,13 @@ class Player extends React.Component {
                     </div>
                     <div className="player__footer">
                         {/* Previous Video Button */}
-                        <button onClick={this.props.onPrev}>
+                        <span className="btn icon-btn" onClick={this.props.onPrev}>
                             <i className="glyphicon glyphicon-fast-backward"/>
-                        </button>
+                        </span>
                         {/* Skip Video Button */}
-                        <button onClick={this.props.onSkip}>
+                        <span className="btn icon-btn" onClick={this.props.onSkip}>
                             <i className="glyphicon glyphicon-fast-forward"/>
-                        </button>
+                        </span>
                     </div>
                 </div>
             </div>

@@ -52,7 +52,7 @@ function importVideos(link, renderType, domainType) {
     return function(dispatch) {
         return APIHandler.fetchVideos(link, renderType, domainType).then(
             (response) => {
-                // dispatch(importSuccess());
+                dispatch(importSuccess());
                 switch(renderType) {
                     case RENDER_TYPES.VIDEO:
                         dispatch(addVideo(link, response, domainType));

@@ -1,0 +1,25 @@
+.playlist-sidebar {
+  height: 50%;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+}
+
+.playlist-sidebar-toggle {
+  background-color: $blue-1;
+  display: table;
+  height: 100%;
+  opacity: 1.0;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  i {
+    color: white;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
