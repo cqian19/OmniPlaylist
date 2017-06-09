@@ -4,12 +4,19 @@
 
 import React from 'react';
 
+import SidebarItemContainer from '../containers/SidebarItemContainer';
+
 class SidebarContent extends React.Component {
 
     render() {
         return(
-            <div>
-
+            <div className="sidebar-playlist-content">
+                {this.props.playlists.map((playlist, index) => (
+                    <SidebarItemContainer
+                        playlist={playlist}
+                        index={index}
+                    />
+                ))}
             </div>
         )
     }

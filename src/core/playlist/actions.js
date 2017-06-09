@@ -32,9 +32,10 @@ export function onVideoSwitch(index) {
     }
 }
 
-export function onPlaylistSwitch(){
+export function onPlaylistSwitch(index){
     return {
-        type: ON_PLAYLIST_CHANGE
+        type: ON_PLAYLIST_CHANGE,
+        playlistIndex: index
     }
 }
 

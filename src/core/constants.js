@@ -11,8 +11,6 @@ export const DOMAIN_TYPES = {
     'VIMEO': 'VIMEO'
 };
 
-
-
 // Determines if link is to a playlist or to a videoplayer, or to neither
 export const RENDER_TYPES = {
     'INVALID': 'INVALID',

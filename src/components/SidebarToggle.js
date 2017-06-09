@@ -8,7 +8,7 @@ class SidebarToggle extends React.Component {
 
     render() {
         return (
-            <div className="playlist-sidebar-toggle" onClick={this.props.onSidebarToggle}>
+            <div className="sidebar-playlist-toggle" onClick={this.props.onSidebarToggle}>
                 <i className={"glyphicon glyphicon-menu-" + (this.props.toggled ? "right" : "left")}/>
             </div>
         )

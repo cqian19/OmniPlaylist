@@ -9,15 +9,14 @@ class BaseAPI {
 
     static RENDER_TYPES = RENDER_TYPES;
 
-    static _isVideoLink(link){
-        return false;
-    };
-    static _isPlaylistLink(link){
-        return false;
-    };
+    static _isVideoLink(link){};
+    static _isPlaylistLink(link){};
     static getRenderAndDomainType(link){};
     static getVideoFromResponse(response){};
     static getPlaylistFromResponse(response){};
+    static getPlaylistIndexFromLink(link) {
+        return 0;
+    };
     static fetchPlaylist(link){};
     static fetchVideo(link){};
 

@@ -59,3 +59,15 @@ h1 {
     opacity: 0.7;
   }
 }
+
+.hoverable {
+  &:hover{
+    background-color: $purple-0;
+  }
+}
+
+.selectable {
+  &.active {
+    background-color: $purple-0;
+  }
+}

@@ -14,9 +14,12 @@ export {
 } from './actions';
 export { playlistReducer } from './reducer';
 export {
+    getPlaylistReducer,
     getIndex,
-    getPlaylist,
     getVideos,
+    getPlaylistIndex,
+    getPlaylists,
     getStateVideos,
-    getStateIndex
+    getStateIndex,
+    getStatePlaylists
 } from './selectors';

@@ -11,6 +11,7 @@ import {
     IMPORT_FAILED,
     RESET_IMPORT_FORM
 } from '../constants';
+import Playlist from '../classes/Playlist';
 import  APIHandler from '../../api/APIHandler';
 
 export function resetForm() {
@@ -70,10 +71,12 @@ function importVideos(link, renderType, domainType) {
 function addPlaylist(link, response, domainType) {
     const videos = APIHandler.getVideosFromResponse(response, RENDER_TYPES.PLAYLIST, domainType);
     const index = APIHandler.getPlaylistIndexFromLink(link, domainType);
+    const playlist = new Playlist(videos);
     return {
         type: ADD_PLAYLIST_SUCCESS,
         index,
-        videos
+        videos,
+        playlist
     }
 }
 

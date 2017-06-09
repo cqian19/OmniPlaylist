@@ -15,11 +15,13 @@ import {
     ON_VIDEO_MOVE,
     ON_VIDEO_ACTION_FAILED
 } from '../constants';
-import { getStateVideos, getStateIndex } from '.';
+import { getStateVideos, getStateIndex, getStatePlaylists } from '.';
 
 const defaultState = {
+    playlists: [],
     videos: [],
-    index: 0
+    index: 0,
+    playlistIndex: 0
 };
 
 function nextVideoIndex(state, action) {
@@ -91,16 +93,24 @@ function makeNewVideoOrdering(state, action) {
 }
 
 export function playlistReducer(state = defaultState, action) {
-    let videos, index;
+    let videos, index, playlistIndex, playlists;
     switch(action.type) {
         case ADD_PLAYLIST_SUCCESS:
-            return {...state, videos: action.videos, index: action.index};
+            videos = action.videos;
+            index = action.index;
+            playlists = getStatePlaylists(state).concat([action.playlist]);
+            playlistIndex = playlists.length - 1;
+            return {...state, videos, index, playlists, playlistIndex};
         case ADD_VIDEO_SUCCESS:
             // Current behavior is to push video to playlist, go to index of pushed video
-            videos = getStateVideos(state).slice();
-            videos.push(action.video);
-            return {...state, videos, index: videos.length - 1};
+            videos = getStateVideos(state).concat([action.video]);
+            index = videos.length - 1;
+            return {...state, videos, index};
         case ON_PLAYLIST_CHANGE:
+            playlistIndex = action.playlistIndex;
+            videos = getStatePlaylists(state)[playlistIndex].videos;
+            index = 0;
+            return {...state, videos, index, playlistIndex};
         case ON_VIDEO_UP_CLICK:
             videos = swapUp(state, action);
             index = chooseAfterMoveIndex(state, action);
@@ -120,7 +130,7 @@ export function playlistReducer(state = defaultState, action) {
         case ON_VIDEO_MOVE:
             videos = makeNewVideoOrdering(state, action);
             index = chooseAfterMoveIndex(state, action);
-            return {...state, index, videos};
+            return {...state, videos, index};
         case ON_VIDEO_ACTION_FAILED:
         default:
             return state;

@@ -9,7 +9,7 @@ import NavBarContainer from '../containers/NavBarContainer';
 import ImportBarContainer from '../containers/ImportBarContainer';
 import PlayerContainer from '../containers/PlayerContainer';
 import PlaylistContainer from '../containers/PlaylistContainer';
-import PlaylistSidebarContainer from "../containers/PlaylistSidebarContainer";
+import SidebarPlaylistContainer from "../containers/SidebarPlaylistContainer";
 
 class App extends React.Component {
 
@@ -26,7 +26,7 @@ class App extends React.Component {
                 <div className="lower-container">
                     <PlayerContainer />
                     <PlaylistContainer />
-                    <PlaylistSidebarContainer />
+                    <SidebarPlaylistContainer />
                 </div>
             </div>
         )

@@ -33,6 +33,7 @@
 }
 
 .playlist-video {
+  @extend .hoverable, .selectable;
   height: 130px;
   margin-bottom: 5px;
 
@@ -51,16 +52,8 @@
     z-index: 2;
   }
 
-  &.active {
-    background-color: $purple-0;
-  }
-
   &.dragging {
     background-color: $yellow-0;
-  }
-
-  &:hover{
-    background-color: $purple-0;
   }
 
 }

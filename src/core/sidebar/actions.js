@@ -3,10 +3,18 @@
  */
 
 import { ON_SIDEBAR_TOGGLE } from '../constants';
+import { getPlaylistIndex, onPlaylistSwitch } from '../playlist';
 
 export function onSidebarToggle() {
-    console.log("TOGGLED");
     return {
         type: ON_SIDEBAR_TOGGLE
+    }
+}
+
+export function onSidebarItemClick(index) {
+    return (dispatch, getState) => {
+        if (getPlaylistIndex(getState()) !== index) {
+            dispatch(onPlaylistSwitch(index));
+        }
     }
 }

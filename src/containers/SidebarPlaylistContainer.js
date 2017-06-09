@@ -4,11 +4,13 @@
 
 import { connect } from 'react-redux';
 
-import PlaylistSidebar from '../components/PlaylistSidebar';
+import SidebarPlaylist from '../components/SidebarPlaylist';
+import { getPlaylists } from '../core/playlist';
 import { onSidebarToggle, getSidebarToggled } from '../core/sidebar';
 
 const mapStateToProps = (state) => ({
-    toggled: getSidebarToggled(state)
+    toggled: getSidebarToggled(state),
+    playlists: getPlaylists(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -17,4 +19,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlaylistSidebar);
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarPlaylist);

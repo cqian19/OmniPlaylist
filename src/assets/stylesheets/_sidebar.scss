@@ -1,17 +1,25 @@
-.playlist-sidebar {
+.sidebar-playlist {
   height: 50%;
+  min-height: 200px;
   position: fixed;
   right: 0;
   top: 50%;
-  transform: translate(-50%, -50%);
-  width: 15px;
+  transform: translate(100%, -50%);
+  transition: transform 0.15s ease;
+
+  &.active {
+    transform: translate(0%, -50%);
+  }
 }
 
-.playlist-sidebar-toggle {
+.sidebar-playlist-toggle {
   background-color: $blue-1;
   display: table;
   height: 100%;
+  left: -25px;
+  position: absolute;
   opacity: 1.0;
+  width: 25px;
 
   &:hover {
     opacity: 0.9;
@@ -20,6 +28,33 @@
   i {
     color: white;
     display: table-cell;
+    font-size: 21px;
     vertical-align: middle;
+  }
+}
+
+.sidebar-playlist-content {
+  background-color: white;
+  border: 1px solid $blue-1;
+  height: 100%;
+  width: 500px;
+}
+
+.sidebar-item {
+  @extend .hoverable, .selectable;
+  border: 1px solid black;
+  height: 130px;
+  margin: 5px;
+  padding: 2px;
+  width: 98%;
+
+  .sidebar-item-title {
+    font-size: 22px;
+  }
+
+  .sidebar-mini-thumbnail {
+    height: 75px;
+    margin: 3px;
+    width: 90px;
   }
 }

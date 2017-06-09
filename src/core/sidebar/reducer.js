@@ -12,7 +12,6 @@ const defaultState = {
 export function sidebarReducer(state=defaultState, action) {
     switch(action.type) {
         case ON_SIDEBAR_TOGGLE:
-            console.log(getStateToggled(state));
             return {...state, toggled: !getStateToggled(state)};
         default:
             return state

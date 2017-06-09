@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 import SidebarToggle from './SidebarToggle';
 import SidebarContent from './SidebarContent';
 
-class PlaylistSidebar extends React.Component {
+class SidebarPlaylist extends React.Component {
 
     render() {
         return(
-            <div className="playlist-sidebar">
+            <div className={"sidebar-playlist " + (this.props.toggled ? "active" : "")}>
                 <SidebarToggle {...this.props} />
                 <SidebarContent {...this.props} />
             </div>
@@ -19,9 +19,10 @@ class PlaylistSidebar extends React.Component {
     }
 }
 
-PlaylistSidebar.propTypes = {
-    onSidebarToggle: PropTypes.func,
-    toggled: PropTypes.bool,
+SidebarPlaylist.propTypes = {
+    playlists: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onSidebarToggle: PropTypes.func.isRequired,
+    toggled: PropTypes.bool.isRequired,
 };
 
-export default PlaylistSidebar;
+export default SidebarPlaylist;
