@@ -7,27 +7,33 @@ import Player from '../components/Player';
 import {
     getVideos,
     getIndex,
+    getReload,
     onVideoEnd,
     onVideoPrev,
-    onVideoSkip
+    onVideoSkip,
+    onPlayerReload
 } from '../core/playlist';
 
 
 const mapStateToProps = function(state) {
     const videos = getVideos(state);
     const index = getIndex(state);
-    return {videos, index, ...videos.length && {video: videos[index]}}
+    const reload = getReload(state);
+    return {videos, index, reload, ...videos.length && {video: videos[index]}}
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    onEnded: () => {
+    onEnded() {
         dispatch(onVideoEnd());
     },
-    onPrev: () => {
+    onPrev() {
         dispatch(onVideoPrev());
     },
-    onSkip: () => {
+    onSkip() {
         dispatch(onVideoSkip());
+    },
+    onPlayerReload() {
+        dispatch(onPlayerReload());
     }
 });
 

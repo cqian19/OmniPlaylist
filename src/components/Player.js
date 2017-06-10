@@ -14,20 +14,13 @@ class Player extends React.Component {
     playerSection() {
         if (this.props.videos.length) {
             const videoDomain = this.props.video.domainType;
-            const Player = DOMAIN_TO_PLAYER[videoDomain];
-            return (<Player {...this.props} {...this.state}/>);
+            const DomainPlayer = DOMAIN_TO_PLAYER[videoDomain];
+            return (<DomainPlayer {...this.props} />);
         }
     }
 
-    shouldComponentUpdate(nextProps) {
-        if (!this.props.videos.length) {
-            return true;
-        } else {
-            // Update if the next video being shown is not the one currently on
-            return (nextProps.videos !== [] &&
-                !(nextProps.videos[nextProps.index].equals(this.props.videos[this.props.index]))
-            );
-        }
+    componentDidUpdate() {
+        this.props.onPlayerReload();
     }
 
     render() {

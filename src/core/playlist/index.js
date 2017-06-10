@@ -10,7 +10,9 @@ export {
     onVideoEnd,
     onVideoSkip,
     onVideoPrev,
-    onVideoMove
+    onVideoMove,
+    onVideoRemove,
+    onPlayerReload
 } from './actions';
 export { playlistReducer } from './reducer';
 export {
@@ -21,5 +23,7 @@ export {
     getPlaylists,
     getStateVideos,
     getStateIndex,
-    getStatePlaylists
+    getStatePlaylists,
+    getStatePlaylistIndex,
+    getReload
 } from './selectors';

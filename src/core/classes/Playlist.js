@@ -19,16 +19,8 @@ class Playlist {
         return this._videos;
     }
 
-    set videos(videos) {
-        this._videos = videos;
-    }
-
     get name() {
         return this._name;
-    }
-
-    set name(name) {
-        this._name = name;
     }
 
 }

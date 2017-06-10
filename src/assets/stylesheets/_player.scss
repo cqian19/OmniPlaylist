@@ -44,12 +44,21 @@
     width: 200px;
   }
 
-  .playlist-video-info {
-    margin-left: 2px;
-  }
-
   button {
     z-index: 2;
+  }
+
+  span {
+    margin: 2px;
+  }
+
+  .video-remove {
+    cursor: pointer;
+    margin-left: 6px;
+
+    &:hover {
+      color: white;
+    }
   }
 
   &.dragging {

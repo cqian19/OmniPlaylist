@@ -4,6 +4,8 @@
 import React from 'react';
 import VimeoVideoPlayer from '@vimeo/player';
 
+import { BasePlayer } from './BasePlayer';
+
 /* API reference: https://github.com/vimeo/player.js */
 export class VimeoPlayer extends React.Component {
 

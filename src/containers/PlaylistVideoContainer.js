@@ -10,6 +10,7 @@ import {
     onVideoUpClick,
     onVideoDownClick,
     onVideoMove,
+    onVideoRemove,
     getIndex
 } from '../core/playlist';
 
@@ -34,6 +35,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     },
     onVideoMove(startIndex, endIndex) {
         dispatch(onVideoMove(startIndex, endIndex));
+    },
+    onVideoRemove(event) {
+        event.stopPropagation();
+        dispatch(onVideoRemove(ownProps.index));
     }
 });
 

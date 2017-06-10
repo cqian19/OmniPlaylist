@@ -11,7 +11,9 @@ import {
     ON_VIDEO_SKIP,
     ON_VIDEO_SWITCH,
     ON_VIDEO_ACTION_FAILED,
-    ON_VIDEO_MOVE
+    ON_VIDEO_MOVE,
+    ON_VIDEO_REMOVE,
+    ON_PLAYER_RELOAD
 } from '../constants';
 import { getIndex, getVideos } from '.';
 
@@ -86,7 +88,6 @@ export function onVideoPrev() {
 }
 
 export function onVideoEnd() {
-    // @param index: the index of the video in the playlist that just ended
     return {
         type: ON_VIDEO_END,
     }
@@ -97,5 +98,18 @@ export function onVideoMove(startIndex, endIndex) {
         type: ON_VIDEO_MOVE,
         startIndex,
         endIndex
+    }
+}
+
+export function onVideoRemove(index) {
+    return {
+        type: ON_VIDEO_REMOVE,
+        index
+    }
+}
+
+export function onPlayerReload() {
+    return {
+        type: ON_PLAYER_RELOAD
     }
 }

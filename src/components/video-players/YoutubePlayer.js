@@ -7,6 +7,8 @@ import ReactDOM from 'react-dom';
 
 import YoutubeVideoPlayer from 'youtube-player';
 
+import { BasePlayer } from '.';
+
 const stateNames = {
     '-1': 'unstarted',
     0: 'ended',
@@ -17,7 +19,7 @@ const stateNames = {
 };
 
 /* API reference: https://github.com/gajus/youtube-player */
-export class YoutubePlayer extends React.Component {
+export class YoutubePlayer extends BasePlayer {
 
     _initializePlayer() {
         const player = YoutubeVideoPlayer(this.iframe);
