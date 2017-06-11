@@ -12,16 +12,17 @@
     a[role=button] {
       border: 2px solid $purple-0;
       &:hover {
-        background-color: $purple-0;
+        background-color: $purple-1;
+        color: white;
       }
       &:active {
-        background-color: $purple-1;
+        background-color: $purple-2;
         color: white;
       }
     }
 
     &.active a[role=button]{
-      background-color: $purple-1;
+      background-color: $purple-2;
     }
   }
 }

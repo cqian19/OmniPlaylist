@@ -3,7 +3,6 @@
  */
 
 import {
-    ON_PLAYLIST_CHANGE,
     ON_VIDEO_UP_CLICK,
     ON_VIDEO_DOWN_CLICK,
     ON_VIDEO_END,
@@ -13,7 +12,9 @@ import {
     ON_VIDEO_ACTION_FAILED,
     ON_VIDEO_MOVE,
     ON_VIDEO_REMOVE,
-    ON_PLAYER_RELOAD
+    ON_PLAYER_RELOAD,
+    ON_PLAYLIST_CHANGE,
+    ON_PLAYLIST_NAME_CHANGE
 } from '../constants';
 import { getIndex, getVideos } from '.';
 
@@ -31,13 +32,6 @@ export function onVideoSwitch(index) {
     return {
         type: ON_VIDEO_SWITCH,
         index
-    }
-}
-
-export function onPlaylistSwitch(index){
-    return {
-        type: ON_PLAYLIST_CHANGE,
-        playlistIndex: index
     }
 }
 
@@ -105,6 +99,21 @@ export function onVideoRemove(index) {
     return {
         type: ON_VIDEO_REMOVE,
         index
+    }
+}
+
+export function onPlaylistSwitch(index){
+    return {
+        type: ON_PLAYLIST_CHANGE,
+        playlistIndex: index
+    }
+}
+
+export function onPlaylistNameChange(playlistName, index) {
+    return {
+        type: ON_PLAYLIST_NAME_CHANGE,
+        playlistIndex: index,
+        playlistName
     }
 }
 

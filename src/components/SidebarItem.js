@@ -4,6 +4,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import InlineEdit from 'react-edit-inline';
+import { Textfit } from 'react-textfit';
 
 class SidebarItem extends React.Component {
 
@@ -11,8 +13,8 @@ class SidebarItem extends React.Component {
         const topVideos = playlist.videos.slice(0, 5); // Display top 5 thumbnails
         const thumbnails = topVideos.map((video) => video.thumbnail);
         return thumbnails.map((thumbnail) => (
-            <span>
-                <img className="sidebar-mini-thumbnail" src={thumbnail} />
+            <span className="sidebar-mini-thumbnail">
+                <img src={thumbnail} />
             </span>
         ));
     }
@@ -22,9 +24,21 @@ class SidebarItem extends React.Component {
         return(
             <div className={"sidebar-item" + (this.props.active ? " active" : "")} onClick={this.props.onItemClick}>
                 <div className="sidebar-item-title">
-                    {playlist.name}
+                    <Textfit
+                        style={{'height': '37.5px', 'width':'inherit'}}
+                        max={22}
+                    >
+                        <InlineEdit
+                            className="renamable"
+                            activeClassName="renamable active"
+                            text={playlist.name}
+                            paramName="playlistName"
+                            change={this.props.onPlaylistNameChange}
+                            stopPropagation={true}
+                        />
+                    </Textfit>
                 </div>
-                <div className="sidebar-item-thumbnails">
+                <div className="sidebar-item-thumbnail-container">
                     {this._generateThumbnails(playlist)}
                 </div>
             </div>
@@ -36,7 +50,8 @@ SidebarItem.propTypes = {
     playlist: PropTypes.arrayOf(PropTypes.object).isRequired,
     index: PropTypes.number.isRequired,
     active: PropTypes.bool.isRequired,
-    onItemClick: PropTypes.func.isRequired
+    onItemClick: PropTypes.func.isRequired,
+    onPlaylistNameChange: PropTypes.func.isRequired
 };
 
 export default SidebarItem;

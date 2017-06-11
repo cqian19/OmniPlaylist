@@ -68,6 +68,12 @@ h1 {
 
 .selectable {
   &.active {
-    background-color: $purple-0;
+    background-color: $purple-1;
+  }
+}
+
+.display-row {
+  > * {
+    margin: 3px;
   }
 }

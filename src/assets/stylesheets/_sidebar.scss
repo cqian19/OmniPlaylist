@@ -5,7 +5,7 @@
   right: 0;
   top: 50%;
   transform: translate(100%, -50%);
-  transition: transform 0.15s ease;
+  transition: transform 0.25s ease-in-out;
 
   &.active {
     transform: translate(0%, -50%);
@@ -37,6 +37,7 @@
   background-color: white;
   border: 1px solid $blue-1;
   height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
   width: 500px;
 }
@@ -52,11 +53,35 @@
 
   .sidebar-item-title {
     font-size: 22px;
+    height: 37.5px;
+
+    .renamable {
+      height: 37.5px;
+
+      &.active {
+        font-size: 22px;
+      }
+    }
+  }
+
+  .sidebar-item-thumbnail-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 3px;
+    margin-right: 3px;
   }
 
   .sidebar-mini-thumbnail {
+    display: flex;
     height: 75px;
     margin: 3px;
-    width: 18%;
+    width: 20%;
+
+    img {
+      flex: 1;
+      height: inherit;
+      width: inherit;
+    }
   }
 }

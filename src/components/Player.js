@@ -32,7 +32,7 @@ class Player extends React.Component {
                             {this.playerSection()}
                         </ResizableVideoContainer>
                     </div>
-                    <div className="player__footer">
+                    <div className="player__footer display-row">
                         {/* Previous Video Button */}
                         <span className="btn icon-btn" onClick={this.props.onPrev}>
                             <i className="glyphicon glyphicon-fast-backward"/>

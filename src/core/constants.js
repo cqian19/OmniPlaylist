@@ -4,7 +4,6 @@
 
 
 /* ENUMS */
-
 // Determines domain of videoplayer and how it should be played
 export const DOMAIN_TYPES = {
     'YOUTUBE': 'YOUTUBE',
@@ -44,6 +43,7 @@ export const ON_VIDEO_MOVE = 'ON_VIDEO_MOVE';
 export const ON_VIDEO_REMOVE = 'ON_VIDEO_REMOVE';
 export const ON_VIDEO_ACTION_FAILED = 'ON_VIDEO_ACTION_FAILED';
 export const ON_PLAYLIST_CHANGE = 'ON_PLAYLIST_CHANGE';
+export const ON_PLAYLIST_NAME_CHANGE = 'ON_PLAYLIST_NAME_CHANGE';
 export const ON_PLAYER_RELOAD = 'ON_PLAYER_RELOAD';
 
 export const ON_VIDEO_SAVE_SIZE = 'ON_VIDEO_SAVE_SIZE';

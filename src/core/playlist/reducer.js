@@ -5,7 +5,6 @@
 import {
     ADD_PLAYLIST_SUCCESS,
     ADD_VIDEO_SUCCESS,
-    ON_PLAYLIST_CHANGE,
     ON_VIDEO_UP_CLICK,
     ON_VIDEO_DOWN_CLICK,
     ON_VIDEO_SWITCH,
@@ -15,9 +14,12 @@ import {
     ON_VIDEO_MOVE,
     ON_VIDEO_REMOVE,
     ON_VIDEO_ACTION_FAILED,
-    ON_PLAYER_RELOAD
+    ON_PLAYER_RELOAD,
+    ON_PLAYLIST_CHANGE,
+    ON_PLAYLIST_NAME_CHANGE
 } from '../constants';
 import Playlist from '../classes/Playlist';
+import PlaylistFactory from '../classes/PlaylistFactory';
 import {
     getStateVideos,
     getStateIndex,
@@ -105,10 +107,21 @@ function changeCurPlaylistVideos(state, videos) {
     let [playlists, playlistIndex] = [getStatePlaylists(state), getStatePlaylistIndex(state)];
     if (playlists.length) {
         // Create new playlist with new videos
-        const oldPlaylistName = playlists[playlistIndex].name;
+        const playlist = playlists[playlistIndex];
+        const playlistCopy = PlaylistFactory.clonePlaylistWithVideos(playlist, videos);
         playlists = playlists.slice();
-        playlists[playlistIndex] = new Playlist(videos, oldPlaylistName);
+        playlists[playlistIndex] = playlistCopy;
     }
+    return playlists;
+}
+
+function changeCurPlaylistName(state, action) {
+    const [playlistIndex, playlistName] = [action.playlistIndex, action.playlistName];
+    let playlists = getStatePlaylists(state);
+    const playlist = playlists[playlistIndex];
+    const playlistCopy = PlaylistFactory.clonePlaylistWithName(playlist, playlistName);
+    playlists = playlists.slice();
+    playlists[playlistIndex] = playlistCopy;
     return playlists;
 }
 
@@ -140,11 +153,6 @@ export function playlistReducer(state = defaultState, action) {
             index = videos.length - 1;
             playlists = changeCurPlaylistVideos(state, videos);
             return {...state, videos, index, playlists, reload: true};
-        case ON_PLAYLIST_CHANGE:
-            playlistIndex = action.playlistIndex;
-            videos = getStatePlaylists(state)[playlistIndex].videos;
-            index = 0;
-            return {...state, videos, index, playlistIndex, reload: true};
         case ON_VIDEO_UP_CLICK:
             videos = swapUp(state, action);
             index = chooseAfterMoveIndex(state, action);
@@ -175,6 +183,14 @@ export function playlistReducer(state = defaultState, action) {
         case ON_VIDEO_ACTION_FAILED:
         case ON_PLAYER_RELOAD:
             return {...state, reload: false};
+        case ON_PLAYLIST_CHANGE:
+            playlistIndex = action.playlistIndex;
+            videos = getStatePlaylists(state)[playlistIndex].videos;
+            index = 0;
+            return {...state, videos, index, playlistIndex, reload: true};
+        case ON_PLAYLIST_NAME_CHANGE:
+            playlists = changeCurPlaylistName(state, action);
+            return {...state, playlists};
         default:
             return state;
     }

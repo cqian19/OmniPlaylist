@@ -5,7 +5,7 @@
 import { connect } from 'react-redux';
 
 import SidebarItem from '../components/SidebarItem';
-import { getPlaylistIndex } from '../core/playlist';
+import { getPlaylistIndex, onPlaylistNameChange } from '../core/playlist';
 import { onSidebarItemClick } from '../core/sidebar';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -17,6 +17,9 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onItemClick() {
         dispatch(onSidebarItemClick(ownProps.index));
+    },
+    onPlaylistNameChange({playlistName}) {
+        dispatch(onPlaylistNameChange(playlistName, ownProps.index))
     }
 });
 

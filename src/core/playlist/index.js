@@ -3,7 +3,6 @@
  */
 
 export {
-    onPlaylistSwitch,
     onVideoClick,
     onVideoUpClick,
     onVideoDownClick,
@@ -12,7 +11,9 @@ export {
     onVideoPrev,
     onVideoMove,
     onVideoRemove,
-    onPlayerReload
+    onPlayerReload,
+    onPlaylistSwitch,
+    onPlaylistNameChange
 } from './actions';
 export { playlistReducer } from './reducer';
 export {

@@ -99,15 +99,17 @@ class PlaylistVideo extends React.Component {
                     <div className="playlist-video-title">
                         {video.title}
                     </div>
-                    <span className="video-up btn icon-btn" onClick={this.props.onVideoUpClick}>
-                        <i className="glyphicon glyphicon-arrow-up" />
-                    </span>
-                    <span className="video-down btn icon-btn" onClick={this.props.onVideoDownClick}>
-                        <i className="glyphicon glyphicon-arrow-down" />
-                    </span>
-                    <span className="video-remove" onClick={this.props.onVideoRemove}>
-                        <i className="glyphicon glyphicon-remove" />
-                    </span>
+                    <div className="display-row">
+                        <span className="video-up btn icon-btn" onClick={this.props.onVideoUpClick}>
+                            <i className="glyphicon glyphicon-arrow-up" />
+                        </span>
+                        <span className="video-down btn icon-btn" onClick={this.props.onVideoDownClick}>
+                            <i className="glyphicon glyphicon-arrow-down" />
+                        </span>
+                        <span className="video-remove" onClick={this.props.onVideoRemove}>
+                            <i className="glyphicon glyphicon-remove" />
+                        </span>
+                    </div>
                 </div>
             </div>
         ))
