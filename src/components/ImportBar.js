@@ -11,7 +11,8 @@ class ImportBar extends React.Component {
 
     state = {
         value: '',
-        validationState: null
+        validationState: null,
+        resetForm: null
     };
 
     handleSubmit = (event) => {
@@ -24,14 +25,19 @@ class ImportBar extends React.Component {
         this.state.value = event.target.value;
     };
 
-    componentWillUpdate = (nextProps, nextState) => {
+    componentWillUpdate = (nextProps) => {
+        const oldValidationState = this.props.validationState;
         const newValidationState = nextProps.validationState;
-        if (newValidationState !== this.state.validationState) {
-            this.state.validationState = nextProps.validationState;
-            if (newValidationState === 'success'){
-                this.textInput.value = "";
-                setTimeout(this.props.resetForm, 3000);
+        if (newValidationState === 'success' || newValidationState === 'error'){
+            this.setState({validationState: newValidationState});
+            this.textInput.value = "";
+            this.props.resetForm();
+            if (this.state.resetForm) {
+                clearTimeout(this.state.resetForm);
             }
+            this.state.resetForm = setTimeout(() => {
+                this.setState({validationState: null, resetForm: null});
+            }, 3000)
         }
     };
 
