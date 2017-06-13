@@ -13,6 +13,8 @@ import {
     ON_VIDEO_MOVE,
     ON_VIDEO_REMOVE,
     ON_PLAYER_RELOAD,
+    ON_PLAYLIST_MAKE,
+    ON_PLAYLIST_REMOVE,
     ON_PLAYLIST_CHANGE,
     ON_PLAYLIST_NAME_CHANGE
 } from '../constants';
@@ -114,6 +116,19 @@ export function onPlaylistNameChange(playlistName, index) {
         type: ON_PLAYLIST_NAME_CHANGE,
         playlistIndex: index,
         playlistName
+    }
+}
+
+export function onPlaylistMake() {
+    return {
+        type: ON_PLAYLIST_MAKE
+    }
+}
+
+export function onPlaylistRemove(index) {
+    return {
+        type: ON_PLAYLIST_REMOVE,
+        playlistIndex: index
     }
 }
 

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import {
     getIndex,
-    getVideos
+    getVideos,
 } from '../core/playlist';
 import Playlist from '../components/Playlist';
 

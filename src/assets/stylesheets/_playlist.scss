@@ -1,0 +1,33 @@
+.playlist{
+  flex: 1 1 auto;
+  margin-left: 2px;
+  min-width: 250px;
+  overflow: auto;
+}
+
+.playlist-video {
+  @extend .hoverable, .selectable;
+  height: 130px;
+  margin-bottom: 5px;
+
+  .thumbnail {
+    height: 120px;
+    float:left;
+    margin: 5px;
+    width: 200px;
+  }
+
+  button {
+    z-index: 2;
+  }
+
+  .video-remove {
+    @extend .remover;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  &.dragging {
+    background-color: $yellow-0;
+  }
+}

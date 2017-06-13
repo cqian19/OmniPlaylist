@@ -23,6 +23,9 @@ class SidebarItem extends React.Component {
         const playlist = this.props.playlist;
         return(
             <div className={"sidebar-item" + (this.props.active ? " active" : "")} onClick={this.props.onItemClick}>
+                <span className="playlist-remove" onClick={this.props.onPlaylistRemove}>
+                    <i className="glyphicon glyphicon-remove" />
+                </span>
                 <div className="sidebar-item-title">
                     <Textfit
                         style={{'height': '37.5px', 'width':'inherit'}}
@@ -51,7 +54,8 @@ SidebarItem.propTypes = {
     index: PropTypes.number.isRequired,
     active: PropTypes.bool.isRequired,
     onItemClick: PropTypes.func.isRequired,
-    onPlaylistNameChange: PropTypes.func.isRequired
+    onPlaylistNameChange: PropTypes.func.isRequired,
+    onPlaylistRemove: PropTypes.func.isRequired
 };
 
 export default SidebarItem;

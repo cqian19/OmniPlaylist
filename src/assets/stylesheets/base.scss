@@ -4,6 +4,7 @@
   'importbar',
   'navbar',
   'player',
+  'playlist',
   'sidebar'
 ;
 
@@ -69,6 +70,14 @@ h1 {
 .selectable {
   &.active {
     background-color: $purple-1;
+  }
+}
+
+.remover {
+  cursor: pointer;
+
+  &:hover {
+    color: white;
   }
 }
 

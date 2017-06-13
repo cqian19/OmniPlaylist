@@ -15,6 +15,8 @@ import {
     ON_VIDEO_REMOVE,
     ON_VIDEO_ACTION_FAILED,
     ON_PLAYER_RELOAD,
+    ON_PLAYLIST_MAKE,
+    ON_PLAYLIST_REMOVE,
     ON_PLAYLIST_CHANGE,
     ON_PLAYLIST_NAME_CHANGE
 } from '../constants';
@@ -24,7 +26,11 @@ import {
     getStateVideos,
     getStateIndex,
     getStatePlaylists,
-    getStatePlaylistIndex
+    getStatePlaylistIndex,
+    chooseNextIndex,
+    choosePrevIndex,
+    chooseAfterRemoveIndex,
+    removeAtIndex
 } from '.';
 
 const defaultState = {
@@ -37,14 +43,14 @@ const defaultState = {
 
 function nextVideoIndex(state, action) {
     const videoIndex = getStateIndex(state);
-    const videoLength = getStateVideos(state).length;
-    return videoLength === 0 ? 0 : (videoIndex + 1) % videoLength;
+    const videos = getStateVideos(state);
+    return chooseNextIndex(videos, videoIndex);
 }
 
 function prevVideoIndex(state, action) {
     const videoIndex = getStateIndex(state);
-    const videoLength = getStateVideos(state).length;
-    return videoLength === 0 ? 0 : (videoIndex + videoLength - 1) % videoLength;
+    const videos = getStateVideos(state);
+    return choosePrevIndex(videos,  videoIndex);
 }
 
 function swapUp(state, action) {
@@ -117,29 +123,16 @@ function changeCurPlaylistVideos(state, videos) {
 
 function changeCurPlaylistName(state, action) {
     const [playlistIndex, playlistName] = [action.playlistIndex, action.playlistName];
-    let playlists = getStatePlaylists(state);
-    const playlist = playlists[playlistIndex];
+    const tempPlaylists = getStatePlaylists(state);
+    const playlist = tempPlaylists[playlistIndex];
     const playlistCopy = PlaylistFactory.clonePlaylistWithName(playlist, playlistName);
-    playlists = playlists.slice();
+    const playlists = tempPlaylists.slice();
     playlists[playlistIndex] = playlistCopy;
     return playlists;
 }
 
-function removeVideoAtIndex(state, action) {
-    const index = action.index;
-    const videos = getStateVideos(state);
-    return videos.slice(0, index).concat(videos.slice(index + 1));
-}
-
-function chooseAfterRemoveIndex(state, action) {
-    const index = action.index; // Index of video to be removed
-    const curIndex = getStateIndex(state);
-    // Shift down current index if removed video is before current playing video
-    return index <= curIndex ? Math.max(0, curIndex - 1) : curIndex;
-}
-
 export function playlistReducer(state = defaultState, action) {
-    let videos, index, playlistIndex, playlists;
+    let videos, index, playlistIndex, playlists, reload;
     switch(action.type) {
         case ADD_PLAYLIST_SUCCESS:
             videos = action.videos;
@@ -176,13 +169,29 @@ export function playlistReducer(state = defaultState, action) {
             playlists = changeCurPlaylistVideos(state, videos);
             return {...state, videos, index, playlists};
         case ON_VIDEO_REMOVE:
-            videos = removeVideoAtIndex(state, action);
-            index = chooseAfterRemoveIndex(state, action);
+            const [tempVideos, curIndex, removeIndex] = [getStateVideos(state), getStateIndex(state), action.index];
+            reload = curIndex === removeIndex;
+            videos = removeAtIndex(tempVideos, removeIndex);
+            index = chooseAfterRemoveIndex(tempVideos, removeIndex, curIndex);
             playlists = changeCurPlaylistVideos(state, videos);
-            return {...state, videos, index, playlists};
+            return {...state, videos, index, playlists, reload};
         case ON_VIDEO_ACTION_FAILED:
         case ON_PLAYER_RELOAD:
             return {...state, reload: false};
+        case ON_PLAYLIST_MAKE:
+            videos = [];
+            index = 0;
+            playlists = playlists.concat([[]]);
+            playlistIndex = playlists.length - 1;
+            return {...state, videos, index, playlists, reload: true};
+        case ON_PLAYLIST_REMOVE:
+            const [tempPlaylists, curPlaylistIndex, removePlaylistIndex] =
+                [getStatePlaylists(state), getStatePlaylistIndex(state), action.playlistIndex];
+            reload = curPlaylistIndex === removePlaylistIndex;
+            playlists = removeAtIndex(tempPlaylists, removePlaylistIndex);
+            playlistIndex = chooseAfterRemoveIndex(tempPlaylists, removePlaylistIndex, curPlaylistIndex);
+            videos = (playlists.length ? playlists[playlistIndex].videos : []);
+            return {...state, videos, playlists, playlistIndex, reload};
         case ON_PLAYLIST_CHANGE:
             playlistIndex = action.playlistIndex;
             videos = getStatePlaylists(state)[playlistIndex].videos;

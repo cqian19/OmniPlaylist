@@ -12,6 +12,8 @@ export {
     onVideoMove,
     onVideoRemove,
     onPlayerReload,
+    onPlaylistMake,
+    onPlaylistRemove,
     onPlaylistSwitch,
     onPlaylistNameChange
 } from './actions';
@@ -28,3 +30,9 @@ export {
     getStatePlaylistIndex,
     getReload
 } from './selectors';
+export {
+    chooseNextIndex,
+    choosePrevIndex,
+    chooseAfterRemoveIndex,
+    removeAtIndex,
+} from './utils';
