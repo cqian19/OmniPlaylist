@@ -5,7 +5,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InlineEdit from 'react-edit-inline';
-import { Textfit } from 'react-textfit';
 
 class SidebarItem extends React.Component {
 
@@ -20,28 +19,23 @@ class SidebarItem extends React.Component {
     }
 
     render() {
-        const playlist = this.props.playlist;
+        const { playlist } = this.props;
         return(
             <div className={"sidebar-item" + (this.props.active ? " active" : "")} onClick={this.props.onItemClick}>
                 <span className="playlist-remove" onClick={this.props.onPlaylistRemove}>
                     <i className="glyphicon glyphicon-remove" />
                 </span>
-                <div className="sidebar-item-title">
-                    <Textfit
-                        style={{'height': '37.5px', 'width':'inherit'}}
-                        max={22}
-                    >
-                        <InlineEdit
-                            className="renamable"
-                            activeClassName="renamable active"
-                            text={playlist.name}
-                            paramName="playlistName"
-                            change={this.props.onPlaylistNameChange}
-                            stopPropagation={true}
-                        />
-                    </Textfit>
+                <div className="sidebar-item__title">
+                    <InlineEdit
+                        className="renamable"
+                        activeClassName="renamable-selected"
+                        text={playlist.name}
+                        paramName="playlistName"
+                        change={this.props.onPlaylistNameChange}
+                        stopPropagation={true}
+                    />
                 </div>
-                <div className="sidebar-item-thumbnail-container">
+                <div className="sidebar-item__thumbnails">
                     {this._generateThumbnails(playlist)}
                 </div>
             </div>

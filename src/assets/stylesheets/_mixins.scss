@@ -1,0 +1,7 @@
+@mixin text-truncate($max-lines) {
+             display: -webkit-box;
+            overflow: hidden;
+       text-overflow: ellipsis;
+  -webkit-line-clamp: $max-lines;
+  -webkit-box-orient: vertical;
+}

@@ -1,7 +1,6 @@
 .playlist{
   flex: 1 1 auto;
   margin-left: 2px;
-  min-width: 250px;
   overflow: auto;
 }
 
@@ -15,6 +14,10 @@
     float:left;
     margin: 5px;
     width: 200px;
+  }
+
+  .playlist-video__title {
+    @include text-truncate(2);
   }
 
   button {

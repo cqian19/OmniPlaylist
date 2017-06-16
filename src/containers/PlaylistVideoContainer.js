@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => ({
     active: getIndex(state) === ownProps.index,
     index: ownProps.index,
     key: ownProps.index,
-    video: ownProps.video
+    video: ownProps.video,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

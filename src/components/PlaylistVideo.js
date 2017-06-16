@@ -95,11 +95,11 @@ class PlaylistVideo extends React.Component {
                            }
                  onClick={this.props.onVideoClick}>
                 <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>
-                <div className="playlist-video-desc">
-                    <div className="playlist-video-title">
+                <div className="playlist-video__desc">
+                    <div className="playlist-video__title">
                         {video.title}
                     </div>
-                    <div className="display-row">
+                    <div className="playlist__buttons display-row">
                         <span className="video-up btn icon-btn" onClick={this.props.onVideoUpClick}>
                             <i className="glyphicon glyphicon-arrow-up" />
                         </span>

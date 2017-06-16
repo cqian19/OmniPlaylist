@@ -43,10 +43,10 @@ class ResizableVideo extends React.Component {
         const width = window.innerWidth;
         const height = window.innerHeight;
         // Grow the player back up to the base width/height
-        if(this.state.width > width || width <= this.state.innerWidth) {
+        if (this.state.width > width || width <= this.state.innerWidth) {
             this.setState({width});
         }
-        if(this.state.height > height || height <= this.state.innerHeight) {
+        if (this.state.height > height || height <= this.state.innerHeight) {
             this.setState({height});
         }
     };

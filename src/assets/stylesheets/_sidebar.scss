@@ -18,11 +18,10 @@
   height: 100%;
   left: -25px;
   position: absolute;
-  opacity: 1.0;
   width: 25px;
 
   &:hover {
-    opacity: 0.9;
+    opacity: .93;
   }
 
   i {
@@ -34,7 +33,7 @@
 }
 
 .sidebar-playlist-content {
-  background-color: white;
+  background-color: whitesmoke;
   border: 1px solid $blue-1;
   height: 100%;
   overflow-x: hidden;
@@ -44,23 +43,23 @@
 
 .sidebar-item {
   @extend .hoverable, .selectable;
-  border: 2px solid $blue-0;
-  border-radius: 5px;
   height: 130px;
   margin: 5px;
   padding: 2px;
   width: 98%;
 
-  .sidebar-item-title {
-    font-size: 22px;
+  .sidebar-item__title {
     height: 37.5px;
+    width: 420px;
 
     .renamable {
-      height: 37.5px;
+      @include text-truncate(1);
+      display: block;
+      font-size: 22px;
+    }
 
-      &.active {
-        font-size: 22px;
-      }
+    .renamable-selected {
+      font-size: 22px;
     }
   }
 
@@ -70,7 +69,7 @@
     margin-right: 5px;
   }
 
-  .sidebar-item-thumbnail-container {
+  .sidebar-item__thumbnails {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
