@@ -3,7 +3,7 @@
  */
 
 import { connect } from 'react-redux';
-import { saveVideoSize, getVideoHeight, getVideoWidth } from '../core/videoplayer';
+import { onVideoResize, saveVideoSize, getVideoHeight, getVideoWidth } from '../core/videoplayer';
 import ResizableVideo from '../components/ResizableVideo';
 
 const mapStateToProps = (state) => ({
@@ -12,6 +12,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    onResize: (size) => {
+        dispatch(saveVideoSize(size));
+    },
     onDismount: (size) => {
         dispatch(saveVideoSize(size));
     }
