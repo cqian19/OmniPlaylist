@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { DOMAIN_TYPES } from '../core/constants';
 import { DOMAIN_TO_PLAYER } from '../core/domain-map-constants';
@@ -47,5 +48,16 @@ class Player extends React.Component {
         )
     }
 }
+
+Player.propTypes = {
+    index:   PropTypes.number.isRequired,
+    onEnded: PropTypes.func.isRequired,
+    onPlayerReload: PropTypes.func.isRequired,
+    onSkip:  PropTypes.func.isRequired,
+    onStart: PropTypes.func.isRequired,
+    reload:  PropTypes.bool.isRequired,
+    video:   PropTypes.object,
+    videos:  PropTypes.arrayOf(PropTypes.object)
+};
 
 export default Player;

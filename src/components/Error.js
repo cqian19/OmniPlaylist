@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { Alert } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 class Error extends React.Component {
 
@@ -25,5 +26,9 @@ class Error extends React.Component {
         )
     }
 }
+
+Error.propTypes = {
+    error: PropTypes.string.isRequired
+};
 
 export default Error;

@@ -32,6 +32,7 @@
   "dependencies": {
     "@vimeo/player": "^2.1.0",
     "axios": "^0.16.1",
+    "classnames": "^2.2.5",
     "electron-debug": "^1.1.0",
     "electron-referer": "^0.3.0",
     "es6-promise-promise": "^1.0.0",

@@ -4,6 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import InlineEdit from 'react-edit-inline';
 
 class SidebarItem extends React.Component {
@@ -19,9 +20,14 @@ class SidebarItem extends React.Component {
     }
 
     render() {
+
         const { playlist } = this.props;
+        const sidebarItemNames = classNames({
+            'sidebar-item': true,
+            'active': this.props.active
+        });
         return(
-            <div className={"sidebar-item" + (this.props.active ? " active" : "")} onClick={this.props.onItemClick}>
+            <div className={sidebarItemNames} onClick={this.props.onItemClick}>
                 <span className="playlist-remove" onClick={this.props.onPlaylistRemove}>
                     <i className="glyphicon glyphicon-remove" />
                 </span>
@@ -44,12 +50,12 @@ class SidebarItem extends React.Component {
 }
 
 SidebarItem.propTypes = {
-    playlist: PropTypes.arrayOf(PropTypes.object).isRequired,
-    index: PropTypes.number.isRequired,
     active: PropTypes.bool.isRequired,
+    index:  PropTypes.number.isRequired,
     onItemClick: PropTypes.func.isRequired,
     onPlaylistNameChange: PropTypes.func.isRequired,
-    onPlaylistRemove: PropTypes.func.isRequired
+    onPlaylistRemove: PropTypes.func.isRequired,
+    playlist: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default SidebarItem;

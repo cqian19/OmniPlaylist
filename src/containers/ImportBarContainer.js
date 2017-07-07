@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 
-    handleImport: (link) => {
+    doImport: (link) => {
         dispatch(doImport(link));
     },
 

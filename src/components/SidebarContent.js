@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import SidebarItemContainer from '../containers/SidebarItemContainer';
 
@@ -21,5 +22,9 @@ class SidebarContent extends React.Component {
         )
     }
 }
+
+SidebarContent.propTypes = {
+    playlists: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default SidebarContent;

@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Resizable from 'react-resizable-box';
 
 class ResizableVideo extends React.Component {
@@ -79,5 +80,12 @@ class ResizableVideo extends React.Component {
         );
     }
 }
+
+ResizableVideo.propTypes = {
+    height: PropTypes.number.isRequired,
+    onDismount: PropTypes.func.isRequired,
+    onResize:   PropTypes.func.isRequired,
+    width:  PropTypes.number.isRequired
+};
 
 export default ResizableVideo

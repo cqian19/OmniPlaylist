@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onClick: () => {},
+    handleSelect: () => {},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

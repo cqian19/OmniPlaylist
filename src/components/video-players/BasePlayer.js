@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class BasePlayer extends React.Component {
 
@@ -11,9 +12,16 @@ export class BasePlayer extends React.Component {
              return true;
          } else {
              // Update if the next video being shown is not the one currently on
-             return !(nextProps.videos[nextProps.index].equals(this.props.videos[this.props.index]));
+             return !(nextProps.video.equals(this.props.video));
          }
     }
 
     render() {}
 }
+
+BasePlayer.propTypes = {
+    index:  PropTypes.number.isRequired,
+    reload: PropTypes.bool.isRequired,
+    video:  PropTypes.object,
+    videos: PropTypes.arrayOf(PropTypes.object).isRequired
+};

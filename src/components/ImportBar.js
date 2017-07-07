@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 import APIHandler from '../api/APIHandler';
 import Error from './Error';
@@ -18,7 +19,7 @@ class ImportBar extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const link = this.state.value;
-        this.props.handleImport(link);
+        this.props.doImport(link);
     };
 
     handleChange = (event) => {
@@ -60,5 +61,12 @@ class ImportBar extends React.Component {
         )
     }
 }
+
+ImportBar.propTypes = {
+    error:      PropTypes.string,
+    doImport:   PropTypes.func.isRequired,
+    resetForm:  PropTypes.func.isRequired,
+    validationState: PropTypes.string
+};
 
 export default ImportBar;

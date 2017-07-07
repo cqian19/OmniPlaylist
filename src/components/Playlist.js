@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import withScrolling from 'react-dnd-scrollzone';
 import { applyContainerQuery } from 'react-container-query';
 import classnames from 'classnames';
@@ -33,5 +34,10 @@ class Playlist extends React.Component {
     }
 
 }
+
+Playlist.propTypes = {
+    index: PropTypes.number.isRequired,
+    videos: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default applyContainerQuery(Playlist, query);

@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 class NavBar extends React.Component {
 
@@ -19,5 +20,9 @@ class NavBar extends React.Component {
         )
     }
 }
+
+NavBar.propTypes = {
+    handleSelect: PropTypes.func.isRequired
+};
 
 export default NavBar

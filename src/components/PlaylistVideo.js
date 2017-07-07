@@ -3,6 +3,8 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
 
@@ -86,14 +88,14 @@ function target(connect) {
 class PlaylistVideo extends React.Component {
 
     render() {
-        const video = this.props.video;
+        const { video } = this.props;
+        const playlistVideoNames = classNames({
+            'playlist-video': true,
+            'active': this.props.active,
+            'dragging': this.props.isDragging
+        });
         return this.props.dropTarget(this.props.dragSource(
-            <div className={
-                            "playlist-video " +
-                            (this.props.isDragging ? "dragging" : "") +
-                            (this.props.active ? "active" : "")
-                           }
-                 onClick={this.props.onVideoClick}>
+            <div className={playlistVideoNames} onClick={this.props.onVideoClick}>
                 <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>
                 <div className="playlist-video__desc">
                     <div className="playlist-video__title">
@@ -115,6 +117,19 @@ class PlaylistVideo extends React.Component {
         ))
     }
 }
+
+PlaylistVideo.propTypes = {
+    active: PropTypes.bool.isRequired,
+    index:  PropTypes.number.isRequired,
+    key:    PropTypes.number.isRequired,
+    onVideoClick:     PropTypes.func.isRequired,
+    onVideoUpClick:   PropTypes.func.isRequired,
+    onVideoDownClick: PropTypes.func.isRequired,
+    onVideoMove:      PropTypes.func.isRequired,
+    onVideoRemove:    PropTypes.func.isRequired,
+    video:  PropTypes.object.isRequired
+};
+
 export default
 DropTarget("PlaylistVideo", videoTarget, target)(
     DragSource("PlaylistVideo", videoSource, collect)(PlaylistVideo)
