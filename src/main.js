@@ -10,7 +10,7 @@ const BrowserWindow = require('browser-window',{
     }
 });
 
-require('./header')('https://www.youtube.com/');
+require('./electron-config')('https://www.youtube.com/');
 require('electron-debug')({showDevTools: true});
 
 // Keep a global reference of the window object, if you don't, the window will

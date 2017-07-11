@@ -1,15 +1,13 @@
 import '../assets/stylesheets/base.scss';
+
 import React from 'react';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory'
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-
 import Header from './Header';
 import NavBarContainer from '../containers/NavBarContainer';
-import ImportBarContainer from '../containers/ImportBarContainer';
-import PlayerContainer from '../containers/PlayerContainer';
-import PlaylistContainer from '../containers/PlaylistContainer';
-import SidebarPlaylistContainer from "../containers/SidebarPlaylistContainer";
 
 class App extends React.Component {
 
@@ -19,16 +17,13 @@ class App extends React.Component {
 
     render() {
         return(
-            <div className="container-fluid">
-                <Header />
-                <NavBarContainer />
-                <ImportBarContainer />
-                <div className="lower-container">
-                    <PlayerContainer />
-                    <PlaylistContainer />
-                    <SidebarPlaylistContainer />
+            <BrowserRouter history={createHistory()}>
+                <div className="container-fluid">
+                    <Header />
+                    <NavBarContainer />
+                    { this.props.routes() }
                 </div>
-            </div>
+            </BrowserRouter>
         )
     }
 }

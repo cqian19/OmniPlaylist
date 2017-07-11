@@ -3,18 +3,28 @@
  */
 
 import React from 'react';
-import { Nav, NavItem } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { Nav, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class NavBar extends React.Component {
 
     render() {
+        const currentPath = this.props.location.pathname;
         return (
             <div className="navbar height-collapse">
-                <Nav bsStyle="pills" activeKey ={1} justified onSelect={this.props.handleSelect}>
-                    {this.props.navs.map((nav) =>
-                        <NavItem key={nav.key} eventKey={nav.key}>{nav.text}</NavItem>
-                    )}
+                <Nav bsStyle="pills" justified activeKey={currentPath}>
+                    <LinkContainer exact to="/">
+                        <NavItem eventKey="/">
+                            Play
+                        </NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/playlists">
+                        <NavItem eventKey="/playlists">
+                            Playlists
+                        </NavItem>
+                    </LinkContainer>
                 </Nav>
             </div>
         )
@@ -22,7 +32,9 @@ class NavBar extends React.Component {
 }
 
 NavBar.propTypes = {
-    handleSelect: PropTypes.func.isRequired
+    history:  PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match:    PropTypes.object.isRequired
 };
 
 export default NavBar

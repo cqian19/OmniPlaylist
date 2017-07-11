@@ -4,24 +4,25 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
 import configureStore from './core/store';
+import routes from './routes';
 import App from './containers/AppContainer';
 
-const render = (Component) => {
+const render = (appRoutes) => {
     ReactDOM.render(
         <Provider store={configureStore()}>
             <AppContainer>
-                <Component/>
+                <App routes={appRoutes}/>
             </AppContainer>
         </Provider>,
         document.getElementById('root')
     );
 };
 
-render(App);
+render(routes);
 
 if (module.hot) {
-    module.hot.accept('./containers/AppContainer', () => {
-        const NextApp = require('./containers/AppContainer').default;
-        render(NextApp);
+    module.hot.accept('./routes', () => {
+        const newRoutes = require('./routes').default;
+        render(newRoutes);
     })
 }

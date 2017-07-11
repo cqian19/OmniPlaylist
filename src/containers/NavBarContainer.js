@@ -3,17 +3,15 @@
  */
 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import NavBar from '../components/NavBar';
-import { NAVS } from '../core/constants';
-import { getNavs } from '../core/navbar';
 
 const mapStateToProps = (state) => ({
-    navs: getNavs(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    handleSelect: () => {},
+
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar));

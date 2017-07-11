@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import App from '../components/App';
 import { APP_LOAD } from '../core/constants';
 
-const mapStateToProps = (state) => ({
-
+const mapStateToProps = (state, ownProps) => ({
+    ...ownProps
 });
 
 const mapDispatchToProps = (dispatch) => ({
