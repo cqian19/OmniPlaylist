@@ -6,6 +6,9 @@
   'navbar',
   'player',
   'playlist',
+  'playlistbar',
+  'playlistitem',
+  'selectableitem',
   'sidebar'
 ;
 
@@ -90,4 +93,26 @@ h1 {
   > * {
     margin: 3px;
   }
+}
+
+.search-bar {
+  background-color: $blue-0;
+  border: 4px solid $blue-1;
+  color: white;
+  height: inherit;
+  min-width: 300px;
+}
+
+.dropdown-menu {
+  width: 100%;
+}
+
+.thumbnail {
+  float: left;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
 }

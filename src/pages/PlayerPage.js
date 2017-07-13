@@ -14,7 +14,7 @@ export class PlayerPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="page-container">
                 <ImportBarContainer />
                 <div className="lower-container">
                     <PlayerContainer />
