@@ -1,0 +1,19 @@
+
+.selectable-item {
+  display: inline-block;
+
+  .thumbnail {
+    float: left;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .content {
+    display: table;
+    height: 100%;
+    margin-left: 1px;
+  }
+
+}

@@ -5,3 +5,11 @@
   -webkit-line-clamp: $max-lines;
   -webkit-box-orient: vertical;
 }
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}
+

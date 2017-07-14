@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withScrolling from 'react-dnd-scrollzone';
 import { applyContainerQuery } from 'react-container-query';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import PlaylistVideoContainer from '../containers/PlaylistVideoContainer';
 
@@ -22,7 +22,7 @@ class Playlist extends React.Component {
 
     render(){
         return (
-            <ScrollingComponent className={"playlist width-collapse " + classnames(this.props.containerQuery)}>
+            <ScrollingComponent className={"playlist width-collapse" + classNames(this.props.containerQuery)}>
                 {this.props.videos.map((video,index) => (
                     <PlaylistVideoContainer
                         video={video}

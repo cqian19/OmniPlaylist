@@ -97,7 +97,7 @@ class PlaylistVideo extends React.Component {
         return this.props.dropTarget(this.props.dragSource(
             <div className={playlistVideoNames} onClick={this.props.onVideoClick}>
                 <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>
-                <div className="playlist-video__desc">
+                <div className="playlist-video__desc content">
                     <div className="playlist-video__title">
                         {video.title}
                     </div>

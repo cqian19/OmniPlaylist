@@ -1,0 +1,28 @@
+
+.bootstrap-typeahead {
+  @include placeholder {
+    font-style:italic;
+    color: white;
+    font-weight:100;
+  }
+}
+
+.bootstrap-typeahead-input {
+  input, input:focus {
+    @extend .search-bar;
+  }
+}
+
+.bootstrap-typeahead-menu {
+  background-color: white;
+  border: 1px solid black;
+  min-height: 300px;
+}
+
+#playlist-slot {
+  color: black;
+  cursor: pointer;
+  height: 125px;
+  margin-top: 8px;
+  width: 100%;
+}

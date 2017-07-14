@@ -6,13 +6,11 @@ class Playlist {
 
     static count = 0;
 
-    constructor(videos, name="") {
+    constructor(videos, name="", thumbnail="") {
+        this._name = name || "Unnamed Playlist " + (++Playlist.count).toString();
+        this._thumbnail = thumbnail || videos.length && videos[0].thumbnail || "";
         this._videos = videos;
-        if (name === "") {
-            this._name = "Unnamed Playlist " + (++Playlist.count).toString();
-        } else {
-            this._name = name;
-        }
+
     }
 
     get videos() {
@@ -31,8 +29,16 @@ class Playlist {
         this._name = name;
     }
 
+    get thumbnail() {
+        return this._thumbnail;
+    }
+
+    set thumbnail(thumbnail) {
+        this._thumbnail = thumbnail;
+    }
+
     clone() {
-        return new Playlist(this.videos, this.name);
+        return new Playlist(this.videos, this.name, this.thumbnail);
     }
 
 }

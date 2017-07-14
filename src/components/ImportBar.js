@@ -50,9 +50,11 @@ class ImportBar extends React.Component {
                         Import
                     </button>
                     <FormGroup className="col-xs-10" validationState={this.state.validationState}>
-                        <FormControl inputRef={(input) => { this.textInput = input; }}
-                                     type="text"
-                                     onChange={this.handleChange}
+                        <FormControl
+                             className= "search-bar"
+                             inputRef={(input) => { this.textInput = input; }}
+                             type="text"
+                             onChange={this.handleChange}
                         />
                     </FormGroup>
                 </form>

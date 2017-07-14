@@ -42,7 +42,7 @@
 }
 
 .sidebar-item {
-  @extend .hoverable, .selectable;
+  @extend .hoverable, .selectable, .selectable-item;
   height: 130px;
   margin: 5px;
   padding: 2px;

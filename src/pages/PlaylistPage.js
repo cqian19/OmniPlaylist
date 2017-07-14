@@ -4,11 +4,15 @@
 
 import React from 'react';
 
+import PlaylistDropdownContainer from "../containers/PlaylistDropdownContainer";
+
 export class PlaylistPage extends React.Component {
 
     render() {
         return(
-            <div>Hello world!</div>
+            <div className="page-container">
+                <PlaylistDropdownContainer />
+            </div>
         )
     }
 }

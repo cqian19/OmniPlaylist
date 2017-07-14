@@ -5,19 +5,19 @@
 }
 
 .playlist-video {
-  @extend .hoverable, .selectable;
+  @extend .hoverable, .selectable, .selectable-item;
   height: 130px;
   margin-bottom: 5px;
 
   .thumbnail {
     height: 120px;
-    float:left;
     margin: 5px;
     width: 200px;
   }
 
   .playlist-video__title {
     @include text-truncate(2);
+    margin-left: 1px;
   }
 
   button {

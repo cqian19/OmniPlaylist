@@ -20,7 +20,6 @@ class SidebarItem extends React.Component {
     }
 
     render() {
-
         const { playlist } = this.props;
         const sidebarItemNames = classNames({
             'sidebar-item': true,
@@ -55,7 +54,7 @@ SidebarItem.propTypes = {
     onItemClick: PropTypes.func.isRequired,
     onPlaylistNameChange: PropTypes.func.isRequired,
     onPlaylistRemove: PropTypes.func.isRequired,
-    playlist: PropTypes.arrayOf(PropTypes.object).isRequired
+    playlist: PropTypes.object.isRequired
 };
 
 export default SidebarItem;

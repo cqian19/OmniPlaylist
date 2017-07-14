@@ -19,7 +19,6 @@ export const RENDER_TYPES = {
 
 /* CONSTANTS */
 export const APP_TITLE = 'Youtube Playlist Manager';
-export const NAVS = ["Play", "Playlists"];
 export const BASE_VIDEO_HEIGHT = 400;
 export const BASE_VIDEO_WIDTH = 600;
 
@@ -51,3 +50,5 @@ export const ON_PLAYER_RELOAD = 'ON_PLAYER_RELOAD';
 export const ON_VIDEO_SAVE_SIZE = 'ON_VIDEO_SAVE_SIZE';
 
 export const ON_SIDEBAR_TOGGLE = 'SIDEBAR_TOGGLE';
+
+export const ON_PLAYLIST_SELECTED_CHANGE = 'ON_PLAYLIST_SELECTED_CHANGE';
