@@ -6,12 +6,9 @@
 
 .playlist-video {
   @extend .hoverable, .selectable, .selectable-item;
-  height: 130px;
   margin-bottom: 5px;
 
   .thumbnail {
-    height: 120px;
-    margin: 5px;
     width: 200px;
   }
 

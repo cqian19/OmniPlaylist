@@ -4,4 +4,8 @@
 
 export { onPlaylistSelectedChange } from './actions';
 export { playlistSelectorReducer } from './reducer';
-export { getPlaylistSelectorReducer, getSelectedPlaylist} from './selectors';
+export {
+    getPlaylistSelectorReducer,
+    getSelectedPlaylistIndex,
+    getPlaylistValid
+} from './selectors';

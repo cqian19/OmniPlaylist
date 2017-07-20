@@ -3,15 +3,14 @@
  */
 
 import {
-    ON_VIDEO_UP_CLICK,
-    ON_VIDEO_DOWN_CLICK,
+    ON_VIDEO_ADD,
+    ON_VIDEO_MOVE,
+    ON_VIDEO_REMOVE,
     ON_VIDEO_END,
     ON_VIDEO_PREV,
     ON_VIDEO_SKIP,
     ON_VIDEO_SWITCH,
     ON_VIDEO_ACTION_FAILED,
-    ON_VIDEO_MOVE,
-    ON_VIDEO_REMOVE,
     ON_PLAYER_RELOAD,
     ON_PLAYLIST_MAKE,
     ON_PLAYLIST_REMOVE,
@@ -19,6 +18,39 @@ import {
     ON_PLAYLIST_NAME_CHANGE
 } from '../constants';
 import { getIndex, getVideos } from '.';
+
+function _onVideoActionFail() {
+    return {
+        type: ON_VIDEO_ACTION_FAILED
+    }
+}
+
+export function onVideoAdd(newVideo, index, playlistIndex) {
+    return {
+        type: ON_VIDEO_ADD,
+        newVideo,
+        index,
+        playlistIndex
+    }
+}
+
+export function onVideoMove(startIndex, endIndex, playlistIndex) {
+    return {
+        type: ON_VIDEO_MOVE,
+        startIndex,
+        endIndex,
+        playlistIndex
+    }
+}
+
+export function onVideoRemove(index, playlistIndex) {
+    return {
+        type: ON_VIDEO_REMOVE,
+        index,
+        playlistIndex
+    }
+}
+
 
 export function onVideoClick(index) {
     return (dispatch, getState) => {
@@ -37,36 +69,24 @@ export function onVideoSwitch(index) {
     }
 }
 
-export function onVideoUpClick(startIndex, endIndex) {
+export function onVideoUpClick(startIndex, playlistIndex) {
     /* Up button on video is clicked, move this video before the previous one on the playlist */
     if (startIndex !== 0) {
-        return {
-            type: ON_VIDEO_UP_CLICK,
-            startIndex,
-            endIndex
-        }
+        return onVideoMove(startIndex, startIndex - 1, playlistIndex);
     } else {
-        return {
-            type: ON_VIDEO_ACTION_FAILED
-        }
+        return _onVideoActionFail();
     }
 }
 
-export function onVideoDownClick(startIndex, endIndex) {
+export function onVideoDownClick(startIndex, playlistIndex) {
     /* Down button on video is clicked, move this video after the next video */
     return (dispatch, getState) => {
         const playlistLength = getVideos(getState()).length;
         // Video is not last on the playlist, can be shifted down
         if (startIndex !== playlistLength - 1) {
-            dispatch({
-                type: ON_VIDEO_DOWN_CLICK,
-                startIndex,
-                endIndex
-            });
+            dispatch(onVideoMove(startIndex, startIndex + 1, playlistIndex));
         } else {
-            dispatch({
-                type: ON_VIDEO_ACTION_FAILED
-            });
+            dispatch(_onVideoActionFail());
         }
     };
 }
@@ -89,21 +109,6 @@ export function onVideoEnd() {
     }
 }
 
-export function onVideoMove(startIndex, endIndex) {
-    return {
-        type: ON_VIDEO_MOVE,
-        startIndex,
-        endIndex
-    }
-}
-
-export function onVideoRemove(index) {
-    return {
-        type: ON_VIDEO_REMOVE,
-        index
-    }
-}
-
 export function onPlaylistSwitch(index){
     return {
         type: ON_PLAYLIST_CHANGE,
@@ -111,10 +116,10 @@ export function onPlaylistSwitch(index){
     }
 }
 
-export function onPlaylistNameChange(playlistName, index) {
+export function onPlaylistNameChange(playlistName, playlistIndex) {
     return {
         type: ON_PLAYLIST_NAME_CHANGE,
-        playlistIndex: index,
+        playlistIndex,
         playlistName
     }
 }

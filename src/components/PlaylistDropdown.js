@@ -17,31 +17,45 @@ class PlaylistDropdown extends React.Component {
 
     /* Converts playlists into format readable by Typeahead */
     _convertPlaylistToDict(playlists) {
-        return playlists.map((playlist) => ({
+        return playlists.map((playlist, index) => ({
             name: playlist.name,
-            playlist: playlist
+            playlist: playlist,
+            playlistIndex: index
         }));
     }
 
-    _renderMenu(results, menuProps) {
+    _renderMenu = (results, menuProps) => {
         return (
             <Menu {...menuProps}>
                 {results.map((result, index) => (
-                    <PlaylistMenuItem option={result} position={index}>
-                        <PlaylistItemContainer playlist={result.playlist}/>
+                    <PlaylistMenuItem
+                        option={result}
+                        position={index}
+                        onClick= {() => {this.handleItemChange(result)}}>
+                        <PlaylistItemContainer
+                            playlist={result.playlist}
+                            playlistIndex={result.playlistIndex}
+                        />
                     </PlaylistMenuItem>
                 ))}
             </Menu>
         )
-    }
-
-    handleClick = () => {
-        this.refs.typeahead.getInstance().clear();
     };
 
-    handleChange = ([playlistObj]) => {
-        const playlist = playlistObj ? playlistObj.playlist : null;
-        this.props.onPlaylistChange(playlist);
+    handleFocus = () => {
+
+    };
+
+    handleItemChange = (playlistObj) => {
+        let playlist, playlistIndex;
+        if (playlistObj) {
+             playlist = playlistObj.playlist;
+             playlistIndex = playlistObj.playlistIndex;
+      } else {
+             playlist = null;
+             playlistIndex = null;
+        }
+        this.props.onPlaylistChange(playlist, playlistIndex);
     };
 
     handleSlotClick = () => {
@@ -49,17 +63,12 @@ class PlaylistDropdown extends React.Component {
     };
 
     render() {
-        const playlists = this.props.playlists.map((playlist) => ({
-            name: playlist.name,
-            playlist: playlist
-        }));
+        const playlists = this._convertPlaylistToDict(this.props.playlists);
         return (
             <div>
                 <Typeahead
                     emptyLabel="No playlists found."
                     labelKey="name"
-                    onChange={this.handleChange}
-                    onFocus={this.handleClick}
                     options={playlists}
                     placeholder="Select a playlist..."
                     ref="typeahead"

@@ -10,11 +10,15 @@ import PlaylistItemContainer from '../containers/PlaylistItemContainer';
 class PlaylistSlot extends React.Component {
 
     render() {
-        const { playlist, focusDropdown } = this.props;
+        const { playlists, playlistIndex, playlistValid, focusDropdown } = this.props;
+        const playlist = playlists[playlistIndex];
         return (
             <button type="button" id="playlist-slot" className="btn btn-basic" onClick={focusDropdown}>
-                {playlist ? (
-                    <PlaylistItemContainer playlist={playlist}/>
+                {playlistValid ? (
+                    <PlaylistItemContainer
+                        playlist={playlist}
+                        playlistIndex={playlistIndex}
+                    />
                 ) : (
                     <div>No playlist selected</div>
                 )}
@@ -24,7 +28,8 @@ class PlaylistSlot extends React.Component {
 }
 
 PlaylistSlot.propTypes = {
-    playlist: PropTypes.object,
+    playlists: PropTypes.arrayOf(PropTypes.object).isRequired,
+    playlistIndex: PropTypes.number.isRequired,
     focusDropdown: PropTypes.func.isRequired
 };
 

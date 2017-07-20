@@ -4,9 +4,10 @@
 
 import { ON_PLAYLIST_SELECTED_CHANGE } from '../constants';
 
-export function onPlaylistSelectedChange(playlist) {
+export function onPlaylistSelectedChange(playlist, playlistIndex) {
     return {
         type: ON_PLAYLIST_SELECTED_CHANGE,
-        playlist
+        playlist,
+        playlistIndex
     };
 }

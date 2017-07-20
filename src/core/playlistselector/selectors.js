@@ -6,6 +6,14 @@ export function getPlaylistSelectorReducer(store) {
     return store.playlistSelector;
 }
 
-export function getSelectedPlaylist(store) {
-    return getPlaylistSelectorReducer(store).selectedPlaylist;
+export function getSelectedPlaylistIndex(store) {
+    return getPlaylistSelectorReducer(store).playlistIndex;
+}
+
+export function getPlaylistValid(store) {
+    return getPlaylistSelectorReducer(store).indexValid;
+}
+
+export function getStateSelectedPlaylistIndex(state) {
+    return state.playlistIndex;
 }

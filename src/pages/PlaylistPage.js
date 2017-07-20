@@ -5,6 +5,7 @@
 import React from 'react';
 
 import PlaylistDropdownContainer from "../containers/PlaylistDropdownContainer";
+import PlaylistChanger from '../components/PlaylistChanger';
 
 export class PlaylistPage extends React.Component {
 
@@ -12,6 +13,7 @@ export class PlaylistPage extends React.Component {
         return(
             <div className="page-container">
                 <PlaylistDropdownContainer />
+                <PlaylistChanger />
             </div>
         )
     }

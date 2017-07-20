@@ -25,8 +25,6 @@ class PlaylistItem extends React.Component {
                     <span className="playlist-remove" onClick={this.props.onPlaylistRemove}>
                         <i className="glyphicon glyphicon-remove" />
                     </span>
-                    <div className="dropdown-item__thumbnails">
-                    </div>
                 </div>
             </div>
         );
@@ -34,7 +32,10 @@ class PlaylistItem extends React.Component {
 }
 
 PlaylistItem.propTypes = {
-    playlist: PropTypes.object
+    active: PropTypes.bool,
+    onPlaylistRemove: PropTypes.func.isRequired,
+    playlist: PropTypes.object.isRequired,
+    playlistIndex: PropTypes.number.isRequired
 };
 
 export default PlaylistItem;

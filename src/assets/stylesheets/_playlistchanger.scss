@@ -1,0 +1,36 @@
+/**
+ * Created by cqian19 on 7/14/2017.
+ */
+
+#playlist-changer {
+  display: flex;
+  flex-grow: 1;
+  min-height: 300px;
+  margin: 3px;
+  width: 100%;
+}
+
+.search-input {
+  width: 350px;
+
+  .search {
+    width: inherit;
+  }
+}
+
+.searched-video {
+  @extend .selectable-item, .hoverable;
+}
+
+.video-searcher {
+  border: 1px solid;
+  min-width: 300px;
+  overflow: auto;
+  width: 40%;
+}
+
+.playlist-display {
+  min-width: 300px;
+  overflow: auto;
+  width: 60%
+}

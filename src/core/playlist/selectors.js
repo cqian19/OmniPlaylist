@@ -15,7 +15,7 @@ export function getPlaylists(store) {
 }
 
 export function getPlaylistIndex(store) {
-    return getPlaylistReducer(store).playlistIndex
+    return getPlaylistReducer(store).playlistIndex;
 }
 
 export function getVideos(store) {

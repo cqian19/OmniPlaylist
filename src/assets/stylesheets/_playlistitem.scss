@@ -1,4 +1,8 @@
 
 .playlist-item {
   @extend .selectable-item;
+
+  .glyphicon-remove {
+    @extend .remover;
+  }
 }

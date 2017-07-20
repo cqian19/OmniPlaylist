@@ -5,15 +5,18 @@
 import { connect } from 'react-redux';
 
 import PlaylistSlot from '../components/PlaylistSlot';
-import { getSelectedPlaylist } from '../core/playlistselector';
+import { getPlaylists } from '../core/playlist';
+import { getSelectedPlaylistIndex, getPlaylistValid } from '../core/playlistselector';
 
 const mapStateToProps = (state, ownProps) => ({
     ...ownProps,
-    playlist: getSelectedPlaylist(state)
+    playlists: getPlaylists(state),
+    playlistIndex: getSelectedPlaylistIndex(state),
+    playlistValid: getPlaylistValid(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onClick: () => {}
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaylistSlot);

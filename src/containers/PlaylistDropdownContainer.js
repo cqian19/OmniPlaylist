@@ -13,8 +13,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onPlaylistChange: (playlist) => {
-        dispatch(onPlaylistSelectedChange(playlist));
+    onPlaylistChange: (playlist, playlistIndex) => {
+        dispatch(onPlaylistSelectedChange(playlist, playlistIndex));
     }
 });
 

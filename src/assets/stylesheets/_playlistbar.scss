@@ -16,13 +16,16 @@
 .bootstrap-typeahead-menu {
   background-color: white;
   border: 1px solid black;
+  margin-top: 5px;
   min-height: 300px;
 }
 
 #playlist-slot {
   color: black;
   cursor: pointer;
-  height: 125px;
-  margin-top: 8px;
+  height: 135px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding: 0;
   width: 100%;
 }

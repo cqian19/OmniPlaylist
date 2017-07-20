@@ -11,13 +11,15 @@ import {
     onVideoDownClick,
     onVideoMove,
     onVideoRemove,
-    getIndex
+    getIndex,
+    getPlaylistIndex
 } from '../core/playlist';
 
 const mapStateToProps = (state, ownProps) => ({
     active: getIndex(state) === ownProps.index,
     index: ownProps.index,
     key: ownProps.index,
+    playlistIndex: ownProps.playlistIndex,
     video: ownProps.video,
 });
 
@@ -27,18 +29,18 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     },
     onVideoUpClick(event) {
         event.stopPropagation();
-        dispatch(onVideoUpClick(ownProps.index, ownProps.index-1));
+        dispatch(onVideoUpClick(ownProps.index, ownProps.playlistIndex));
     },
     onVideoDownClick(event) {
         event.stopPropagation();
-        dispatch(onVideoDownClick(ownProps.index, ownProps.index+1));
+        dispatch(onVideoDownClick(ownProps.index, ownProps.playlistIndex));
     },
-    onVideoMove(startIndex, endIndex) {
-        dispatch(onVideoMove(startIndex, endIndex));
+    onVideoMove(startIndex, endIndex, playlistIndex) {
+        dispatch(onVideoMove(startIndex, endIndex, playlistIndex));
     },
     onVideoRemove(event) {
         event.stopPropagation();
-        dispatch(onVideoRemove(ownProps.index));
+        dispatch(onVideoRemove(ownProps.index, ownProps.playlistIndex));
     }
 });
 

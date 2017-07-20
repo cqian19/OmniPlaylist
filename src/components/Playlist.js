@@ -21,12 +21,14 @@ const query = {
 class Playlist extends React.Component {
 
     render(){
+        const { playlistIndex, videos } = this.props;
         return (
             <ScrollingComponent className={"playlist width-collapse" + classNames(this.props.containerQuery)}>
-                {this.props.videos.map((video,index) => (
+                {videos.map((video,index) => (
                     <PlaylistVideoContainer
                         video={video}
                         index={index}
+                        playlistIndex={playlistIndex}
                     />
                 ))}
             </ScrollingComponent>
@@ -37,6 +39,7 @@ class Playlist extends React.Component {
 
 Playlist.propTypes = {
     index: PropTypes.number.isRequired,
+    playlistIndex: PropTypes.number.isRequired,
     videos: PropTypes.arrayOf(PropTypes.object)
 };
 
