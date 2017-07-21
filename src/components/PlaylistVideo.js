@@ -45,8 +45,8 @@ class PlaylistVideo extends React.Component {
 PlaylistVideo.propTypes = {
     active: PropTypes.bool.isRequired,
     index:  PropTypes.number.isRequired,
-    key:    PropTypes.number.isRequired,
-    onVideoClick:     PropTypes.func.isRequired,
+    onVideoAdd:       PropTypes.func,
+    onVideoClick:     PropTypes.func,
     onVideoUpClick:   PropTypes.func.isRequired,
     onVideoDownClick: PropTypes.func.isRequired,
     onVideoMove:      PropTypes.func.isRequired,

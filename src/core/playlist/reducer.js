@@ -55,7 +55,20 @@ function onAddVideoSuccess(state, action) {
 }
 
 function onVideoAdd(state, action) {
-    return {...state};
+    let index, playlists, videos;
+    const { video, addIndex, playlistIndex } = action;
+    const curIndex = getStateIndex(state),
+          curPlaylists = getStatePlaylists(state),
+          curPlaylist = curPlaylists[playlistIndex],
+          curVideos = curPlaylist.videos,
+          curPlaylistIndex  = getStatePlaylistIndex(state),
+          isCurrentPlaylist = playlistIndex === curPlaylistIndex;
+    // Copy playlist and insert video into spot
+    videos = curVideos.slice();
+    videos.splice(addIndex, 0 , video);
+    index = rfuncs.chooseAfterAddIndex(curIndex, addIndex);
+    playlists = rfuncs.changePlaylistVideos(curPlaylists, playlistIndex, videos);
+    return {...state, playlists, ...isCurrentPlaylist && { index, videos }};
 }
 
 function onVideoMove(state, action) {

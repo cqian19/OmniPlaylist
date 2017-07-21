@@ -25,11 +25,11 @@ function _onVideoActionFail() {
     }
 }
 
-export function onVideoAdd(newVideo, index, playlistIndex) {
+export function onVideoAdd(video, addIndex, playlistIndex) {
     return {
         type: ON_VIDEO_ADD,
-        newVideo,
-        index,
+        video,
+        addIndex,
         playlistIndex
     }
 }

@@ -12,8 +12,8 @@ import BasePlaylistVideo from '../components/BasePlaylistVideo';
 import { onVideoMove } from '../core/playlist';
 
 const mapStateToProps = (state, ownProps) => ({
-    key: ownProps.index,
-    ...ownProps
+    ...ownProps,
+    id: ownProps.video.uniqueId,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

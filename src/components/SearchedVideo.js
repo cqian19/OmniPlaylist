@@ -4,28 +4,42 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { DragSource } from 'react-dnd';
+
+import { DRAG_TYPES } from '../core/constants';
 
 const videoSource = {
     beginDrag(props) {
         return {
-            playlist: props.video
+            id: props.id,
+            video: props.video
         };
+    },
+    isDragging(props, monitor) {
+        return props.id === monitor.getItem().id;
+    },
+    endDrag(props, monitor) {
+        /* If the video was dragged outside, remove the video */
+        const { index, playlistIndex } = monitor.getItem();
+        const didDrop = monitor.didDrop();
+        if (!didDrop) {
+            props.onVideoRemove(index, playlistIndex);
+        }
     }
 };
 
 function collect(connect, monitor) {
     return {
-        connectDragSource: connect.dragSource()
+        dragSource: connect.dragSource(),
+        isDragging: monitor.isDragging()
     }
 }
 
 class SearchedVideo extends React.Component {
 
     render() {
-        const { connectDragSource, video } = this.props;
-        return connectDragSource(
+        const { dragSource, video } = this.props;
+        return dragSource(
             <div className="searched-video">
                 <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>
                 <div className="searched-video__title title" >
@@ -37,10 +51,10 @@ class SearchedVideo extends React.Component {
 }
 
 SearchedVideo.propTypes = {
-    connectDragSource: PropTypes.func.isRequired,
+    dragSource: PropTypes.func.isRequired,
     video: PropTypes.object.isRequired
 };
 
 export default DragSource(
-    "SearchedVideo", videoSource, collect
+    DRAG_TYPES.INSERTABLE_VIDEO, videoSource, collect
 )(SearchedVideo);

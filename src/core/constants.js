@@ -17,6 +17,11 @@ export const RENDER_TYPES = {
     'PLAYLIST': 'PLAYLIST'
 };
 
+export const DRAG_TYPES = {
+    'PLAYLIST_VIDEO': 'PLAYLIST_VIDEO',
+    'INSERTABLE_VIDEO': 'INSERTABLE_VIDEO'
+};
+
 /* CONSTANTS */
 export const APP_TITLE = 'Youtube Playlist Manager';
 export const BASE_VIDEO_HEIGHT = 400;

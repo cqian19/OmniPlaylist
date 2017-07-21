@@ -24,6 +24,14 @@ export function chooseAfterRemoveIndex(list, index, curIndex) {
     }
 }
 
+export function chooseAfterAddIndex(curIndex, addIndex) {
+    if (curIndex < addIndex) {
+        return curIndex;
+    } else {
+        return curIndex + 1;
+    }
+}
+
 export function removeAtIndex(list, index) {
     return list.slice(0, index).concat(list.slice(index+1));
 }

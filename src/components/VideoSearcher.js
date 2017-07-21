@@ -55,6 +55,10 @@ class VideoSearcher extends React.Component {
         this.setState({searchTerm: term});
     };
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextState !== this.state;
+    }
+
     render() {
         const { playlists } = this.props;
         const allVideos = this._convertVideosToDict(this._generateVideos(playlists));
@@ -63,10 +67,10 @@ class VideoSearcher extends React.Component {
             <div className='video-searcher'>
               <SearchInput className='search-input' onChange={this._searchUpdated} />
               <div className='video-searcher__body'>
-                {filteredVideos.map((videoDict) => {
+                {filteredVideos.map((videoDict, index) => {
                     return (
                         <SearchedVideoContainer
-                            video={videoDict.video}
+                            video={videoDict.video.clone()}
                         />
                     )
                 })}

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import PlaylistVideo from '../components/PlaylistVideo';
 import {
+    onVideoAdd,
     onVideoClick,
     onVideoUpClick,
     onVideoDownClick,
@@ -18,7 +19,6 @@ import {
 const mapStateToProps = (state, ownProps) => ({
     active: getIndex(state) === ownProps.index,
     index: ownProps.index,
-    key: ownProps.index,
     playlistIndex: ownProps.playlistIndex,
     video: ownProps.video,
 });
@@ -34,6 +34,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     onVideoDownClick(event) {
         event.stopPropagation();
         dispatch(onVideoDownClick(ownProps.index, ownProps.playlistIndex));
+    },
+    onVideoAdd(video, index) {
+        dispatch(onVideoAdd(video, index, ownProps.playlistIndex));
     },
     onVideoMove(startIndex, endIndex, playlistIndex) {
         dispatch(onVideoMove(startIndex, endIndex, playlistIndex));

@@ -6,6 +6,7 @@ export {
     onVideoClick,
     onVideoUpClick,
     onVideoDownClick,
+    onVideoAdd,
     onVideoEnd,
     onVideoSkip,
     onVideoPrev,

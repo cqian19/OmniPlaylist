@@ -26,9 +26,10 @@ class Playlist extends React.Component {
             <ScrollingComponent className={"playlist width-collapse" + classNames(this.props.containerQuery)}>
                 {videos.map((video,index) => (
                     <PlaylistVideoContainer
-                        video={video}
+                        key={video.uniqueId}
                         index={index}
                         playlistIndex={playlistIndex}
+                        video={video}
                     />
                 ))}
             </ScrollingComponent>
