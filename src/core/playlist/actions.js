@@ -28,7 +28,7 @@ function _onVideoActionFail() {
 export function onVideoAdd(video, addIndex, playlistIndex) {
     return {
         type: ON_VIDEO_ADD,
-        video,
+        video: video.clone(),
         addIndex,
         playlistIndex
     }

@@ -83,6 +83,12 @@ h1 {
   }
 }
 
+.draggable {
+  &.dragging {
+    background-color: $yellow-0 !important;
+  }
+}
+
 .remover {
   cursor: pointer;
 

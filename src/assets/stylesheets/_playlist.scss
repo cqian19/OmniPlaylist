@@ -5,7 +5,7 @@
 }
 
 .playlist-video {
-  @extend .hoverable, .selectable, .selectable-item;
+  @extend .selectable, .selectable-item, .hoverable, .draggable;
   margin-bottom: 5px;
 
   .thumbnail {
@@ -27,7 +27,4 @@
     vertical-align: middle;
   }
 
-  &.dragging {
-    background-color: $yellow-0;
-  }
 }

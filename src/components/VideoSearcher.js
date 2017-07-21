@@ -70,7 +70,7 @@ class VideoSearcher extends React.Component {
                 {filteredVideos.map((videoDict, index) => {
                     return (
                         <SearchedVideoContainer
-                            video={videoDict.video.clone()}
+                            video={videoDict.video}
                         />
                     )
                 })}

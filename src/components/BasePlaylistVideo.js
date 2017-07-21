@@ -55,6 +55,15 @@ const videoTarget = {
     },
 };
 
+function shouldSwap(ourIndex, draggedIndex, hoverClientY, hoverMiddleY) {
+    // Only perform the move when the mouse has crossed half of the items height
+    // When dragging downwards, only move when the cursor is below 25%
+    // When dragging upwards, only move when the cursor is above 75%
+    // Dragging downwards
+    return (ourIndex > draggedIndex && hoverClientY > hoverMiddleY / 2 ||
+            ourIndex < draggedIndex && hoverClientY < hoverMiddleY * 1.5);
+}
+
 function handlePlaylistVideoHover(props, monitor, component) {
     const draggingElement = monitor.getItem(),
           otherIndex = draggingElement.index, // Index of component being dragged
@@ -71,15 +80,8 @@ function handlePlaylistVideoHover(props, monitor, component) {
     const clientOffset = monitor.getClientOffset();
     // Get pixels to the top
     const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-    // Only perform the move when the mouse has crossed half of the items height
-    // When dragging downwards, only move when the cursor is below 25%
-    // When dragging upwards, only move when the cursor is above 75%
-    // Dragging downwards
-    if (ourIndex > otherIndex && hoverClientY < hoverMiddleY / 2) {
-        return;
-    }
-    // Dragging upwards
-    if (ourIndex < otherIndex && hoverClientY > hoverMiddleY * 1.5) {
+
+    if (!shouldSwap) {
         return;
     }
     // Time to actually perform the action
@@ -91,27 +93,31 @@ function handlePlaylistVideoHover(props, monitor, component) {
 
 function handleInsertableVideoHover(props, monitor, component) {
     const draggingElement = monitor.getItem();
-    component.setState({isDragging: true});
     // Check if video is already in the playlist
-    if (draggingElement.index !== undefined) {
-        return handlePlaylistVideoHover(props, monitor, component);
-    }
+
     const ourIndex = props.index;
     const playlistIndex = props.playlistIndex;
 
+    if (ourIndex === draggingElement.index) {
+        component.setState({isDragging: true});
+        return;
+    }
     const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
     const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
     const clientOffset = monitor.getClientOffset();
     const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-    let toInsertIndex;
-    if ( hoverClientY < hoverMiddleY) {
-        toInsertIndex = ourIndex;
-    } else {
-        toInsertIndex = ourIndex + 1;
+    if (draggingElement.index !== undefined) {
+        if (shouldSwap(ourIndex, draggingElement.index, hoverClientY, hoverMiddleY)) {
+            component.setState({isDragging: true});
+        }
+        return handlePlaylistVideoHover(props, monitor, component);
     }
+    // Insert dragged video before this video, otherwise insert after
+    const toInsertIndex = hoverClientY < hoverMiddleY ? ourIndex : ourIndex + 1;
     props.onVideoAdd(draggingElement.video, toInsertIndex);
     draggingElement.index = toInsertIndex;
     draggingElement.playlistIndex = playlistIndex;
+    component.setState({isDragging: true});
 }
 
 function collect(connect, monitor) {
