@@ -78,7 +78,7 @@ h1 {
 }
 
 .selectable {
-  &.active {
+  &:active, &.active {
     background-color: $purple-1;
   }
 }

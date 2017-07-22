@@ -102,10 +102,10 @@ function handleInsertableVideoHover(props, monitor, component) {
         component.setState({isDragging: true});
         return;
     }
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-    const clientOffset = monitor.getClientOffset();
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect(),
+          hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2,
+          clientOffset = monitor.getClientOffset(),
+          hoverClientY = clientOffset.y - hoverBoundingRect.top;
     if (draggingElement.index !== undefined) {
         if (shouldSwap(ourIndex, draggingElement.index, hoverClientY, hoverMiddleY)) {
             component.setState({isDragging: true});
@@ -117,7 +117,6 @@ function handleInsertableVideoHover(props, monitor, component) {
     props.onVideoAdd(draggingElement.video, toInsertIndex);
     draggingElement.index = toInsertIndex;
     draggingElement.playlistIndex = playlistIndex;
-    component.setState({isDragging: true});
 }
 
 function collect(connect, monitor) {

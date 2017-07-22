@@ -63,6 +63,10 @@ class BaseVideo {
         }
         return this.domainType === video.domainType && this.id === video.id;
     }
+
+    hash() {
+        return `${this.domainType} ${this.id}`;
+    }
 }
 
 export default BaseVideo;

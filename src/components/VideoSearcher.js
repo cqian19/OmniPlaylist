@@ -17,13 +17,13 @@ class VideoSearcher extends React.Component {
     };
 
     _generateVideos(playlists) {
-        const allVideos = new Set();
+        const differentVideos = new Map();
         for (let playlist of playlists) {
             for (let video of playlist.videos) {
-                allVideos.add(video);
+                differentVideos.set(video.hash(), video);
             }
         }
-        return allVideos;
+        return differentVideos.values();
     }
 
     _convertVideosToDict(videos) {
@@ -67,7 +67,7 @@ class VideoSearcher extends React.Component {
             <div className='video-searcher'>
               <SearchInput className='search-input' onChange={this._searchUpdated} />
               <div className='video-searcher__body'>
-                {filteredVideos.map((videoDict, index) => {
+                {filteredVideos.map((videoDict) => {
                     return (
                         <SearchedVideoContainer
                             video={videoDict.video}
