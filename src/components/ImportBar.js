@@ -11,6 +11,7 @@ import Error from './Error';
 class ImportBar extends React.Component {
 
     state = {
+        error: '',
         value: '',
         validationState: null,
         resetForm: null
@@ -30,19 +31,28 @@ class ImportBar extends React.Component {
         const oldValidationState = this.props.validationState;
         const newValidationState = nextProps.validationState;
         if (newValidationState === 'success' || newValidationState === 'error'){
-            this.setState({validationState: newValidationState});
+            this.state.validationState = newValidationState;
+            if (newValidationState === 'success') {
+                this.state.error = '';
+            }
             this.textInput.value = "";
             this.props.resetForm();
             if (this.state.resetForm) {
                 clearTimeout(this.state.resetForm);
             }
             this.state.resetForm = setTimeout(() => {
-                this.setState({validationState: null, resetForm: null});
+                this.setState({
+                    error: '',
+                    validationState: null,
+                    resetForm: null
+                });
             }, 3000)
         }
     };
 
     render() {
+        this.state.error = this.props.error || this.state.error;
+        console.log(this.state);
         return (
             <div className="import-bar">
                 <form onSubmit={this.handleSubmit} className="height-collapse-small import-form">
@@ -56,9 +66,9 @@ class ImportBar extends React.Component {
                              type="text"
                              onChange={this.handleChange}
                         />
+                        <Error error={this.state.error}/>
                     </FormGroup>
                 </form>
-                <Error error={this.props.error}/>
             </div>
         )
     }

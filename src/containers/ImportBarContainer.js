@@ -17,15 +17,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
     doImport: (link) => {
         dispatch(doImport(link));
     },
-
     resetForm: () => {
         dispatch(resetForm());
     }
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImportBar)

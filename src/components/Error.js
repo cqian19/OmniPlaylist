@@ -3,24 +3,19 @@
  */
 
 import React from 'react';
-import { Alert } from 'react-bootstrap';
+import { Tooltip } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 class Error extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.props = props;
-    }
-
     render() {
-        const error = this.props.error;
+        const { error } = this.props;
         return (
             <div>
                 {error !== ''? (
-                    <Alert bsStyle="danger">
-                        {error}
-                    </Alert>
+                    <Tooltip placement="bottom" className="in tooltip-error" id="tooltip-bottom">
+                        { error }
+                    </Tooltip>
                 ):(<div></div>)}
             </div>
         )
@@ -28,7 +23,7 @@ class Error extends React.Component {
 }
 
 Error.propTypes = {
-    error: PropTypes.string.isRequired
+    error: PropTypes.string
 };
 
 export default Error;
