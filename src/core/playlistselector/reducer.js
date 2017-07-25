@@ -6,6 +6,7 @@ import {
     getStateSelectedPlaylistIndex
 } from './selectors';
 import {
+    ON_PLAYLIST_MAKE,
     ON_PLAYLIST_REMOVE,
     ON_PLAYLIST_SELECTED_CHANGE
 } from '../constants';
@@ -31,7 +32,6 @@ function onPlaylistRemove(state, action) {
     let indexValid, playlistIndex;
     const removedPlaylistIndex = action.playlistIndex;
     const curPlaylistIndex = getStateSelectedPlaylistIndex(state);
-    console.log(curPlaylistIndex);
     if (curPlaylistIndex === null || removedPlaylistIndex > curPlaylistIndex) {
         return {...state};
     } else if (removedPlaylistIndex === curPlaylistIndex) {

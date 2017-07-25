@@ -19,7 +19,6 @@ class App extends React.Component {
         return(
             <BrowserRouter history={createHistory()}>
                 <div className="container-fluid">
-                    <Header />
                     <NavBarContainer />
                     { this.props.routes() }
                 </div>

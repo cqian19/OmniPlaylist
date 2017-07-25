@@ -17,7 +17,8 @@ import {
     ON_PLAYLIST_CHANGE,
     ON_PLAYLIST_NAME_CHANGE
 } from '../constants';
-import { getIndex, getVideos } from '.';
+import { getIndex, getVideos, getPlaylists } from '.';
+import { onPlaylistSelectedChange } from '../playlistselector';
 
 function _onVideoActionFail() {
     return {
@@ -124,9 +125,16 @@ export function onPlaylistNameChange(playlistName, playlistIndex) {
     }
 }
 
-export function onPlaylistMake() {
-    return {
-        type: ON_PLAYLIST_MAKE
+export function onPlaylistMake(swapPlay, select) {
+    return (dispatch, getState) => {
+        dispatch({type: ON_PLAYLIST_MAKE});
+        const newPlaylistIndex = getPlaylists(getState()).length - 1;
+        if (swapPlay) {
+            dispatch(onPlaylistSwitch(newPlaylistIndex));
+        }
+        if (select) {
+            dispatch(onPlaylistSelectedChange([], newPlaylistIndex));
+        }
     }
 }
 

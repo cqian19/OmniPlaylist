@@ -9,6 +9,7 @@ import { Typeahead, Menu, menuItemContainer, MenuItem } from 'react-bootstrap-ty
 
 import PlaylistItemContainer from '../containers/PlaylistItemContainer';
 import PlaylistSlotContainer from '../containers/PlaylistSlotContainer';
+import PlaylistAddButtonContainer from "../containers/PlaylistAddButtonContainer";
 
 const PlaylistMenuItem = menuItemContainer(MenuItem);
 
@@ -66,15 +67,18 @@ class PlaylistDropdown extends React.Component {
         const playlists = this._convertPlaylistToDict(this.props.playlists);
         return (
             <div>
-                <Typeahead
-                    emptyLabel="No playlists found."
-                    labelKey="name"
-                    onFocus={this.handleFocus}
-                    options={playlists}
-                    placeholder="Select a playlist..."
-                    ref="typeahead"
-                    renderMenu={this._renderMenu}
-                />
+                <div className="flex-container-row">
+                    <Typeahead
+                        emptyLabel="No playlists found."
+                        labelKey="name"
+                        onFocus={this.handleFocus}
+                        options={playlists}
+                        placeholder="Select a playlist..."
+                        ref="typeahead"
+                        renderMenu={this._renderMenu}
+                    />
+                    <PlaylistAddButtonContainer select={true} />
+                </div>
                 <PlaylistSlotContainer focusDropdown={this.handleSlotClick} />
             </div>
         );

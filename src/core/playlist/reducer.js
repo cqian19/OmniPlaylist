@@ -91,7 +91,7 @@ function onVideoMove(state, stateItems, action) {
     }
     videos = rfuncs.makeNewVideoOrdering(startIndex, endIndex, curVideos);
     playlists = rfuncs.changePlaylistVideos(curPlaylists, playlistIndex, videos);
-    return {...state, index, playlists, ...isCurrentPlaylist && { index, videos }};
+    return {...state, playlists, ...isCurrentPlaylist && { index, videos }};
 }
 
 function onVideoRemove(state, stateItems, action) {
@@ -117,7 +117,7 @@ function onVideoNext(state, stateItems, action) {
     return {...state, index};
 }
 
-function onVideoPrev(stateItems, action) {
+function onVideoPrev(state, stateItems, action) {
     const { curVideos, curIndex } = stateItems;
     const index = rfuncs.prevVideoIndex(curVideos, curIndex);
     return {...state, index};
@@ -127,14 +127,15 @@ function onPlayerReload(state, stateItems, action) {
     return {...state, reload: false};
 }
 
-function onPlaylistMake(stateItems, action) {
+function onPlaylistMake(state, stateItems, action) {
     let index, playlists, playlistIndex, videos;
+    const { select } = action;
     const { curPlaylists } = stateItems;
     index = 0;
-    playlists = curPlaylists.concat([[]]);
+    playlists = curPlaylists.concat([new Playlist([])]);
     playlistIndex = playlists.length - 1;
     videos = [];
-    return {...state, index, playlists, videos, reload: true};
+    return {...state, playlists, ...select && {index, videos, reload: true}};
 }
 
 function onPlaylistRemove(state, stateItems, action) {

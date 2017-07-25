@@ -5,6 +5,8 @@
     color: white;
     font-weight:100;
   }
+  flex: 1;
+  margin-right: 8px;
 }
 
 .bootstrap-typeahead-input {
@@ -23,7 +25,7 @@
 #playlist-slot {
   color: black;
   cursor: pointer;
-  height: 135px;
+  height: 125px;
   margin-top: 12px;
   margin-bottom: 12px;
   padding: 0;

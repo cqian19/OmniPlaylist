@@ -63,6 +63,7 @@ h1 {
 .icon-btn {
   background-color: whitesmoke;
   border: 1px solid $blue-1;
+  color: black;
 
   &:hover {
     background-color: $yellow-0;
@@ -119,10 +120,21 @@ h1 {
   float: left;
 }
 
-.page-container {
+.flex-container {
+  @extend .container;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  width: 100%;
+}
+
+.flex-container-row {
+  @extend .flex-container;
+  flex-direction: row;
+}
+
+.page-container {
+ @extend .flex-container;
   margin-bottom: 15px;
 }
 

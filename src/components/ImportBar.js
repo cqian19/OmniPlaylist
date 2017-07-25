@@ -52,7 +52,6 @@ class ImportBar extends React.Component {
 
     render() {
         this.state.error = this.props.error || this.state.error;
-        console.log(this.state);
         return (
             <div className="import-bar">
                 <form onSubmit={this.handleSubmit} className="height-collapse-small import-form">
