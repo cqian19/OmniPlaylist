@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
@@ -15,6 +15,7 @@ const routes = () => {
         <Switch>
             <Route exact path='/' component={PlayerPage}/>
             <Route path='/playlists' component={PlaylistPage}/>
+            <Redirect to="/" />
         </Switch>
     );
 };

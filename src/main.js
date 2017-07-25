@@ -20,10 +20,11 @@ let mainWindow;
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-      width: 800,
-      height: 600,
+      width: 1000,
+      height: 700,
       minWidth: 515,
-      minHeight: 335
+      minHeight: 335,
+      title: 'Player'
   });
   // Hide top menu bar
   mainWindow.setMenu(null);

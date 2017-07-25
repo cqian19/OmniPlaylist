@@ -17,7 +17,7 @@ function create(win, referer) {
     const headerFilter = {
         urls: ['https://www.youtube.com/*']
     };
-    win.webContents.session.webRequest.onBeforeSendHeaders(filter, (detail, cb) => {
+    win.webContents.session.webRequest.onBeforeSendHeaders(headerFilter, (detail, cb) => {
         let {requestHeaders} = detail;
         requestHeaders = Object.assign(requestHeaders, {
             Referer: requestHeaders.Referer || referer,
