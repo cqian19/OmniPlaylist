@@ -6,9 +6,9 @@ class Playlist {
 
     static count = 0;
 
-    constructor(videos, name="", thumbnail="") {
+    constructor(videos, name="",) {
         this._name = name || "Unnamed Playlist " + (++Playlist.count).toString();
-        this._thumbnail = thumbnail || videos.length && videos[0].thumbnail || "";
+        this._thumbnail = videos.length && videos[0].thumbnail || "";
         this._videos = videos;
 
     }
@@ -19,6 +19,7 @@ class Playlist {
 
     set videos(videos) {
         this._videos = videos;
+        this.thumbnail = videos.length && videos[0].thumbnail || "";
     }
 
     get name() {
@@ -38,7 +39,7 @@ class Playlist {
     }
 
     clone() {
-        return new Playlist(this.videos, this.name, this.thumbnail);
+        return new Playlist(this.videos, this.name);
     }
 
 }

@@ -65,16 +65,18 @@ class VideoSearcher extends React.Component {
         const filteredVideos = this._doFilter(allVideos);
         return (
             <div className='video-searcher'>
-              <SearchInput className='search-input' onChange={this._searchUpdated} />
-              <div className='video-searcher__body'>
-                {filteredVideos.map((videoDict) => {
-                    return (
-                        <SearchedVideoContainer
-                            video={videoDict.video}
-                        />
-                    )
-                })}
-              </div>
+                  <div className='video-searcher__head'>
+                      <SearchInput className='search-input' onChange={this._searchUpdated} />
+                  </div>
+                  <div className='video-searcher__body' >
+                    {filteredVideos.map((videoDict) => {
+                        return (
+                            <SearchedVideoContainer
+                                video={videoDict.video}
+                            />
+                        )
+                    })}
+                  </div>
             </div>
         );
     }
