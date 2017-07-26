@@ -135,13 +135,13 @@ function target(connect) {
 class BasePlaylistVideo extends React.Component {
 
     render() {
-        const { body, className, video } = this.props;
+        const { body, className, video, dropTarget, dragSource } = this.props;
         const playlistVideoNames = classNames({
             'playlist-video': true,
             'active': this.props.active,
             'dragging': this.props.isDragging
         });
-        return this.props.dropTarget(this.props.dragSource(
+        return dropTarget(dragSource(
             <div className={playlistVideoNames} onClick={this.props.onVideoClick}>
                 <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>
                 <div className="playlist-video__desc content">
@@ -159,9 +159,12 @@ BasePlaylistVideo.propTypes = {
     active: PropTypes.bool,
     body:   PropTypes.object,
     className: PropTypes.object,
+    dragSource: PropTypes.func.isRequired,
+    dropTarget: PropTypes.func.isRequired,
     index:  PropTypes.number.isRequired,
     id:    PropTypes.string.isRequired,
     playlistIndex: PropTypes.number.isRequired,
+    onVideoClick: PropTypes.func.isRequired,
     onVideoMove: PropTypes.func.isRequired,
     video:  PropTypes.object.isRequired
 };

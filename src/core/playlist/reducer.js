@@ -102,7 +102,7 @@ function onVideoRemove(state, stateItems, action) {
     index  = rfuncs.chooseAfterRemoveIndex(curVideos, removeIndex, curIndex);
     reload = curIndex === removeIndex;
     videos = rfuncs.removeAtIndex(curVideos, removeIndex);
-    playlists = rfuncs.changePlaylistVideos(curPlaylists, curPlaylistIndex, videos);
+    playlists = rfuncs.changePlaylistVideos(curPlaylists, playlistIndex, videos);
     return {...state, playlists, reload, ...isCurrentPlaylist && { index, videos }};
 }
 
