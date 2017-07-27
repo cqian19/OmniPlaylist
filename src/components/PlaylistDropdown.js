@@ -10,6 +10,7 @@ import { Typeahead, Menu, menuItemContainer, MenuItem } from 'react-bootstrap-ty
 import PlaylistItemContainer from '../containers/PlaylistItemContainer';
 import PlaylistSlotContainer from '../containers/PlaylistSlotContainer';
 import PlaylistAddButtonContainer from "../containers/PlaylistAddButtonContainer";
+import BasePlaylistItem from "./BasePlaylistItem";
 
 const PlaylistMenuItem = menuItemContainer(MenuItem);
 
@@ -33,9 +34,8 @@ class PlaylistDropdown extends React.Component {
                         option={result}
                         position={index}
                         onClick= {() => {this.handleItemChange(result)}}>
-                        <PlaylistItemContainer
+                        <BasePlaylistItem
                             playlist={result.playlist}
-                            playlistIndex={result.playlistIndex}
                         />
                     </PlaylistMenuItem>
                 ))}

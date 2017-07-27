@@ -5,13 +5,21 @@
 import { connect } from 'react-redux';
 
 import PlaylistItem from '../components/PlaylistItem';
-import { onPlaylistRemove } from '../core/playlist';
+import { onPlaylistNameChange, onPlaylistRemove } from '../core/playlist';
 
+/*
+    ownProps:
+        @param playlist - Playlist object this item contains
+        @param playlistIndex - Index of playlist object in playlists
+*/
 const mapStateToProps = (state, ownProps) => ({
     ...ownProps
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    onPlaylistNameChange({playlistName}) {
+        dispatch(onPlaylistNameChange(playlistName, ownProps.playlistIndex))
+    },
     onPlaylistRemove() {
         dispatch(onPlaylistRemove(ownProps.playlistIndex));
     }

@@ -5,4 +5,8 @@
   .glyphicon-remove {
     @extend .remover;
   }
+
+  .renamable, .renamable-selected {
+    font-size: 25px;
+  }
 }

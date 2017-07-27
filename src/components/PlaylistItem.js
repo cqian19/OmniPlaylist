@@ -5,10 +5,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import InlineEdit from 'react-edit-inline';
 
+import BasePlaylistItem from './BasePlaylistItem';
 import { confirmAlert } from './Confirm';
 
 class PlaylistItem extends React.Component {
+
+    _generateHeader() {
+        const { onPlaylistNameChange, playlist } = this.props;
+        return (
+            <InlineEdit
+                className="renamable"
+                activeClassName="renamable-selected"
+                text={playlist.name}
+                paramName="playlistName"
+                change={this.props.onPlaylistNameChange}
+                stopPropagation={true}
+            />
+        );
+    }
+
+    _generateBody() {
+        return (
+            <span className="playlist-remove" onClick={this.handleRemove}>
+                <i className="glyphicon glyphicon-remove" />
+            </span>
+        );
+    }
 
     handleRemove = (event) => {
         event.stopPropagation();
@@ -21,30 +45,19 @@ class PlaylistItem extends React.Component {
     };
 
     render() {
-        const playlistItemNames = classNames({
-            'playlist-item': true,
-            'active': this.props.active
-        });
-        const { playlist } = this.props;
         return (
-            <div className={playlistItemNames}>
-                <img className="thumbnail thumbnail-mini" src={playlist.thumbnail}/>
-
-                <div className="playlist-item__desc content">
-                    <div className="playlist-item__title title">
-                        {playlist.name}
-                    </div>
-                    <span className="playlist-remove" onClick={this.handleRemove}>
-                        <i className="glyphicon glyphicon-remove" />
-                    </span>
-                </div>
-            </div>
+            <BasePlaylistItem
+                {...this.props}
+                body={this._generateBody()}
+                header={this._generateHeader()}
+            />
         );
     }
 }
 
 PlaylistItem.propTypes = {
     active: PropTypes.bool,
+    onPlaylistNameChange: PropTypes.func.isRequired,
     onPlaylistRemove: PropTypes.func.isRequired,
     playlist: PropTypes.object.isRequired,
     playlistIndex: PropTypes.number.isRequired
