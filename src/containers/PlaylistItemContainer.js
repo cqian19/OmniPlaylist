@@ -12,8 +12,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onPlaylistRemove(event) {
-        event.stopPropagation();
+    onPlaylistRemove() {
         dispatch(onPlaylistRemove(ownProps.playlistIndex));
     }
 });

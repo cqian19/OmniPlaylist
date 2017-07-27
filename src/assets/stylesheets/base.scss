@@ -1,6 +1,8 @@
 @import
   'utilities/_colors.scss',
   'app',
+  'buttons',
+  'confirm',
   'importbar',
   'mixins',
   'navbar',
@@ -136,24 +138,6 @@ h1 {
 .page-container {
  @extend .flex-container;
   margin-bottom: 15px;
-}
-
-.btn-basic {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 4px;
-  color: black;
-
-  &:hover {
-    background-color: whitesmoke;
-    color: black;
-  }
-
-  &:active {
-    background-color: lightgrey;
-  }
-
-  transition: background-color .25s;
 }
 
 .centered-text {

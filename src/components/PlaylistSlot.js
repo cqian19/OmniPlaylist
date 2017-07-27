@@ -28,9 +28,10 @@ class PlaylistSlot extends React.Component {
 }
 
 PlaylistSlot.propTypes = {
+    focusDropdown: PropTypes.func.isRequired,
     playlists: PropTypes.arrayOf(PropTypes.object).isRequired,
     playlistIndex: PropTypes.number.isRequired,
-    focusDropdown: PropTypes.func.isRequired
+    playlistValid: PropTypes.bool.isRequired
 };
 
 export default PlaylistSlot;
