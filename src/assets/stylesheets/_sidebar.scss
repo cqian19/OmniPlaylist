@@ -41,8 +41,8 @@
   width: 500px;
 }
 
-.sidebar-item {
-  @extend .hoverable, .selectable, .selectable-item;
+.sidebar-playlist-content .playlist-item {
+  @extend .hoverable, .selectable, .draggable, .selectable-item;
   height: 130px;
   margin: 5px;
   padding: 2px;
@@ -54,8 +54,9 @@
 
     .renamable {
       @include text-truncate(1);
-      display: block;
+      display: inline-block;
       font-size: 22px;
+      max-width: 420px;
     }
 
     .renamable-selected {

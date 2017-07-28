@@ -4,7 +4,7 @@
 
 /* A base class for video objects. Allows for a generic interface for all the domains */
 
-import { UUID } from './utilities';
+import { UUID } from '../utils';
 
 class BaseVideo {
 
@@ -57,6 +57,7 @@ class BaseVideo {
         cl.id = this.id;
         return cl;
     }
+
     equals(video) {
         if( this.domainType === "" || this.id === "") {
             return false;

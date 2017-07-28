@@ -2,6 +2,8 @@
  * Created by cqian19 on 6/6/2017.
  */
 
+import { UUID } from '../../utils';
+
 class Playlist {
 
     static count = 0;
@@ -10,7 +12,7 @@ class Playlist {
         this._name = name || "Unnamed Playlist " + (++Playlist.count).toString();
         this._thumbnail = videos.length && videos[0].thumbnail || "";
         this._videos = videos;
-
+        this._uniqueId = UUID.generate();
     }
 
     get videos() {
@@ -36,6 +38,10 @@ class Playlist {
 
     set thumbnail(thumbnail) {
         this._thumbnail = thumbnail;
+    }
+
+    get uniqueId() {
+        return this._uniqueId;
     }
 
     clone() {

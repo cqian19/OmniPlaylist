@@ -15,14 +15,17 @@ class PlaylistItem extends React.Component {
     _generateHeader() {
         const { onPlaylistNameChange, playlist } = this.props;
         return (
-            <InlineEdit
-                className="renamable"
-                activeClassName="renamable-selected"
-                text={playlist.name}
-                paramName="playlistName"
-                change={this.props.onPlaylistNameChange}
-                stopPropagation={true}
-            />
+            <div>
+                <img className="thumbnail thumbnail-mini" src={playlist.thumbnail}/>
+                <InlineEdit
+                    className="renamable"
+                    activeClassName="renamable-selected"
+                    text={playlist.name}
+                    paramName="playlistName"
+                    change={this.props.onPlaylistNameChange}
+                    stopPropagation={true}
+                />
+            </div>
         );
     }
 

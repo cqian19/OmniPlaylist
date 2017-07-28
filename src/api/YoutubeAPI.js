@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import BaseAPI  from './BaseAPI';
 import BaseVideo from './BaseVideo';
-import { getUrlParams } from './utilities';
+import { getUrlParams } from './utils';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 
 const DOMAIN_TYPE = DOMAIN_TYPES.YOUTUBE;

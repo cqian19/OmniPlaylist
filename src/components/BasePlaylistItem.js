@@ -13,8 +13,11 @@ class BasePlaylistItem extends React.Component {
     _generateHeader() {
         const { playlist } = this.props;
         return (
-            <div className="playlist-item__title title">
-                {playlist.name}
+            <div>
+                <img className="thumbnail thumbnail-mini" src={playlist.thumbnail}/>
+                <div className="playlist-item__title title">
+                    {playlist.name}
+                </div>
             </div>
         );
     }
@@ -23,7 +26,9 @@ class BasePlaylistItem extends React.Component {
         const {
             active,
             body,
+            className,
             header,
+            onItemClick,
             playlist,
         } = this.props;
         const playlistItemNames = classNames({
@@ -31,8 +36,7 @@ class BasePlaylistItem extends React.Component {
             'active': active
         });
         return (
-            <div className={playlistItemNames}>
-                <img className="thumbnail thumbnail-mini" src={playlist.thumbnail}/>
+            <div className={className || playlistItemNames} onClick={onItemClick}>
                 <div className="playlist-item__desc content">
                     { header || this._generateHeader()}
                     { body }
@@ -45,7 +49,9 @@ class BasePlaylistItem extends React.Component {
 BasePlaylistItem.propTypes = {
     active: PropTypes.bool,
     body: PropTypes.object,
+    className: PropTypes.object,
     header: PropTypes.object,
+    onItemClick: PropTypes.func,
     playlist: PropTypes.object.isRequired,
 };
 

@@ -81,7 +81,7 @@ function handlePlaylistVideoHover(props, monitor, component) {
     // Get pixels to the top
     const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
-    if (!shouldSwap) {
+    if (!shouldSwap(ourIndex, otherIndex, hoverClientY, hoverMiddleY)) {
         return;
     }
     // Time to actually perform the action
