@@ -15,6 +15,7 @@ import {
     ON_VIDEO_ACTION_FAILED,
     ON_PLAYER_RELOAD,
     ON_PLAYLIST_MAKE,
+    ON_PLAYLIST_MOVE,
     ON_PLAYLIST_REMOVE,
     ON_PLAYLIST_CHANGE,
     ON_PLAYLIST_NAME_CHANGE
@@ -36,10 +37,47 @@ const defaultState = {
     videos: [],
 };
 
+export function playlistReducer(state = defaultState, action) {
+    const stateItems = generateStateItems(state, action);
+    switch(action.type) {
+        case ADD_PLAYLIST_SUCCESS:
+            return onAddPlaylistSuccess(state, stateItems, action);
+        case ADD_VIDEO_SUCCESS:
+            return onAddVideoSuccess(state, stateItems, action);
+        case ON_VIDEO_ADD:
+            return onVideoAdd(state, stateItems, action);
+        case ON_VIDEO_MOVE:
+            return onVideoMove(state, stateItems, action);
+        case ON_VIDEO_REMOVE:
+            return onVideoRemove(state, stateItems, action);
+        case ON_VIDEO_SWITCH:
+            return onVideoSwitch(state, stateItems, action);
+        case ON_VIDEO_SKIP : case ON_VIDEO_END:
+            return onVideoNext(state, stateItems, action);
+        case ON_VIDEO_PREV:
+            return onVideoPrev(state, stateItems, action);
+        case ON_PLAYER_RELOAD:
+            return onPlayerReload(state, stateItems, action);
+        case ON_PLAYLIST_MAKE:
+            return onPlaylistMake(state, stateItems, action);
+        case ON_PLAYLIST_MOVE:
+            return onPlaylistMove(state, stateItems, action);
+        case ON_PLAYLIST_REMOVE:
+            return onPlaylistRemove(state, stateItems, action);
+        case ON_PLAYLIST_CHANGE:
+            return onPlaylistChange(state, stateItems, action);
+        case ON_PLAYLIST_NAME_CHANGE:
+            return onPlaylistNameChange(state, stateItems, action);
+        case ON_VIDEO_ACTION_FAILED:
+        default:
+            return state;
+    }
+}
+
 function generateStateItems(state, action) {
-    const curIndex     = getStateIndex(state),
+    const curIndex = getStateIndex(state),
           curPlaylists = getStatePlaylists(state),
-          curPlaylistIndex  = getStatePlaylistIndex(state),
+          curPlaylistIndex = getStatePlaylistIndex(state),
           playlistIndex = action.playlistIndex !== undefined ? action.playlistIndex : curPlaylistIndex,
           curPlaylist = curPlaylists[playlistIndex],
           curVideos   = curPlaylist ? curPlaylist.videos : getStateVideos(state),
@@ -89,7 +127,7 @@ function onVideoMove(state, stateItems, action) {
     if (isCurrentPlaylist) {
         index = rfuncs.chooseAfterMoveIndex(startIndex, endIndex, curIndex);
     }
-    videos = rfuncs.makeNewVideoOrdering(startIndex, endIndex, curVideos);
+    videos = rfuncs.makeNewListOrdering(startIndex, endIndex, curVideos);
     playlists = rfuncs.changePlaylistVideos(curPlaylists, playlistIndex, videos);
     return {...state, playlists, ...isCurrentPlaylist && { index, videos }};
 }
@@ -138,6 +176,16 @@ function onPlaylistMake(state, stateItems, action) {
     return {...state, playlists, ...select && {index, videos, reload: true}};
 }
 
+function onPlaylistMove(state, stateItems, action) {
+    let playlistIndex, playlists;
+    const { startIndex, endIndex } = action;
+    const { curPlaylists, curPlaylistIndex, isCurrentPlaylist } = stateItems;
+    if (isCurrentPlaylist) {
+        playlistIndex = rfuncs.chooseAfterMoveIndex(startIndex, endIndex, curPlaylistIndex);
+    }
+    playlists = rfuncs.makeNewListOrdering(startIndex, endIndex, curPlaylists);
+    return {...state, playlists, ...isCurrentPlaylist && { playlistIndex }};
+}
 function onPlaylistRemove(state, stateItems, action) {
     let playlists, playlistIndex, reload, videos;
     const { curPlaylists, curPlaylistIndex, isCurrentPlaylist } = stateItems;
@@ -164,39 +212,4 @@ function onPlaylistNameChange(state, stateItems, action) {
     const { playlistIndex, playlistName } = action;
     playlists = rfuncs.changePlaylistName(curPlaylists, playlistIndex, playlistName);
     return {...state, playlists};
-}
-
-export function playlistReducer(state = defaultState, action) {
-    const stateItems = generateStateItems(state, action);
-    switch(action.type) {
-        case ADD_PLAYLIST_SUCCESS:
-            return onAddPlaylistSuccess(state, stateItems, action);
-        case ADD_VIDEO_SUCCESS:
-            return onAddVideoSuccess(state, stateItems, action);
-        case ON_VIDEO_ADD:
-            return onVideoAdd(state, stateItems, action);
-        case ON_VIDEO_MOVE:
-            return onVideoMove(state, stateItems, action);
-        case ON_VIDEO_REMOVE:
-            return onVideoRemove(state, stateItems, action);
-        case ON_VIDEO_SWITCH:
-            return onVideoSwitch(state, stateItems, action);
-        case ON_VIDEO_SKIP : case ON_VIDEO_END:
-            return onVideoNext(state, stateItems, action);
-        case ON_VIDEO_PREV:
-            return onVideoPrev(state, stateItems, action);
-        case ON_PLAYER_RELOAD:
-            return onPlayerReload(state, stateItems, action);
-        case ON_PLAYLIST_MAKE:
-            return onPlaylistMake(state, stateItems, action);
-        case ON_PLAYLIST_REMOVE:
-            return onPlaylistRemove(state, stateItems, action);
-        case ON_PLAYLIST_CHANGE:
-            return onPlaylistChange(state, stateItems, action);
-        case ON_PLAYLIST_NAME_CHANGE:
-            return onPlaylistNameChange(state, stateItems, action);
-        case ON_VIDEO_ACTION_FAILED:
-        default:
-            return state;
-    }
 }

@@ -14,6 +14,7 @@ export {
     onVideoRemove,
     onPlayerReload,
     onPlaylistMake,
+    onPlaylistMove,
     onPlaylistRemove,
     onPlaylistSwitch,
     onPlaylistNameChange

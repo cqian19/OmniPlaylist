@@ -60,26 +60,26 @@ export function chooseAfterMoveIndex(startIndex, endIndex, currentIndex) {
     }
 }
 
-export function makeNewVideoOrdering(startIndex, endIndex, videos) {
+export function makeNewListOrdering(startIndex, endIndex, list) {
     // Video moved from startIndex position to endIndex position
-    let newVideos;
+    let newList;
     // Video moved down on playlist
     if(startIndex < endIndex) {
-        newVideos = [].concat(
-            videos.slice(0, startIndex), // Keep all videos up to where the video used to be
-            videos.slice(startIndex + 1, endIndex + 1),  // Move these videos down
-            [videos[startIndex]], // Insert moved video here
-            videos.slice(endIndex + 1)); // Keep all remaining videos in their spot
+        newList = [].concat(
+            list.slice(0, startIndex), // Keep all items up to where the video used to be
+            list.slice(startIndex + 1, endIndex + 1),  // Move these items down
+            [list[startIndex]], // Insert moved item here
+            list.slice(endIndex + 1)); // Keep all remaining items in their spot
     } else {
         // Video moved up on playlist
-        newVideos = [].concat(
-            videos.slice(0, endIndex), // Keep all videos up to the spot the video moved to
-            [videos[startIndex]], // Insert video here
-            videos.slice(endIndex, startIndex), // Insert all videos after, skipping the video that just moved
-            videos.slice(startIndex+1)
+        newList = [].concat(
+            list.slice(0, endIndex), // Keep all items up to the spot the video moved to
+            [list[startIndex]], // Insert items here
+            list.slice(endIndex, startIndex), // Insert all items after, skipping the video that just moved
+            list.slice(startIndex+1)
         );
     }
-    return newVideos;
+    return newList;
 }
 
 export function changePlaylistVideos(playlists, playlistIndex, videos) {

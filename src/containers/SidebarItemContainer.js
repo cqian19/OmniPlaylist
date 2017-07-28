@@ -8,9 +8,13 @@ import SidebarItem from '../components/SidebarItem';
 import { getPlaylistIndex, onPlaylistNameChange, onPlaylistRemove } from '../core/playlist';
 import { onSidebarItemClick } from '../core/sidebar';
 
+/*
+    ownProps:
+        @param playlist - Playlist item this contains
+        @param playlistIndex - Index of playlist item in playlists
+ */
 const mapStateToProps = (state, ownProps) => ({
-    playlist: ownProps.playlist,
-    index: ownProps.index,
+    ...ownProps,
     active: getPlaylistIndex(state) === ownProps.index
 });
 

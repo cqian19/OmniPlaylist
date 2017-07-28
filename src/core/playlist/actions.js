@@ -13,6 +13,7 @@ import {
     ON_VIDEO_ACTION_FAILED,
     ON_PLAYER_RELOAD,
     ON_PLAYLIST_MAKE,
+    ON_PLAYLIST_MOVE,
     ON_PLAYLIST_REMOVE,
     ON_PLAYLIST_CHANGE,
     ON_PLAYLIST_NAME_CHANGE
@@ -135,6 +136,15 @@ export function onPlaylistMake(swapPlay, select) {
         if (select) {
             dispatch(onPlaylistSelectedChange([], newPlaylistIndex));
         }
+    }
+}
+
+export function onPlaylistMove(startIndex, endIndex) {
+    return {
+        type: ON_PLAYLIST_MOVE,
+        playlistIndex: startIndex,
+        startIndex,
+        endIndex
     }
 }
 

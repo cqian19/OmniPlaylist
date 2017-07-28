@@ -34,6 +34,11 @@ export class YoutubeAPI extends BaseAPI {
         return this.urlPlaylistPattern.test(link);
     }
 
+    static _isValidVideo(response) {
+        // Private videos don't have a valid thumbnail
+        return response.snippet.thumbnails;
+    }
+
     static getRenderAndDomainType(link){
         const renderType = this._isVideoLink(link) ? RENDER_TYPES.VIDEO
                             : (this._isPlaylistLink(link) ? RENDER_TYPES.PLAYLIST : RENDER_TYPES.INVALID);
@@ -58,7 +63,9 @@ export class YoutubeAPI extends BaseAPI {
     };
 
     static getPlaylistFromResponse(response) {
-        return response.data.items.map((videoResponse) => new YoutubeVideo(videoResponse, RENDER_TYPES.PLAYLIST));
+        return response.data.items.filter(this._isValidVideo).map(
+            (videoResponse) => new YoutubeVideo(videoResponse, RENDER_TYPES.PLAYLIST)
+        );
     }
 
     static fetchVideo(link){
