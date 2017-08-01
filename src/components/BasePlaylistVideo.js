@@ -135,14 +135,14 @@ function target(connect) {
 class BasePlaylistVideo extends React.Component {
 
     render() {
-        const { body, className, video, dropTarget, dragSource } = this.props;
+        const { body, className, video, dropTarget, dragSource, onVideoClick } = this.props;
         const playlistVideoNames = classNames({
             'playlist-video': true,
             'active': this.props.active,
             'dragging': this.props.isDragging
         });
         return dropTarget(dragSource(
-            <div className={playlistVideoNames} onClick={this.props.onVideoClick}>
+            <div className={playlistVideoNames} onClick={onVideoClick}>
                 <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>
                 <div className="playlist-video__desc content">
                     <div className="playlist-video__title">

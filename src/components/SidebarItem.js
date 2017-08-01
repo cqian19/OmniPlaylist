@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import InlineEdit from 'react-edit-inline';
 
 import ReorderablePlaylistItemContainer from '../containers/ReorderablePlaylistItemContainer';
+import RemoveButton from "./RemoveButton";
 
 class SidebarItem extends React.Component {
 
@@ -15,9 +16,7 @@ class SidebarItem extends React.Component {
         const { onPlaylistNameChange, playlist, onPlaylistRemove } = this.props;
         return (
             <div>
-                <span className="playlist-remove" onClick={onPlaylistRemove}>
-                    <i className="glyphicon glyphicon-remove" />
-                 </span>
+                <RemoveButton onRemove={onPlaylistRemove} confirm={true}/>
                 <div className="sidebar-item__title">
                     <InlineEdit
                         className="renamable"

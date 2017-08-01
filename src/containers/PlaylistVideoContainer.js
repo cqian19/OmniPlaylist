@@ -41,8 +41,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     onVideoMove(startIndex, endIndex, playlistIndex) {
         dispatch(onVideoMove(startIndex, endIndex, playlistIndex));
     },
-    onVideoRemove(event) {
-        event.stopPropagation();
+    onVideoRemove() {
         dispatch(onVideoRemove(ownProps.index, ownProps.playlistIndex));
     }
 });

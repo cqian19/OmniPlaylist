@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import InlineEdit from 'react-edit-inline';
 
 import BasePlaylistItem from './BasePlaylistItem';
-import { confirmAlert } from './Confirm';
+import RemoveButton from "./RemoveButton";
 
 class PlaylistItem extends React.Component {
 
@@ -30,22 +30,11 @@ class PlaylistItem extends React.Component {
     }
 
     _generateBody() {
+        const { onPlaylistRemove } = this.props;
         return (
-            <span className="playlist-remove" onClick={this.handleRemove}>
-                <i className="glyphicon glyphicon-remove" />
-            </span>
+            <RemoveButton onRemove={onPlaylistRemove} confirm={true} />
         );
     }
-
-    handleRemove = (event) => {
-        event.stopPropagation();
-        confirmAlert({
-            message: 'Do you want to delete this playlist?',
-            confirmLabel: 'Confirm',
-            cancelLabel: 'Cancel',
-            onConfirm: this.props.onPlaylistRemove
-        });
-    };
 
     render() {
         return (

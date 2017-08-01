@@ -25,8 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     onPlaylistNameChange({playlistName}) {
         dispatch(onPlaylistNameChange(playlistName, ownProps.index))
     },
-    onPlaylistRemove(event) {
-        event.stopPropagation();
+    onPlaylistRemove() {
         dispatch(onPlaylistRemove(ownProps.index));
     }
 });

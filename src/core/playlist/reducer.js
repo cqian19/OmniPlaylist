@@ -206,7 +206,9 @@ function onPlaylistRemove(state, stateItems, action) {
     reload = isCurrentPlaylist;
     playlist.removeFromDb();
     playlists = rfuncs.removeAtIndex(curPlaylists, removePlaylistIndex);
-    rfuncs.updatePlaylistIndexes(playlists, removePlaylistIndex, playlists.length - 1);
+    if (playlists.length) {
+        rfuncs.updatePlaylistIndexes(playlists, removePlaylistIndex, playlists.length - 1);
+    }
     playlistIndex = rfuncs.chooseAfterRemoveIndex(curPlaylists, removePlaylistIndex, curPlaylistIndex);
     videos = (playlists.length ? playlists[playlistIndex].videos : []);
     return {...state, playlists, playlistIndex, reload, ...isCurrentPlaylist && { videos }};

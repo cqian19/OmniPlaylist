@@ -143,3 +143,7 @@ h1 {
 .centered-text {
   text-align: center;
 }
+
+.playlist-remove {
+  @extend .remover;
+}
