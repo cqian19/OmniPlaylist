@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import BaseAPI  from './BaseAPI';
-import BaseVideo from './BaseVideo';
+import BaseVideo from '../core/classes/BaseVideo';
 import { getUrlParams } from './utils';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 
@@ -15,7 +15,7 @@ export class YoutubeVideo extends BaseVideo {
         this.title = videoResponse.snippet.title;
         this.thumbnail = videoResponse.snippet.thumbnails.default.url;
         // videoResponse.id of playlist items returns the playlist id, not the video id
-        this.id = (renderType === RENDER_TYPES.VIDEO ?
+        this.linkId = (renderType === RENDER_TYPES.VIDEO ?
                         videoResponse.id : videoResponse.snippet.resourceId.videoId);
         this.domainType = DOMAIN_TYPE;
     }

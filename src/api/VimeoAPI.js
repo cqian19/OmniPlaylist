@@ -4,7 +4,7 @@
 import axios from 'axios';
 
 import BaseAPI from './BaseAPI';
-import BaseVideo from './BaseVideo';
+import BaseVideo from '../core/classes/BaseVideo';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 
 /* API reference:
@@ -20,7 +20,7 @@ export class VimeoVideo extends BaseVideo {
         this.domainType = DOMAIN_TYPE;
         if (renderType === RENDER_TYPES.VIDEO) {
             this.title = videoResponse.title;
-            this.id = videoResponse.video_id;
+            this.linkId = videoResponse.video_id;
             this.thumbnail = decodeURIComponent(videoResponse.thumbnail_url);
             this.duration = videoResponse.duration;
         }

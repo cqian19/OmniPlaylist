@@ -75,12 +75,12 @@ function addPlaylist(link, response, domainType) {
     return (dispatch, getState) => {
         const playlistsLength = getPlaylists(getState()).length;
         const playlist = new Playlist(videos, playlistsLength);
-        return {
+        dispatch({
             type: ADD_PLAYLIST_SUCCESS,
             index,
             videos,
             playlist
-        };
+        });
     };
 }
 

@@ -66,7 +66,7 @@ class BaseVideo {
     }
 
     hash() {
-        return `${this.domainType} ${this.linkId}`;
+        return this.uniqueId;
     }
 
     toDbObject() {

@@ -2,7 +2,20 @@
  * Created by cqian19 on 6/10/2017.
  */
 
+import Playlist from './Playlist';
+import VideoFactory from './VideoFactory';
+
 class PlaylistFactory {
+
+    static createPlaylistFromDbObject(playlistDoc) {
+        const {
+            name,
+            uniqueId,
+            playlistIndex
+        } = playlistDoc;
+        const videos = playlistDoc.videos.map(VideoFactory.createVideoFromDbObject);
+        return new Playlist(videos, playlistIndex, name, uniqueId, playlistDoc);
+    }
 
     static clonePlaylistWithVideos(playlist, videos) {
         const copy = playlist.clone();
