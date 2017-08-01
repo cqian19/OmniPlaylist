@@ -20,8 +20,10 @@ class Player extends React.Component {
         }
     }
 
-    componentDidUpdate() {
-        this.props.onPlayerReload();
+    componentDidUpdate(prevProps) {
+        if (prevProps.reload) {
+            this.props.onPlayerReload();
+        }
     }
 
     render() {

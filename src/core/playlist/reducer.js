@@ -198,6 +198,7 @@ function onPlaylistMove(state, stateItems, action) {
     rfuncs.updatePlaylistIndexes(playlists, startIndex, endIndex);
     return {...state, playlists, ...isCurrentPlaylist && { playlistIndex }};
 }
+
 function onPlaylistRemove(state, stateItems, action) {
     let playlists, playlistIndex, reload, videos;
     const { curPlaylists, curPlaylistIndex, isCurrentPlaylist } = stateItems;

@@ -62,7 +62,7 @@ class BaseVideo {
         if( this.domainType === "" || this.linkId === "") {
             return false;
         }
-        return this.domainType === video.domainType && this.linkId === video.id;
+        return this.domainType === video.domainType && this.linkId === video.linkId;
     }
 
     hash() {
