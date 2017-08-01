@@ -195,14 +195,18 @@ function onPlaylistMove(state, stateItems, action) {
         playlistIndex = rfuncs.chooseAfterMoveIndex(startIndex, endIndex, curPlaylistIndex);
     }
     playlists = rfuncs.makeNewListOrdering(startIndex, endIndex, curPlaylists);
+    rfuncs.updatePlaylistIndexes(playlists, startIndex, endIndex);
     return {...state, playlists, ...isCurrentPlaylist && { playlistIndex }};
 }
 function onPlaylistRemove(state, stateItems, action) {
     let playlists, playlistIndex, reload, videos;
     const { curPlaylists, curPlaylistIndex, isCurrentPlaylist } = stateItems;
     const removePlaylistIndex = action.playlistIndex;
+    const playlist = curPlaylists[removePlaylistIndex];
     reload = isCurrentPlaylist;
+    playlist.removeFromDb();
     playlists = rfuncs.removeAtIndex(curPlaylists, removePlaylistIndex);
+    rfuncs.updatePlaylistIndexes(playlists, removePlaylistIndex, playlists.length - 1);
     playlistIndex = rfuncs.chooseAfterRemoveIndex(curPlaylists, removePlaylistIndex, curPlaylistIndex);
     videos = (playlists.length ? playlists[playlistIndex].videos : []);
     return {...state, playlists, playlistIndex, reload, ...isCurrentPlaylist && { videos }};

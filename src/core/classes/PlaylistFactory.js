@@ -14,7 +14,7 @@ class PlaylistFactory {
             playlistIndex
         } = playlistDoc;
         const videos = playlistDoc.videos.map(VideoFactory.createVideoFromDbObject);
-        return new Playlist(videos, playlistIndex, name, uniqueId, playlistDoc);
+        return new Playlist(videos, parseInt(playlistIndex), name, uniqueId, playlistDoc);
     }
 
     static clonePlaylistWithVideos(playlist, videos) {

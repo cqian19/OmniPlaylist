@@ -14,7 +14,11 @@ const playlistSchema = {
             'primary': true
         },
         'name': {'type': 'string'},
-        'playlistIndex': {'type': 'number'},
+        'playlistIndex': {
+            'type': 'string',
+            'description': 'Numeric string for ordering playlists',
+            'index': true
+        },
         'videos': {
             'type': 'array',
             'items': {

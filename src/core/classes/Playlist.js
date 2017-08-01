@@ -13,6 +13,7 @@ class Playlist {
         this._videos = videos;
         this._uniqueId = uniqueId || UUID.generate();
         this._document = document || this._saveToDb(playlistIndex);
+        this._playlistIndex = playlistIndex;
     }
 
     get videos() {
@@ -55,16 +56,26 @@ class Playlist {
         return this._document;
     }
 
+    get playlistIndex() {
+        return this._playlistIndex;
+    }
+
+    set playlistIndex(playlistIndex) {
+        this._playlistIndex = playlistIndex;
+        this._updateDb({playlistIndex: playlistIndex.toString()});
+    }
+
     clone() {
-        return new Playlist(this.videos, this.name, this.name, this.uniqueId, this.document);
+        return new Playlist(this.videos, this.playlistIndex, this.name, this.uniqueId, this.document);
     }
 
     async _updateDb(updateDict) {
         await this._document;
         for (let key in updateDict) {
-            this.document.set(key, updateDict[key]);
+            this.document.atomicUpdate(function(doc) {
+                doc[key] = updateDict[key];
+            });
         }
-        this.document.save();
     }
 
     /* Adds this playlist to end of playlists in database */
@@ -73,12 +84,16 @@ class Playlist {
         this._document = await db.playlist.insert(this._toDbObject(playlistIndex));
     }
 
+    async removeFromDb() {
+        this.document.remove();
+    }
+
     _toDbObject(playlistIndex) {
         return {
             name: this.name,
             uniqueId: this.uniqueId,
             videos: this.videos.map((video) => video.toDbObject()),
-            playlistIndex
+            playlistIndex: playlistIndex.toString()
         };
     }
 }

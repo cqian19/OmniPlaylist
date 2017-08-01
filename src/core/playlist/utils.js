@@ -95,6 +95,18 @@ export function changePlaylistVideos(playlists, playlistIndex, videos) {
     return playlists;
 }
 
+
+export function updatePlaylistIndexes(playlists, startIndex, endIndex) {
+    // Update playlistIndex of playlists that have shifted position
+    // Decide whether playlists will have shifted down or up
+    const playlistShift = endIndex > startIndex ? -1 : 1;
+    const start = Math.min(startIndex, endIndex);
+    const end = Math.max(startIndex, endIndex);
+    for (let i = start; i <= end; i++) {
+        playlists[i].playlistIndex = i;
+    }
+}
+
 export function changePlaylistName(playlists, playlistIndex, playlistName) {
     const playlist = playlists[playlistIndex];
     const playlistCopy = PlaylistFactory.clonePlaylistWithName(playlist, playlistName);
