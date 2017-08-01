@@ -35,7 +35,7 @@ export class YoutubePlayer extends BasePlayer {
     }
 
     _playVideo(props=this.props) {
-        this.player.loadVideoById(props.video.id);
+        this.player.loadVideoById(props.video.linkId);
     }
 
     componentDidMount() {

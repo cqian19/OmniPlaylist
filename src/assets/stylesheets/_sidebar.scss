@@ -73,7 +73,7 @@
   .sidebar-item__thumbnails {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-left: 3px;
     margin-right: 3px;
   }

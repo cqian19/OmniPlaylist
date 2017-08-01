@@ -4,7 +4,7 @@
 
 /* A base class for video objects. Allows for a generic interface for all the domains */
 
-import { UUID } from '../utils';
+import { UUID } from '../../utils';
 
 class BaseVideo {
 
@@ -29,11 +29,11 @@ class BaseVideo {
         return this._title;
     }
 
-    set id(id) {
+    set linkId(id) {
         this._id = id;
     }
 
-    get id() {
+    get linkId() {
         return this._id;
     }
 
@@ -54,19 +54,28 @@ class BaseVideo {
         cl.domainType = this.domainType;
         cl.title = this.title;
         cl.thumbnail = this.thumbnail;
-        cl.id = this.id;
+        cl.linkId = this.linkId;
         return cl;
     }
 
     equals(video) {
-        if( this.domainType === "" || this.id === "") {
+        if( this.domainType === "" || this.linkId === "") {
             return false;
         }
-        return this.domainType === video.domainType && this.id === video.id;
+        return this.domainType === video.domainType && this.linkId === video.id;
     }
 
     hash() {
-        return `${this.domainType} ${this.id}`;
+        return `${this.domainType} ${this.linkId}`;
+    }
+
+    toDbObject() {
+        return {
+            domain: this.domainType,
+            title: this.title,
+            thumbnail: this.thumbnail,
+            linkId: this.linkId
+        }
     }
 }
 

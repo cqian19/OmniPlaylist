@@ -13,7 +13,9 @@ export function choosePrevIndex(list , index) {
 }
 
 export function chooseAfterRemoveIndex(list, index, curIndex) {
-    if (index === curIndex) {
+    if (list.length === 1) {
+        return 0;
+    } else if (index === curIndex) {
         // Go to next video, or previous video if this is the last one
         return curIndex === list.length - 1 ? curIndex - 1 : curIndex;
     } else if (index < curIndex) {

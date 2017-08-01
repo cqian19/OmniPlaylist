@@ -18,7 +18,8 @@ import {
     ON_PLAYLIST_MOVE,
     ON_PLAYLIST_REMOVE,
     ON_PLAYLIST_CHANGE,
-    ON_PLAYLIST_NAME_CHANGE
+    ON_PLAYLIST_NAME_CHANGE,
+    ON_PLAYLISTS_LOAD
 } from '../constants';
 import Playlist from '../classes/Playlist';
 import {
@@ -27,11 +28,12 @@ import {
     getStatePlaylists,
     getStatePlaylistIndex,
 } from '.';
+import { initializePlaylists } from './database';
 import * as rfuncs from './utils';
 
 const defaultState = {
     index: 0,
-    playlists: [],
+    playlists: initializePlaylists() && [],
     playlistIndex: 0,
     reload: false,
     videos: [],
@@ -68,6 +70,8 @@ export function playlistReducer(state = defaultState, action) {
             return onPlaylistChange(state, stateItems, action);
         case ON_PLAYLIST_NAME_CHANGE:
             return onPlaylistNameChange(state, stateItems, action);
+        case ON_PLAYLISTS_LOAD:
+            return onPlaylistsLoad(state, stateItems, action);
         case ON_VIDEO_ACTION_FAILED:
         default:
             return state;
@@ -99,11 +103,18 @@ function onAddPlaylistSuccess(state, stateItems, action) {
 function onAddVideoSuccess(state, stateItems, action) {
     // Current behavior is to push video to playlist, go to index of pushed video
     let index, videos, playlists;
-    const { curVideos, curPlaylists } = stateItems;
-    const { playlistIndex } = action;
-    videos = curVideos.concat([action.video]);
+    const { curPlaylistIndex, curVideos, curPlaylists } = stateItems;
+    const { video } = action;
+    // Create a new playlist if none
+    if (!curPlaylists.length) {
+        const newPlaylist = new Playlist([video], 0);
+        videos = newPlaylist.videos;
+        playlists = curPlaylists.concat([newPlaylist]);
+    } else {
+        videos = curVideos.concat([video]);
+        playlists = rfuncs.changePlaylistVideos(curPlaylists, curPlaylistIndex, videos);
+    }
     index = videos.length - 1;
-    playlists = rfuncs.changePlaylistVideos(curPlaylists, playlistIndex, videos);
     return {...state, videos, index, playlists, reload: true};
 }
 
@@ -113,7 +124,7 @@ function onVideoAdd(state, stateItems, action) {
     const { video, addIndex, playlistIndex } = action;
     // Copy playlist and insert video into spot
     videos = curVideos.slice();
-    videos.splice(addIndex, 0 , video);
+    videos.splice(addIndex, 0, video);
     index = rfuncs.chooseAfterAddIndex(curIndex, addIndex);
     playlists = rfuncs.changePlaylistVideos(curPlaylists, playlistIndex, videos);
     return {...state, playlists, ...isCurrentPlaylist && { index, videos }};
@@ -170,7 +181,7 @@ function onPlaylistMake(state, stateItems, action) {
     const { select } = action;
     const { curPlaylists } = stateItems;
     index = 0;
-    playlists = curPlaylists.concat([new Playlist([])]);
+    playlists = curPlaylists.concat([new Playlist([], curPlaylists.length)]);
     playlistIndex = playlists.length - 1;
     videos = [];
     return {...state, playlists, ...select && {index, videos, reload: true}};
@@ -212,4 +223,9 @@ function onPlaylistNameChange(state, stateItems, action) {
     const { playlistIndex, playlistName } = action;
     playlists = rfuncs.changePlaylistName(curPlaylists, playlistIndex, playlistName);
     return {...state, playlists};
+}
+
+function onPlaylistsLoad(state, stateItems, action) {
+    const { playlists } = action;
+    return {...state, playlists, ...playlists.length && { videos: playlists[0].videos  }}
 }

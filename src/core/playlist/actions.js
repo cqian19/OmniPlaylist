@@ -16,7 +16,8 @@ import {
     ON_PLAYLIST_MOVE,
     ON_PLAYLIST_REMOVE,
     ON_PLAYLIST_CHANGE,
-    ON_PLAYLIST_NAME_CHANGE
+    ON_PLAYLIST_NAME_CHANGE,
+    ON_PLAYLISTS_LOAD
 } from '../constants';
 import { getIndex, getVideos, getPlaylists } from '.';
 import { onPlaylistSelectedChange } from '../playlistselector';
@@ -158,5 +159,12 @@ export function onPlaylistRemove(index) {
 export function onPlayerReload() {
     return {
         type: ON_PLAYER_RELOAD
+    }
+}
+
+export function onPlaylistsLoad(playlists) {
+    return {
+        type: ON_PLAYLISTS_LOAD,
+        playlists
     }
 }
