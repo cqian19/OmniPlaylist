@@ -19,6 +19,9 @@ module.exports = {
   resolve: {
     extensions: ['', '.js']
   },
+  stats: {
+      warnings: false
+  },
   output: {
     path: path.join(__dirname, '/dist'),
     publicPath: '/',

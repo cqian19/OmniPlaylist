@@ -12,14 +12,14 @@ export class VimeoPlayer extends React.Component {
     _initializePlayer() {
         // Vimeo API requires video id on instantiation
         const player = new VimeoVideoPlayer(this.iframe, {
-            id: this.props.video.id,
+            id: this.props.video.linkId,
         });
         player.on('ended', this.props.onEnded);
         return player;
     }
 
     _playVideo(props=this.props) {
-        this.player.loadVideo(props.video.id).then(() => {
+        this.player.loadVideo(props.video.linkId).then(() => {
             this.player.play();
         });
     }
