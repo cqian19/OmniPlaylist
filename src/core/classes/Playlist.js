@@ -7,8 +7,8 @@ import { getDb } from '../../database';
 
 class Playlist {
 
-    constructor(videos, playlistIndex, name="", uniqueId="", document="") {
-        this._name = name || "Unnamed Playlist";
+    constructor(videos, playlistIndex=0, name="Unnamed Playlist", uniqueId="", document="") {
+        this._name = name;
         this._thumbnail = videos.length && videos[0].thumbnail || "";
         this._videos = videos;
         this._uniqueId = uniqueId || UUID.generate();

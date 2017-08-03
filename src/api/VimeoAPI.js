@@ -3,6 +3,7 @@
  */
 import axios from 'axios';
 
+import Playlist from '../core/classes/Playlist';
 import { OEmbedAPI, OEmbedVideo } from './OEmbedAPI';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 import { extractEndNumbers } from './utils';
@@ -18,7 +19,7 @@ const key = "";
 export class VimeoVideo extends OEmbedVideo {
 
     constructor(videoResponse, renderType) {
-        super(videoResponse, renderType);
+        super(videoResponse, DOMAIN_TYPE, renderType);
         this.domainType = DOMAIN_TYPE;
         if (renderType === RENDER_TYPES.PLAYLIST) { // Response from album get
             this.title = videoResponse.name;
@@ -48,9 +49,10 @@ export class VimeoAPI extends OEmbedAPI {
     };
 
     static getPlaylistFromResponse(response){
-        return response.data.map((videoResponse) =>
+        const videos =  response.data.map((videoResponse) =>
             new VimeoVideo(videoResponse, RENDER_TYPES.PLAYLIST)
-        )
+        );
+        return new Playlist(videos);
     };
 
     static fetchPlaylist(link) {

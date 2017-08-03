@@ -71,16 +71,16 @@ function importVideos(link, renderType, domainType) {
 }
 
 function addPlaylist(link, response, domainType) {
-    const videos = APIHandler.getVideosFromResponse(response, RENDER_TYPES.PLAYLIST, domainType);
-    const index = APIHandler.getPlaylistIndexFromLink(link, domainType);
     return (dispatch, getState) => {
+        const playlist = APIHandler.getVideosFromResponse(response, RENDER_TYPES.PLAYLIST, domainType);
+        const index = APIHandler.getPlaylistIndexFromLink(link, domainType);
         const playlistsLength = getPlaylists(getState()).length;
-        const playlist = new Playlist(videos, playlistsLength);
+        playlist.playlistIndex = playlistsLength;
         dispatch({
             type: ADD_PLAYLIST_SUCCESS,
             index,
-            videos,
-            playlist
+            playlist,
+            videos: playlist.videos
         });
     };
 }

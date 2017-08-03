@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import BaseAPI  from './BaseAPI';
 import BaseVideo from './BaseVideo';
+import Playlist from '../core/classes/Playlist';
 import { getUrlParams } from './utils';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 
@@ -64,9 +65,10 @@ export class YoutubeAPI extends BaseAPI {
     };
 
     static getPlaylistFromResponse(response) {
-        return response.data.items.filter(this._isValidVideo).map(
+        const videos = response.data.items.filter(this._isValidVideo).map(
             (videoResponse) => new YoutubeVideo(videoResponse, RENDER_TYPES.PLAYLIST)
         );
+        return new Playlist(videos);
     }
 
     static fetchVideo(link){
