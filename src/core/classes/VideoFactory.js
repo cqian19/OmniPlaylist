@@ -2,7 +2,7 @@
  * Created by cqian19 on 7/31/2017.
  */
 
-import BaseVideo from './BaseVideo';
+import BaseVideo from '../../api/BaseVideo';
 
 class VideoFactory {
 

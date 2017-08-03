@@ -8,19 +8,29 @@ import { DOMAIN_TYPES } from './constants';
 import { VimeoPlayer, YoutubePlayer } from '../components/video-players';
 import { VimeoAPI, YoutubeAPI } from '../api';
 
-export const APIS = [
-    VimeoAPI,
-    YoutubeAPI
-];
-
-// Maps to appropriate video player
-export const DOMAIN_TO_PLAYER = {
-    [DOMAIN_TYPES.YOUTUBE]: YoutubePlayer,
-    [DOMAIN_TYPES.VIMEO]: VimeoPlayer
-};
-
-// Maps to which API to use
-export const DOMAIN_TO_API = {
-    [DOMAIN_TYPES.YOUTUBE]: YoutubeAPI,
-    [DOMAIN_TYPES.VIMEO]: VimeoAPI
+export const DOMAIN_PROPS = {
+    [DOMAIN_TYPES.YOUTUBE]: {
+        'API': YoutubeAPI,
+        'Player': YoutubePlayer,
+        'OEmbed': false
+    },
+    [DOMAIN_TYPES.VIMEO]: {
+        'API': VimeoAPI,
+        'Player': VimeoPlayer,
+        'OEmbed': true,
+        'OEmbedLinks': [
+            /^(?:https?:\/\/)?(?:w{3}\.)?vimeo\.com\/[0-9]+$/,
+            /^(?:https?:\/\/)?(?:w{3}\.)?vimeo\.com\/album\/[0-9]+\/video\/[0-9]+$/,
+            /^(?:https?:\/\/)?(?:w{3}\.)?player.vimeo\.com\/video\/[0-9]+$/
+        ],
+        'OEmbedEndpoint': 'https://vimeo.com/api/oembed.json'
+    },
+    [DOMAIN_TYPES.SOUNDCLOUD]: {
+        'Player': SoundCloudPlayer,
+        'OEmbed': true,
+        'OEmbedLinks': [
+            /^(?:https?:\/\/)?(?:w{3}\.)?soundcloud.com\/([a-z0-9-_]+\/[a-z0-9-_]+)$/
+        ],
+        'OEmbedEndpoint': 'https://soundcloud.com/oembed'
+    }
 };

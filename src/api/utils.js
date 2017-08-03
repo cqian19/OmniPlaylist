@@ -13,3 +13,6 @@ export function getUrlParams(url) {
     return params;
 }
 
+export function extractEndNumbers(link) {
+    return link.match(/(\d)+$/)[0];
+}

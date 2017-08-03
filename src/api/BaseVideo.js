@@ -4,7 +4,7 @@
 
 /* A base class for video objects. Allows for a generic interface for all the domains */
 
-import { UUID } from '../../utils';
+import { UUID } from '../utils';
 
 class BaseVideo {
 
@@ -49,20 +49,33 @@ class BaseVideo {
         return this._thumbnail;
     }
 
+    set html(html) {
+        this._html = html;
+    }
+
+    get html() {
+        return this._html;
+    }
+
     clone() {
         const cl = new BaseVideo;
         cl.domainType = this.domainType;
         cl.title = this.title;
         cl.thumbnail = this.thumbnail;
         cl.linkId = this.linkId;
+        cl.html = this.html;
         return cl;
     }
 
     equals(video) {
-        if( this.domainType === "" || this.linkId === "") {
+        if(this.domainType === "") {
             return false;
+        } else if (this.html || video.html) {
+            // At least one video being compared is an OEmbed vid
+            return this.html === video.html;
+        } else {
+            return this.domainType === video.domainType && this.linkId === video.linkId;
         }
-        return this.domainType === video.domainType && this.linkId === video.linkId;
     }
 
     hash() {
@@ -74,7 +87,8 @@ class BaseVideo {
             domain: this.domainType,
             title: this.title,
             thumbnail: this.thumbnail,
-            linkId: this.linkId
+            linkId: this.linkId,
+            html: this.html
         }
     }
 }

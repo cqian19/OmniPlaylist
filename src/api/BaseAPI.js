@@ -11,7 +11,7 @@ class BaseAPI {
 
     static _isVideoLink(link){};
     static _isPlaylistLink(link){};
-    static getRenderAndDomainType(link){};
+    static getRenderType(domainType, link){};
     static getVideoFromResponse(response){};
     static getPlaylistFromResponse(response){};
     static getPlaylistIndexFromLink(link) {

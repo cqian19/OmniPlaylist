@@ -4,10 +4,11 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import YoutubeVideoPlayer from 'youtube-player';
 
-import { BasePlayer } from '.';
+import BasePlayer from './BasePlayer';
 
 const stateNames = {
     '-1': 'unstarted',
@@ -69,3 +70,10 @@ export class YoutubePlayer extends BasePlayer {
         );
     }
 }
+
+YoutubePlayer.propTypes = {
+    index:  PropTypes.number.isRequired,
+    reload: PropTypes.bool.isRequired,
+    video:  PropTypes.object,
+    videos: PropTypes.arrayOf(PropTypes.object).isRequired
+};

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import BaseAPI  from './BaseAPI';
-import BaseVideo from '../core/classes/BaseVideo';
+import BaseVideo from './BaseVideo';
 import { getUrlParams } from './utils';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 
@@ -39,10 +39,11 @@ export class YoutubeAPI extends BaseAPI {
         return response.snippet.thumbnails;
     }
 
-    static getRenderAndDomainType(link){
-        const renderType = this._isVideoLink(link) ? RENDER_TYPES.VIDEO
-                            : (this._isPlaylistLink(link) ? RENDER_TYPES.PLAYLIST : RENDER_TYPES.INVALID);
-        return [renderType, DOMAIN_TYPE];
+    static getRenderType(link){
+        const renderType = this._isVideoLink(link)    ? RENDER_TYPES.VIDEO
+                        : (this._isPlaylistLink(link) ? RENDER_TYPES.PLAYLIST
+                                                      : RENDER_TYPES.INVALID);
+        return renderType;
     };
 
     static getVideoIdFromLink(link) {

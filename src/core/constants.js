@@ -7,7 +7,8 @@
 // Determines domain of videoplayer and how it should be played
 export const DOMAIN_TYPES = {
     'YOUTUBE': 'YOUTUBE',
-    'VIMEO': 'VIMEO'
+    'VIMEO': 'VIMEO',
+    'SOUNDCLOUD': 'SOUNDCLOUD'
 };
 
 // Determines if link is to a playlist or to a videoplayer, or to neither

@@ -5,7 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export class BasePlayer extends React.Component {
+class BasePlayer extends React.Component {
 
     shouldComponentUpdate(nextProps) {
          if (nextProps.reload || !this.props.videos.length || !nextProps.videos.length) {
@@ -25,3 +25,5 @@ BasePlayer.propTypes = {
     video:  PropTypes.object,
     videos: PropTypes.arrayOf(PropTypes.object).isRequired
 };
+
+export default BasePlayer;

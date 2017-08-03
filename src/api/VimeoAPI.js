@@ -3,59 +3,63 @@
  */
 import axios from 'axios';
 
-import BaseAPI from './BaseAPI';
-import BaseVideo from '../core/classes/BaseVideo';
+import { OEmbedAPI, OEmbedVideo } from './OEmbedAPI';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
+import { extractEndNumbers } from './utils';
 
-/* API reference:
- * https://developer.vimeo.com/apis/oembed/,
- * https://developer.vimeo.com/api/endpoints/albums */
+/** API reference:
+ * @link https://developer.vimeo.com/apis/oembed/
+ * @link https://developer.vimeo.com/api/endpoints/albums
+*/
 
 const DOMAIN_TYPE = DOMAIN_TYPES.VIMEO;
+const key = "";
 
-export class VimeoVideo extends BaseVideo {
+export class VimeoVideo extends OEmbedVideo {
 
     constructor(videoResponse, renderType) {
-        super();
+        super(videoResponse, renderType);
         this.domainType = DOMAIN_TYPE;
-        if (renderType === RENDER_TYPES.VIDEO) {
-            this.title = videoResponse.title;
-            this.linkId = videoResponse.video_id;
-            this.thumbnail = decodeURIComponent(videoResponse.thumbnail_url);
-            this.duration = videoResponse.duration;
+        if (renderType === RENDER_TYPES.PLAYLIST) { // Response from album get
+            this.title = videoResponse.name;
+            this.linkId = extractEndNumbers(videoResponse.link);
+            this.thumbnail = videoResponse.pictures.sizes[0].link;
         }
     }
 }
 
-export class VimeoAPI extends BaseAPI {
+export class VimeoAPI extends OEmbedAPI {
 
-    static urlVideoPattern = /^(?:https?:\/\/)?(?:w{3}\.)?vimeo\.com\/[0-9]+$/;
+    static urlPlaylistPattern = /^(?:https?:\/\/)?(?:w{3}\.)?vimeo\.com\/album\/[0-9]+$/;
 
-    static _isVideoLink(link){
-        return this.urlVideoPattern.test(link);
-    };
     static _isPlaylistLink(link){
-        return false;
+        return this.urlPlaylistPattern.test(link);
     };
 
-    static getRenderAndDomainType(link){
-        const renderType = this._isVideoLink(link) ? RENDER_TYPES.VIDEO
-            : (this._isPlaylistLink(link) ? RENDER_TYPES.PLAYLIST : RENDER_TYPES.INVALID);
-        return [renderType, DOMAIN_TYPE];
+    static getRenderType(link, domainType){
+        const renderType = this._isVideoLink(link, domainType)    ? RENDER_TYPES.VIDEO
+                        : (this._isPlaylistLink(link, domainType) ? RENDER_TYPES.PLAYLIST
+                                                                  : RENDER_TYPES.INVALID);
+        return renderType;
     };
 
     static getVideoFromResponse(response){
         return new VimeoVideo(response.data, RENDER_TYPES.VIDEO);
     };
 
-    static getPlaylistFromResponse(response){};
-
-    static fetchPlaylist(link){};
-    static fetchVideo(link){
-        return axios.get("https://vimeo.com/api/oembed.json", {
-            params: {
-                url: link
-            }
-        })
+    static getPlaylistFromResponse(response){
+        return response.data.map((videoResponse) =>
+            new VimeoVideo(videoResponse, RENDER_TYPES.PLAYLIST)
+        )
     };
+
+    static fetchPlaylist(link) {
+        // Untested
+        const albumId = extractEndNumbers(link);
+        return axios.get(`https://api.vimeo.com/albums/${albumId}/videos`, {
+            params: {
+                access_token: key
+            }
+        });
+    }
 }

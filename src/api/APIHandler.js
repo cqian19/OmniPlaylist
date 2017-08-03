@@ -2,19 +2,20 @@
  * Created by cqian19 on 5/23/2017.
  */
 
-import { APIS, DOMAIN_TO_API } from '../core/domain-map-constants';
+import { DOMAIN_PROPS } from '../core/domain-map-constants';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
-import { YoutubeAPI } from '.';
+import { OEmbedAPI } from './OEmbedAPI';
 
 class APIHandler {
 
     static _getAPIFromDomain(domainType) {
-        return DOMAIN_TO_API[domainType];
+        return DOMAIN_PROPS[domainType].API || OEmbedAPI;
     }
 
     static getRenderAndDomainType(link) {
-        for (const API of APIS) {
-            let [renderType, domainType] = API.getRenderAndDomainType(link);
+        for (const domainType in DOMAIN_PROPS) {
+            const API = this._getAPIFromDomain(domainType);
+            const renderType = API.getRenderType(link, domainType);
             if (renderType !== RENDER_TYPES.INVALID) {
                 return [renderType, domainType];
             }
@@ -27,9 +28,9 @@ class APIHandler {
         const API = this._getAPIFromDomain(domainType);
         switch(renderType) {
             case RENDER_TYPES.VIDEO:
-                return API.getVideoFromResponse(response);
+                return API.getVideoFromResponse(response, domainType);
             case RENDER_TYPES.PLAYLIST:
-                return API.getPlaylistFromResponse(response);
+                return API.getPlaylistFromResponse(response, domainType);
         }
     }
 
@@ -41,9 +42,9 @@ class APIHandler {
         const API = this._getAPIFromDomain(domainType);
         switch(renderType) {
             case RENDER_TYPES.VIDEO:
-                return API.fetchVideo(link);
+                return API.fetchVideo(link, domainType);
             case RENDER_TYPES.PLAYLIST:
-                return API.fetchPlaylist(link);
+                return API.fetchPlaylist(link, domainType);
         }
     }
 }

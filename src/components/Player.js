@@ -6,16 +6,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { DOMAIN_TYPES } from '../core/constants';
-import { DOMAIN_TO_PLAYER } from '../core/domain-map-constants';
+import { DOMAIN_PROPS } from '../core/domain-map-constants';
 
 import ResizableVideoContainer from '../containers/ResizableVideoContainer';
+import { OEmbedPlayer } from './video-players';
 
 class Player extends React.Component {
 
     playerSection() {
-        if (this.props.videos.length) {
-            const videoDomain = this.props.video.domainType;
-            const DomainPlayer = DOMAIN_TO_PLAYER[videoDomain];
+        const { video, videos } = this.props;
+        if (videos.length) {
+            const videoDomain = video.domainType;
+            const DomainPlayer = video.html? DOMAIN_PROPS[videoDomain].Player : OEmbedPlayer;
             return (<DomainPlayer {...this.props} />);
         }
     }
