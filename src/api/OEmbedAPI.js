@@ -6,18 +6,21 @@ import axios from 'axios';
 
 import BaseAPI from './BaseAPI';
 import BaseVideo from './BaseVideo';
+import { RENDER_TYPES } from '../core/constants';
 import { DOMAIN_PROPS } from '../core/domain-map-constants';
 
 export class OEmbedVideo extends BaseVideo {
 
-    constructor(videoResponse, domainType) {
+    constructor(videoResponse, domainType, renderType) {
         super();
-        this.title = videoResponse.title;
-        this.domainType = domainType;
-        this.linkId = videoResponse.video_id;
-        // Replace with placeholder thumbnail
-        this.thumbnail = videoResponse.thumbnail_url ? decodeURIComponent(videoResponse.thumbnail_url) : "";
-        this.html = videoResponse.html;
+        if (renderType === RENDER_TYPES.VIDEO) {
+            this.title = videoResponse.title;
+            this.domainType = domainType;
+            this.linkId = videoResponse.video_id;
+            // Replace with placeholder thumbnail
+            this.thumbnail = videoResponse.thumbnail_url ? decodeURIComponent(videoResponse.thumbnail_url) : "";
+            this.html = videoResponse.html;
+        }
     }
 }
 
@@ -40,14 +43,6 @@ export class OEmbedAPI extends BaseAPI {
     static getVideoFromResponse(response, domainType) {
         return new OEmbedVideo(response, domainType);
     }
-
-    static getRenderType(link, domainType){
-        if (this._isVideoLink(link, domainType)) {
-            return this.RENDER_TYPES.VIDEO;
-        } else {
-            return this.RENDER_TYPES.INVALID;
-        }
-    };
 
     static fetchVideo(link, domainType) {
         const props = this._getDomainProps(domainType);

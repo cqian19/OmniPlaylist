@@ -17,7 +17,7 @@ class Player extends React.Component {
         const { video, videos } = this.props;
         if (videos.length) {
             const videoDomain = video.domainType;
-            const DomainPlayer = video.html? DOMAIN_PROPS[videoDomain].Player : OEmbedPlayer;
+            const DomainPlayer = DOMAIN_PROPS[videoDomain].Player;
             return (<DomainPlayer {...this.props} />);
         }
     }

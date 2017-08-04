@@ -28,7 +28,8 @@ const playlistSchema = {
                     'title':     {'type': 'string'},
                     'linkId':    {'type': 'string'},
                     'thumbnail': {'type': 'string'},
-                    'html':      {'type': 'string'}
+                    'html':      {'type': 'string'},
+                    'duration':  {'type': 'number'}
                 },
             }
         }

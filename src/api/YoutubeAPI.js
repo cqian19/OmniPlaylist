@@ -9,6 +9,11 @@ import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 const DOMAIN_TYPE = DOMAIN_TYPES.YOUTUBE;
 const key = "AIzaSyBFeCSptMDugs4MIx-GGD3JmwFz1IDyIGI";
 
+/**
+ * API reference:
+ *  @link https://developers.google.com/youtube/v3/docs/playlistItems
+ */
+
 export class YoutubeVideo extends BaseVideo {
 
     constructor(videoResponse, renderType){
@@ -25,7 +30,7 @@ export class YoutubeVideo extends BaseVideo {
 export class YoutubeAPI extends BaseAPI {
 
     static urlPlaylistPattern = /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/[0-9.\-A-Za-z]+\?[-a-zA-Z0-9_@:%+.~#?&\/=]*?list=[0-9.\-A-Za-z_]+/;
-    static urlVideoPattern = /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/watch\?.*?v=[0-9._\-A-Za-z]+$/;
+    static urlVideoPattern    = /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/watch\?.*?v=[0-9._\-A-Za-z]+$/;
 
     static _isVideoLink(link) {
         return this.urlVideoPattern.test(link);

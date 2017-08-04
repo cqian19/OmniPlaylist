@@ -23,6 +23,7 @@ export class OEmbedPlayer extends BasePlayer {
 
 OEmbedPlayer.propTypes = {
     index:  PropTypes.number.isRequired,
+    onEnded: PropTypes.func.isRequired,
     reload: PropTypes.bool.isRequired,
     video:  PropTypes.object,
     videos: PropTypes.arrayOf(PropTypes.object).isRequired

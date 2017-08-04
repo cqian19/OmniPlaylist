@@ -10,6 +10,7 @@ class BaseVideo {
 
     constructor() {
         this._domain = this._title = this._id = this._thumbnail = "";
+        this._duration = 0;
         this._uniqueID = UUID.generate();
     }
 
@@ -57,12 +58,21 @@ class BaseVideo {
         return this._html;
     }
 
+    set duration(duration) {
+        this._duration = duration;
+    }
+
+    get duration() {
+        return this._duration;
+    }
+
     clone() {
         const cl = new BaseVideo;
         cl.domainType = this.domainType;
         cl.title = this.title;
         cl.thumbnail = this.thumbnail;
         cl.linkId = this.linkId;
+        cl.duration = this.duration;
         cl.html = this.html;
         return cl;
     }

@@ -21,6 +21,7 @@ export class VimeoVideo extends OEmbedVideo {
     constructor(videoResponse, renderType) {
         super(videoResponse, DOMAIN_TYPE, renderType);
         this.domainType = DOMAIN_TYPE;
+        this.duration = videoResponse.duration * 1000;
         if (renderType === RENDER_TYPES.PLAYLIST) { // Response from album get
             this.title = videoResponse.name;
             this.linkId = extractEndNumbers(videoResponse.link);

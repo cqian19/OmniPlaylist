@@ -9,10 +9,18 @@
   padding: 0 !important;
 
   .resizable-video-container {
-    div {
+    padding: 3px;
+
+    #player-video {
+      border: 1px white solid;
       height: inherit;
       width: inherit;
+
+      &:hover {
+        border: 1px black solid;
+      }
     }
+
     iframe {
       height: inherit;
       width: inherit;

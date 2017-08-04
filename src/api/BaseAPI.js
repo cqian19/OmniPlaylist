@@ -11,7 +11,11 @@ class BaseAPI {
 
     static _isVideoLink(link){};
     static _isPlaylistLink(link){};
-    static getRenderType(domainType, link){};
+    static getRenderType(link, domainType){
+        return this._isVideoLink(link, domainType)    ? RENDER_TYPES.VIDEO
+            : (this._isPlaylistLink(link, domainType) ? RENDER_TYPES.PLAYLIST
+                                                      : RENDER_TYPES.INVALID);
+    };
     static getVideoFromResponse(response){};
     static getPlaylistFromResponse(response){};
     static getPlaylistIndexFromLink(link) {

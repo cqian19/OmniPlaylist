@@ -2,11 +2,18 @@
  * Created by cqian19 on 5/25/2017.
  */
 
-/* Avoids circular importing when declared in constants */
 
 import { DOMAIN_TYPES } from './constants';
-import { VimeoPlayer, YoutubePlayer } from '../components/video-players';
-import { VimeoAPI, YoutubeAPI } from '../api';
+import {
+    VimeoPlayer,
+    YoutubePlayer,
+    SoundCloudPlayer
+} from '../components/video-players';
+import {
+    VimeoAPI,
+    YoutubeAPI,
+    SoundCloudAPI
+} from '../api';
 
 export const DOMAIN_PROPS = {
     [DOMAIN_TYPES.YOUTUBE]: {
@@ -26,11 +33,8 @@ export const DOMAIN_PROPS = {
         'OEmbedEndpoint': 'https://vimeo.com/api/oembed.json'
     },
     [DOMAIN_TYPES.SOUNDCLOUD]: {
+        'API': SoundCloudAPI,
         'Player': SoundCloudPlayer,
-        'OEmbed': true,
-        'OEmbedLinks': [
-            /^(?:https?:\/\/)?(?:w{3}\.)?soundcloud.com\/([a-z0-9-_]+\/[a-z0-9-_]+)$/
-        ],
-        'OEmbedEndpoint': 'https://soundcloud.com/oembed'
+        'OEmbed': false
     }
 };
