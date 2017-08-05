@@ -5,38 +5,79 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ProgressBar } from 'react-bootstrap';
+import { ProgressBar, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 import { formatMilliseconds } from './utils';
 
 class Progress extends React.Component {
 
-    handleClick = (event) => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            hover: false,
+            hoverElapsed: '00:00'
+        }
+    }
+
+    _calculatePercentDone(event) {
         event = event.nativeEvent;
-        const { video, onProgressClick } = this.props;
-        const progressBar = document.getElementById("player-progress");
+        const progressBarRect = document.getElementById("player-progress").getBoundingClientRect();
         const clickX = event.pageX;
-        const percentDone = (clickX - progressBar.offsetLeft) / progressBar.clientWidth;
+        const percentDone = (clickX - progressBarRect.left) / progressBarRect.width;
+        return percentDone
+    }
+
+    handleClick = (event) => {
+        const { video, onProgressClick } = this.props;
+        const percentDone = this._calculatePercentDone(event);
         const newTimeElapsed = percentDone * video.duration;
         onProgressClick({
             timeElapsed: newTimeElapsed,
-            playFromPosition: newTimeElapsed,
             elapsed: formatMilliseconds(newTimeElapsed),
             position: percentDone
         });
     };
 
+    handleHover = (event) => {
+        const { video } = this.props;
+        const percentDone = this._calculatePercentDone(event);
+        const newTimeElapsed = percentDone * video.duration;
+        this.setState({
+            hover: true,
+            hoverElapsed: formatMilliseconds(newTimeElapsed)
+        })
+    };
+
+    handleMouseLeave = () => {
+        this.setState({hover: false});
+    };
+
+    _generateTooltip = () => {
+        const { hoverElapsed } = this.state;
+        return (
+            <Tooltip style={{'left': '50px', 'position': 'fixed'}} placement="top" className="in" id="tooltip-top">
+                {hoverElapsed}
+            </Tooltip>
+        );
+    };
+
     render() {
         const { position, elapsed, total } = this.props;
+        const { hover, hoverElapsed } = this.state;
+        const tooltip = this._generateTooltip();
         return (
-            <div>
+            <div className="player__time">
                 <span className="player__time-elapsed">{elapsed}</span>
-                <ProgressBar
-                    onClick={this.handleClick}
-                    now={position}
-                    max={1}
-                    id="player-progress"
-                />
+                <OverlayTrigger placement="top" overlay={tooltip}>
+                    <ProgressBar
+                        onClick={this.handleClick}
+                        onMouseMove={this.handleHover}
+                        onMouseLeave={this.handleMouseLeave}
+                        now={position}
+                        max={1}
+                        id="player-progress"
+                    />
+                </OverlayTrigger>
                 <span className="player__time-total">{total}</span>
             </div>
         )

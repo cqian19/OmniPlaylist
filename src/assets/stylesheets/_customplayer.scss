@@ -12,9 +12,25 @@
 
   .player-img {
     height: 150px;
+    margin: 3px;
     width: 150px;
   }
 
+  .player__buttons > * {
+    margin: 3px;
+  }
+
+  .player__time{
+    width: 100%;
+  }
+
+  #player-progress {
+    cursor: pointer;
+    height: 20px;
+    margin: auto;
+    min-width: 300px;
+    width: 80%;
+  }
 }
 
 

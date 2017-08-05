@@ -69,6 +69,8 @@ class ResizableVideo extends React.Component {
         return(
             <div>
                 <Resizable
+                    minWidth={350}
+                    minHeight={350}
                     width={this.state.width}
                     height={this.state.height}
                     onResize={this._onInnerResize}

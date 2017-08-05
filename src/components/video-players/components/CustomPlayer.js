@@ -20,14 +20,27 @@ const SOUNDS = {
 
 class CustomPlayer extends BasePlayer {
 
-    state = {
-        playStatus: SOUNDS.PLAYING,
-        timeElapsed: 0, // Audio time elapsed in milliseconds
-        elapsed: '00:00', // Audio time elapsed formatted
-        total: '00:00', // Audio length
-        position: 0, // Progress bar
-        playFromPosition: 0 // Point in audio to continue from, set to time_elapsed
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            playStatus: SOUNDS.PLAYING,
+            timeElapsed: 0, // Audio time elapsed in milliseconds
+            elapsed: '00:00', // Audio time elapsed formatted
+            total: '00:00', // Audio length
+            position: 0, // Progress bar
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (super.shouldComponentUpdate(nextProps)) {
+            this.setState({
+                timeElapsed: 0,
+                elapsed: '00:00',
+                total: '00:00',
+                position: 0,
+            })
+        }
+    }
 
     shouldComponentUpdate(props, state) {
         return state !== this.state || super.shouldComponentUpdate(props, state);
@@ -39,12 +52,17 @@ class CustomPlayer extends BasePlayer {
             this.setState({playStatus: SOUNDS.PAUSED})
         } else {
             // Resume if paused
-            this.setState({playStatus: SOUNDS.PLAYING, playFromPosition: this.state.timeElapsed})
+            this.setState({playStatus: SOUNDS.PLAYING})
         }
     };
 
     stop = () => {
-        this.setState({playStatus: SOUNDS.STOPPED, elapsed: '00:00', playFromPosition: 0, timeElapsed: 0})
+        this.setState({
+            playStatus: SOUNDS.STOPPED,
+            elapsed: '00:00',
+            timeElapsed: 0,
+            position: 0
+        })
     };
 
     handleSongPlaying = (audio) => {
@@ -62,7 +80,7 @@ class CustomPlayer extends BasePlayer {
 
     render() {
         const { video, onEnded } = this.props;
-        const { playStatus, playFromPosition } = this.state;
+        const { playStatus, timeElapsed } = this.state;
         return (
             <div id="player-video" className="custom-player">
                 <img className="player-img" src={video.thumbnail}/>
@@ -70,7 +88,7 @@ class CustomPlayer extends BasePlayer {
                     url={video.linkId}
                     playStatus={playStatus}
                     onPlaying={this.handleSongPlaying}
-                    playFromPosition={playFromPosition} // Video start time
+                    position={timeElapsed} // Video start time
                     onFinishedPlaying={onEnded}
                 />
                 <Buttons
