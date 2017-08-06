@@ -8,13 +8,13 @@ import {
     VimeoPlayer,
     YoutubePlayer,
     CustomPlayer,
-    UStreamPlayer
+    UstreamPlayer
 } from '../components/video-players';
 import {
     VimeoAPI,
     YoutubeAPI,
     SoundCloudAPI,
-    UStreamAPI
+    UstreamAPI
 } from '../api';
 
 export const DOMAIN_PROPS = {
@@ -51,8 +51,8 @@ export const DOMAIN_PROPS = {
         ]
     },
     [DOMAIN_TYPES.USTREAM]: {
-        'API': UStreamAPI,
-        'Player': UStreamPlayer,
+        'API': UstreamAPI,
+        'Player': UstreamPlayer,
         'VideoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?ustream.tv\/recorded\/\d+$/
         ],

@@ -11,7 +11,7 @@ import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 import Playlist from '../core/classes/Playlist';
 import BaseAPI from './BaseAPI';
 import BaseVideo from './BaseVideo';
-import { extractEndNumbers } from './utils';
+import { extractEndNumbers } from '../utils';
 
 const DOMAIN_TYPE = DOMAIN_TYPES.USTREAM;
 const client_id = '2f98992c40b8edf17423d93bda2e04ab';
@@ -21,7 +21,7 @@ const client_id = '2f98992c40b8edf17423d93bda2e04ab';
  @link https://developers.soundcloud.com/docs/api/reference#playlists
  */
 
-export class UStreamVideo extends BaseVideo {
+export class UstreamVideo extends BaseVideo {
 
     constructor(response, renderType) {
         super(DOMAIN_TYPE);
@@ -36,7 +36,7 @@ export class UStreamVideo extends BaseVideo {
     }
 }
 
-export class UStreamAPI extends BaseAPI {
+export class UstreamAPI extends BaseAPI {
 
     static _isVideoLink(link){
         return super._isVideoLink(link, DOMAIN_TYPE);
@@ -47,7 +47,7 @@ export class UStreamAPI extends BaseAPI {
     };
 
     static getVideoFromResponse(response) {
-        return new UStreamVideo(response.data.video, RENDER_TYPES.VIDEO);
+        return new UstreamVideo(response.data.video, RENDER_TYPES.VIDEO);
     }
 
     static fetchVideo(link) {

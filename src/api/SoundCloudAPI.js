@@ -64,7 +64,7 @@ export class SoundCloudAPI extends BaseAPI {
         });
     }
 
-    static  fetchPlaylist(link) {
+    static fetchPlaylist(link) {
         return axios.get("http://api.soundcloud.com/resolve", {
             params: {
                 url: link,

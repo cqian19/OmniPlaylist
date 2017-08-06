@@ -5,4 +5,4 @@
 export { YoutubeAPI } from './YoutubeAPI';
 export { VimeoAPI } from './VimeoAPI';
 export { SoundCloudAPI } from './SoundCloudAPI';
-export { UStreamAPI } from './UStreamAPI';
+export { UstreamAPI } from './UstreamAPI';

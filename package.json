@@ -65,6 +65,7 @@
     "redux-thunk": "^2.2.0",
     "rxdb": "^5.2.1",
     "rxjs": "^5.4.2",
+    "ustream-embedapi": "^1.0.0",
     "youtube-player": "^5.2.0"
   }
 }

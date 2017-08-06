@@ -7,7 +7,7 @@ import Playlist from '../core/classes/Playlist';
 import BaseAPI from './BaseAPI';
 import BaseVideo from './BaseVideo';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
-import { extractEndNumbers } from './utils';
+import { extractEndNumbers } from '../utils';
 
 /** API reference:
  * @link https://developer.vimeo.com/apis/oembed/

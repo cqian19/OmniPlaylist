@@ -43,7 +43,6 @@ function linkFailed() {
 
 export function doImport(link) {
     let [ renderType, domainType ] = APIHandler.getRenderAndDomainType(link);
-    console.log(renderType, domainType);
     if (renderType === RENDER_TYPES.INVALID) {
         return linkFailed();
     } else {

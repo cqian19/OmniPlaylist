@@ -23,3 +23,7 @@ export const UUID = (function() {
     };
     return self;
 })();
+
+export function extractEndNumbers(link) {
+    return link.match(/(\d)+$/)[0];
+}

@@ -6,4 +6,4 @@ export { YoutubePlayer  }from './YoutubePlayer';
 export { VimeoPlayer }from './VimeoPlayer';
 export { OEmbedPlayer } from './OEmbedPlayer';
 export { CustomPlayer } from './CustomPlayer';
-export { UStreamPlayer } from './UStreamPlayer';
+export { UstreamPlayer } from './UstreamPlayer';
