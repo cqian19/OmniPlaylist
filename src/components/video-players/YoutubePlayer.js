@@ -62,8 +62,8 @@ export class YoutubePlayer extends BasePlayer {
      */
     render() {
         return (
-            <div>
-                <div id="player-video" ref={(e) => {
+            <div id="player-video">
+                <div ref={(e) => {
                     this.iframe = e;
                 }}/>
             </div>
@@ -72,7 +72,6 @@ export class YoutubePlayer extends BasePlayer {
 }
 
 YoutubePlayer.propTypes = {
-    index:  PropTypes.number.isRequired,
     onEnded: PropTypes.func.isRequired,
     reload: PropTypes.bool.isRequired,
     video:  PropTypes.object,

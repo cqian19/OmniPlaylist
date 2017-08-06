@@ -6,10 +6,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
 
-import BasePlayer from '../BasePlayer';
-import Progress from './Progress';
-import Buttons from './Buttons';
-import { formatMilliseconds } from './utils';
+import BasePlayer from './BasePlayer';
+import Progress from './components/Progress';
+import Buttons from './components/Buttons';
+import { formatMilliseconds } from './components/utils';
 
 // Sound object play statuses
 const SOUNDS = {
@@ -18,7 +18,7 @@ const SOUNDS = {
     PLAYING: Sound.status.PLAYING
 };
 
-class CustomPlayer extends BasePlayer {
+export class CustomPlayer extends BasePlayer {
 
     constructor(props) {
         super(props);
@@ -113,5 +113,3 @@ CustomPlayer.propTypes = {
     onEnded: PropTypes.func.isRequired,
     video: PropTypes.object.isRequired
 };
-
-export default CustomPlayer;

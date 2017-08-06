@@ -4,7 +4,8 @@
 import axios from 'axios';
 
 import Playlist from '../core/classes/Playlist';
-import { OEmbedAPI, OEmbedVideo } from './OEmbedAPI';
+import BaseAPI from './BaseAPI';
+import BaseVideo from './BaseVideo';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 import { extractEndNumbers } from './utils';
 
@@ -16,13 +17,17 @@ import { extractEndNumbers } from './utils';
 const DOMAIN_TYPE = DOMAIN_TYPES.VIMEO;
 const key = "";
 
-export class VimeoVideo extends OEmbedVideo {
+export class VimeoVideo extends BaseVideo {
 
     constructor(videoResponse, renderType) {
-        super(videoResponse, DOMAIN_TYPE, renderType);
-        this.domainType = DOMAIN_TYPE;
+        super(DOMAIN_TYPE);
         this.duration = videoResponse.duration * 1000;
-        if (renderType === RENDER_TYPES.PLAYLIST) { // Response from album get
+        if (renderType === RENDER_TYPES.VIDEO) { // Response from album get
+            this.title = videoResponse.title;
+            this.linkId = videoResponse.video_id;
+            // Replace with placeholder thumbnail
+            this.thumbnail = videoResponse.thumbnail_url ? decodeURIComponent(videoResponse.thumbnail_url) : ""
+        } else {
             this.title = videoResponse.name;
             this.linkId = extractEndNumbers(videoResponse.link);
             this.thumbnail = videoResponse.pictures.sizes[0].link;
@@ -30,19 +35,14 @@ export class VimeoVideo extends OEmbedVideo {
     }
 }
 
-export class VimeoAPI extends OEmbedAPI {
+export class VimeoAPI extends BaseAPI {
 
-    static urlPlaylistPattern = /^(?:https?:\/\/)?(?:w{3}\.)?vimeo\.com\/album\/[0-9]+$/;
-
-    static _isPlaylistLink(link){
-        return this.urlPlaylistPattern.test(link);
+    static _isVideoLink(link){
+        return super._isVideoLink(link, DOMAIN_TYPE);
     };
 
-    static getRenderType(link, domainType){
-        const renderType = this._isVideoLink(link, domainType)    ? RENDER_TYPES.VIDEO
-                        : (this._isPlaylistLink(link, domainType) ? RENDER_TYPES.PLAYLIST
-                                                                  : RENDER_TYPES.INVALID);
-        return renderType;
+    static _isPlaylistLink(link, domainType){
+        return super._isPlaylistLink(link, DOMAIN_TYPE);
     };
 
     static getVideoFromResponse(response){
@@ -55,6 +55,14 @@ export class VimeoAPI extends OEmbedAPI {
         );
         return new Playlist(videos);
     };
+
+    static fetchVideo(link) {
+        return axios.get('https://vimeo.com/api/oembed.json', {
+            params: {
+                url: link
+            }
+        })
+    }
 
     static fetchPlaylist(link) {
         // Untested

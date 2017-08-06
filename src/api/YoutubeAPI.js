@@ -17,28 +17,24 @@ const key = "AIzaSyBFeCSptMDugs4MIx-GGD3JmwFz1IDyIGI";
 export class YoutubeVideo extends BaseVideo {
 
     constructor(videoResponse, renderType){
-        super();
+        super(DOMAIN_TYPE);
         this.title = videoResponse.snippet.title;
         this.thumbnail = videoResponse.snippet.thumbnails.default.url;
         // videoResponse.id of playlist items returns the playlist id, not the video id
         this.linkId = (renderType === RENDER_TYPES.VIDEO ?
                         videoResponse.id : videoResponse.snippet.resourceId.videoId);
-        this.domainType = DOMAIN_TYPE;
     }
 }
 
 export class YoutubeAPI extends BaseAPI {
 
-    static urlPlaylistPattern = /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/[0-9.\-A-Za-z]+\?[-a-zA-Z0-9_@:%+.~#?&\/=]*?list=[0-9.\-A-Za-z_]+/;
-    static urlVideoPattern    = /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/watch\?.*?v=[0-9._\-A-Za-z]+$/;
+    static _isVideoLink(link){
+        return super._isVideoLink(link, DOMAIN_TYPE);
+    };
 
-    static _isVideoLink(link) {
-        return this.urlVideoPattern.test(link);
-    }
-
-    static _isPlaylistLink(link) {
-        return this.urlPlaylistPattern.test(link);
-    }
+    static _isPlaylistLink(link, domainType){
+        return super._isPlaylistLink(link, DOMAIN_TYPE);
+    };
 
     static _isValidVideo(response) {
         // Private videos don't have a valid thumbnail

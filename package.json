@@ -51,6 +51,7 @@
     "react-dnd-scrollzone": "^4.0.0",
     "react-edit-inline": "^1.0.8",
     "react-hot-loader": "^3.0.0-beta.7",
+    "react-iframe": "^1.0.7",
     "react-redux": "^5.0.5",
     "react-resizable-box": "^2.0.4",
     "react-router": "^4.1.1",

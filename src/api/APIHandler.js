@@ -4,7 +4,6 @@
 
 import { DOMAIN_PROPS } from '../core/domain-map-constants';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
-import { OEmbedAPI } from './OEmbedAPI';
 
 class APIHandler {
 

@@ -20,8 +20,7 @@ const client_id = '2f98992c40b8edf17423d93bda2e04ab';
 export class SoundCloudVideo extends BaseVideo {
 
     constructor(response, renderType) {
-        super();
-        this.domainType = DOMAIN_TYPE;
+        super(DOMAIN_TYPE);
         this.title = response.title;
         this.thumbnail = response.artwork_url;
         this.linkId = this._prepareUrl(response.stream_url);
@@ -36,15 +35,12 @@ export class SoundCloudVideo extends BaseVideo {
 
 export class SoundCloudAPI extends BaseAPI {
 
-    static urlVideoPattern = /^(?:https?:\/\/)?(?:w{3}\.)?soundcloud.com\/([a-z0-9-_]+\/[a-z0-9-_]+)$/;
-    static urlPlaylistPattern = /^(?:https?:\/\/)?(?:w{3}\.)?soundcloud.com\/[a-z0-9-_]+\/sets\/[a-z0-9-_]+$/;
+    static _isVideoLink(link){
+        return super._isVideoLink(link, DOMAIN_TYPE);
+    };
 
-    static _isVideoLink(link) {
-        return this.urlVideoPattern.test(link);
-    }
-
-    static _isPlaylistLink(link){
-        return this.urlPlaylistPattern.test(link);
+    static _isPlaylistLink(link, domainType){
+        return super._isPlaylistLink(link, DOMAIN_TYPE);
     };
 
     static getVideoFromResponse(response) {

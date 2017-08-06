@@ -20,7 +20,6 @@ class BasePlayer extends React.Component {
 }
 
 BasePlayer.propTypes = {
-    index:  PropTypes.number.isRequired,
     reload: PropTypes.bool.isRequired,
     video:  PropTypes.object,
     videos: PropTypes.arrayOf(PropTypes.object).isRequired

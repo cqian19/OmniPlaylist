@@ -8,8 +8,9 @@ import { UUID } from '../utils';
 
 class BaseVideo {
 
-    constructor() {
-        this._domain = this._title = this._id = this._thumbnail = "";
+    constructor(domainType) {
+        this._domain = domainType;
+        this._title = this._id = this._thumbnail = "";
         this._duration = 0;
         this._uniqueID = UUID.generate();
     }

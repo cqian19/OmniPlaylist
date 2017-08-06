@@ -5,4 +5,5 @@
 export { YoutubePlayer  }from './YoutubePlayer';
 export { VimeoPlayer }from './VimeoPlayer';
 export { OEmbedPlayer } from './OEmbedPlayer';
-export { SoundCloudPlayer } from './SoundCloudPlayer';
+export { CustomPlayer } from './CustomPlayer';
+export { UStreamPlayer } from './UStreamPlayer';
