@@ -20,6 +20,10 @@
   border: 1px solid black;
   margin-top: 5px;
   min-height: 300px;
+
+  .playlist-item__title {
+    line-height: 2;
+  }
 }
 
 #playlist-slot {
@@ -30,4 +34,8 @@
   margin-bottom: 12px;
   padding: 0;
   width: 100%;
+
+  img {
+    margin-top: 3px;
+  }
 }

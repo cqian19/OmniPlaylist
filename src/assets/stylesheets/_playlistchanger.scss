@@ -20,6 +20,7 @@
 
 .searched-video {
   @extend .selectable-item, .hoverable;
+  margin-bottom: 4px;
 }
 
 .video-searcher {
