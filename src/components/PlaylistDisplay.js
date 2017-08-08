@@ -13,6 +13,9 @@ const playlistTarget = {
 
     hover(props, monitor, component) {
         const { onVideoAdd, playlists, playlistIndex } = props;
+        if (!playlists.length || !playlists[playlistIndex]) {
+            return;
+        }
         const playlist = playlists[playlistIndex];
         const searchedVideo = monitor.getItem();
         if (searchedVideo.index === undefined) {
