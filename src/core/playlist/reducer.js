@@ -97,6 +97,7 @@ function onAddPlaylistSuccess(state, stateItems, action) {
     const { index, playlist, videos } = action;
     playlists = curPlaylists.concat([playlist]);
     playlistIndex = playlists.length - 1;
+    playlist.playlistIndex = playlistIndex;
     return {...state, videos, index, playlists, playlistIndex, reload: true};
 }
 

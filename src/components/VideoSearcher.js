@@ -4,16 +4,16 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typeahead, Menu, MenuItem, menuItemContainer } from 'react-bootstrap-typeahead';
 import SearchInput, { createFilter } from 'react-search-input';
-import SearchedVideoContainer from '../containers/SearchedVideoContainer';
 
-const VideoMenuItem = menuItemContainer(MenuItem);
+import SearchedVideoContainer from '../containers/SearchedVideoContainer';
+import PaginatedList from './PaginatedList';
 
 class VideoSearcher extends React.Component {
 
     state = {
-        searchTerm: ''
+        searchTerm: '',
+        isRequesting: false
     };
 
     _generateVideos(playlists) {
@@ -51,10 +51,27 @@ class VideoSearcher extends React.Component {
         }
     }
 
+    _createRenderList(filteredVideos) {
+        return filteredVideos.map((videoDict) => {
+            return (
+                <SearchedVideoContainer
+                    video={videoDict.video}
+                />
+            )
+        })
+    }
+
     _searchUpdated = (term) => {
         this.setState({searchTerm: term});
     };
 
+    _generateHeader() {
+        return (
+            <div className='video-searcher__head'>
+                <SearchInput className='search-input' onChange={this._searchUpdated} />
+            </div>
+        )
+    }
     shouldComponentUpdate(nextProps, nextState) {
         return nextState !== this.state;
     }
@@ -68,15 +85,10 @@ class VideoSearcher extends React.Component {
                   <div className='video-searcher__head'>
                       <SearchInput className='search-input' onChange={this._searchUpdated} />
                   </div>
-                  <div className='video-searcher__body' >
-                    {filteredVideos.map((videoDict) => {
-                        return (
-                            <SearchedVideoContainer
-                                video={videoDict.video}
-                            />
-                        )
-                    })}
-                  </div>
+                  <PaginatedList
+                      className='video-searcher__body'
+                      contents={this._createRenderList(filteredVideos)}
+                  />
             </div>
         );
     }
