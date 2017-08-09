@@ -17,7 +17,6 @@ import { extractEndNumbers } from '../../utils';
 export class UstreamPlayer extends BasePlayer {
 
     _initializePlayer() {
-        // Vimeo API requires video id on instantiation
         const player = UstreamEmbed('UstreamIframe');
         player.addListener('finished', this.props.onEnded);
         return player;
@@ -56,6 +55,6 @@ export class UstreamPlayer extends BasePlayer {
 UstreamPlayer.propTypes = {
     onEnded: PropTypes.func.isRequired,
     reload: PropTypes.bool.isRequired,
-    video:  PropTypes.object,
+    video:  PropTypes.object.isRequired,
     videos: PropTypes.arrayOf(PropTypes.object).isRequired
 };

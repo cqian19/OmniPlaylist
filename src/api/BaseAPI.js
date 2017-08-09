@@ -9,12 +9,14 @@ import { DOMAIN_PROPS } from '../core/domain-map-constants';
 class BaseAPI {
 
     static RENDER_TYPES = RENDER_TYPES;
+    static DOMAIN_TYPE  = "";
 
     static _getDomainProps(domainType) {
         return DOMAIN_PROPS[domainType];
     }
 
-    static _isVideoLink(link, domainType){
+    static _isVideoLink(link){
+        const domainType = this.DOMAIN_TYPE;
         const videoLinks = this._getDomainProps(domainType).VideoLinks;
         if (!videoLinks || !videoLinks.length) {
             return false;
@@ -23,7 +25,8 @@ class BaseAPI {
         }
     };
 
-    static _isPlaylistLink(link, domainType){
+    static _isPlaylistLink(link){
+        const domainType = this.DOMAIN_TYPE;
         const playlistLinks = this._getDomainProps(domainType).PlaylistLinks;
         if (!playlistLinks || !playlistLinks.length) {
             return false;

@@ -28,13 +28,7 @@ export class YoutubeVideo extends BaseVideo {
 
 export class YoutubeAPI extends BaseAPI {
 
-    static _isVideoLink(link){
-        return super._isVideoLink(link, DOMAIN_TYPE);
-    };
-
-    static _isPlaylistLink(link, domainType){
-        return super._isPlaylistLink(link, DOMAIN_TYPE);
-    };
+    static DOMAIN_TYPE = DOMAIN_TYPE;
 
     static _isValidVideo(response) {
         // Private videos don't have a valid thumbnail

@@ -27,3 +27,7 @@ export const UUID = (function() {
 export function extractEndNumbers(link) {
     return link.match(/(\d)+$/)[0];
 }
+
+export function extractEndAlnum(link) {
+    return link.match(/[a-z0-9]+$/)[0];
+}

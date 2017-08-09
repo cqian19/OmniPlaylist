@@ -21,7 +21,7 @@ class BasePlayer extends React.Component {
 
 BasePlayer.propTypes = {
     reload: PropTypes.bool.isRequired,
-    video:  PropTypes.object,
+    video:  PropTypes.object.isRequired,
     videos: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 

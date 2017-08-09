@@ -1,9 +1,6 @@
 /**
  * Created by cqian19 on 8/5/2017.
  */
-/**
- * Created by cqian19 on 8/2/2017.
- */
 import axios from 'axios';
 
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
@@ -14,7 +11,6 @@ import BaseVideo from './BaseVideo';
 import { extractEndNumbers } from '../utils';
 
 const DOMAIN_TYPE = DOMAIN_TYPES.USTREAM;
-const client_id = '2f98992c40b8edf17423d93bda2e04ab';
 /**
  API reference:
  @link https://developers.soundcloud.com/docs/api/reference#tracks
@@ -38,13 +34,7 @@ export class UstreamVideo extends BaseVideo {
 
 export class UstreamAPI extends BaseAPI {
 
-    static _isVideoLink(link){
-        return super._isVideoLink(link, DOMAIN_TYPE);
-    };
-
-    static _isPlaylistLink(link, domainType){
-        return super._isPlaylistLink(link, DOMAIN_TYPE);
-    };
+    static DOMAIN_TYPE = DOMAIN_TYPE;
 
     static getVideoFromResponse(response) {
         return new UstreamVideo(response.data.video, RENDER_TYPES.VIDEO);

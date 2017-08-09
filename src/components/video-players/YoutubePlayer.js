@@ -74,6 +74,6 @@ export class YoutubePlayer extends BasePlayer {
 YoutubePlayer.propTypes = {
     onEnded: PropTypes.func.isRequired,
     reload: PropTypes.bool.isRequired,
-    video:  PropTypes.object,
+    video:  PropTypes.object.isRequired,
     videos: PropTypes.arrayOf(PropTypes.object).isRequired
 };
