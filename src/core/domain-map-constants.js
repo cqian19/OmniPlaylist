@@ -10,14 +10,16 @@ import {
     YoutubePlayer,
     CustomPlayer,
     UstreamPlayer,
-    DailymotionPlayer
+    DailymotionPlayer,
+    FacebookPlayer
 } from '../components/video-players';
 import {
     VimeoAPI,
     YoutubeAPI,
     SoundCloudAPI,
     UstreamAPI,
-    DailymotionAPI
+    DailymotionAPI,
+    FacebookAPI
 } from '../api';
 
 /**
@@ -81,6 +83,17 @@ export const DOMAIN_PROPS = {
         ],
         'playlistLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?dailymotion.com\/playlist\/[a-z0-9]+(_.*)?$/
+        ]
+    },
+    [DOMAIN_TYPES.FACEBOOK]: {
+        'API': FacebookAPI,
+        'player': FacebookPlayer,
+        'key': keys.FACEBOOK_KEY,
+        'access_token': keys.FACEBOOK_ACCESS_TOKEN,
+        'videoLinks': [
+            /^(?:https?:\/\/)?(?:w{3}\.)?facebook.com\/[^\/]+\/videos\/v.+$/,
+            /^(?:https?:\/\/)?(?:w{3}\.)?facebook.com\/[^\/]+\/videos\/\d+\/?$/,
+            /^(?:https?:\/\/)?(?:w{3}\.)?facebook.com\/[^\/]+\/video.php\?v=.+$/,
         ]
     }
 };

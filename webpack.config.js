@@ -13,7 +13,8 @@ module.exports = {
     loaders: [
       { test: /\.js?$/, loaders: ['babel'], exclude: /node_modules/ },
       { test: /\.s?css$/, loader: 'style!css!sass' },
-      { test: /\.json$/,  loader: 'json-loader' }
+      { test: /\.json$/,  loader: 'json-loader' },
+      { test: /\.(png|jpg|gif)$/, loader: 'url-loader', options: { limit: 8192 }}
     ]
   },
   resolve: {

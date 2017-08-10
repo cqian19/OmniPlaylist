@@ -7,3 +7,4 @@ export { VimeoAPI } from './VimeoAPI';
 export { SoundCloudAPI } from './SoundCloudAPI';
 export { UstreamAPI } from './UstreamAPI';
 export { DailymotionAPI } from './DailymotionAPI';
+export { FacebookAPI } from './FacebookAPI';

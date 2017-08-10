@@ -8,3 +8,4 @@ export { OEmbedPlayer } from './OEmbedPlayer';
 export { CustomPlayer } from './CustomPlayer';
 export { UstreamPlayer } from './UstreamPlayer';
 export { DailymotionPlayer } from './DailymotionPlayer';
+export { FacebookPlayer } from './FacebookPlayer';

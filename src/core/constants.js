@@ -10,7 +10,8 @@ export const DOMAIN_TYPES = {
     'VIMEO': 'VIMEO',
     'SOUNDCLOUD': 'SOUNDCLOUD',
     'USTREAM': 'USTREAM',
-    'DAILYMOTION': 'DAILYMOTION'
+    'DAILYMOTION': 'DAILYMOTION',
+    'FACEBOOK': 'FACEBOOK'
 };
 
 // Determines if link is to a playlist or to a videoplayer, or to neither

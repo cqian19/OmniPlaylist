@@ -54,6 +54,7 @@ function importVideos(link, renderType, domainType) {
     return function(dispatch) {
         return APIHandler.fetchVideos(link, renderType, domainType).then(
             (response) => {
+                console.log(response);
                 dispatch(importSuccess());
                 switch(renderType) {
                     case RENDER_TYPES.VIDEO:
