@@ -17,7 +17,7 @@ class Player extends React.Component {
         const { video, videos } = this.props;
         if (videos.length) {
             const videoDomain = video.domainType;
-            const DomainPlayer = DOMAIN_PROPS[videoDomain].Player;
+            const DomainPlayer = DOMAIN_PROPS[videoDomain].player;
             return (<DomainPlayer {...this.props} />);
         }
     }

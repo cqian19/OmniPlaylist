@@ -3,3 +3,4 @@ node_modules/
 *.DS_Store
 dist/bundle.js
 .idea/
+src/config.js

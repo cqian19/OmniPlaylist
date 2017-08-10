@@ -10,7 +10,6 @@ import BaseAPI from './BaseAPI';
 import BaseVideo from './BaseVideo';
 
 const DOMAIN_TYPE = DOMAIN_TYPES.SOUNDCLOUD;
-const client_id = '2f98992c40b8edf17423d93bda2e04ab';
 /**
  API reference:
     @link https://developers.soundcloud.com/docs/api/reference#tracks
@@ -26,10 +25,6 @@ export class SoundCloudVideo extends BaseVideo {
         this.linkId = this._prepareUrl(response.stream_url);
         this.duration = response.duration;
     }
-
-    _prepareUrl = (url) => {
-        return `${url}?client_id=${client_id}`;
-    };
 
 }
 
@@ -50,6 +45,7 @@ export class SoundCloudAPI extends BaseAPI {
     };
 
     static fetchVideo(link) {
+        const client_id = this._getDomainProps(DOMAIN_TYPE).key;
         return axios.get("http://api.soundcloud.com/resolve", {
             params: {
                 url: link,
@@ -59,6 +55,7 @@ export class SoundCloudAPI extends BaseAPI {
     }
 
     static fetchPlaylist(link) {
+        const client_id = this._getDomainProps(DOMAIN_TYPE).key;
         return axios.get("http://api.soundcloud.com/resolve", {
             params: {
                 url: link,

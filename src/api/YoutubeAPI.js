@@ -7,7 +7,6 @@ import { getUrlParams } from './utils';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 
 const DOMAIN_TYPE = DOMAIN_TYPES.YOUTUBE;
-const key = "AIzaSyBFeCSptMDugs4MIx-GGD3JmwFz1IDyIGI";
 
 /**
  * API reference:
@@ -67,6 +66,7 @@ export class YoutubeAPI extends BaseAPI {
     }
 
     static fetchVideo(link){
+        const key = this._getDomainProps(DOMAIN_TYPE).key;
         return axios.get("https://www.googleapis.com/youtube/v3/videos", {
             params: {
                 part: 'snippet',
@@ -92,6 +92,7 @@ export class YoutubeAPI extends BaseAPI {
                          --default
                              --url <-- videoplayer thumbnail url
                     --id <-- playlist id*/
+        const key = this._getDomainProps(DOMAIN_TYPE).key;
         return axios.get("https://www.googleapis.com/youtube/v3/playlistItems", {
             params: {
                 part: 'snippet',

@@ -1,9 +1,4 @@
-/**
- * Created by cqian19 on 8/8/2017.
- */
-/**
- * Created by cqian19 on 8/2/2017.
- */
+
 import axios from 'axios';
 
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';

@@ -17,7 +17,7 @@ class BaseAPI {
 
     static _isVideoLink(link){
         const domainType = this.DOMAIN_TYPE;
-        const videoLinks = this._getDomainProps(domainType).VideoLinks;
+        const videoLinks = this._getDomainProps(domainType).videoLinks;
         if (!videoLinks || !videoLinks.length) {
             return false;
         } else {
@@ -27,7 +27,7 @@ class BaseAPI {
 
     static _isPlaylistLink(link){
         const domainType = this.DOMAIN_TYPE;
-        const playlistLinks = this._getDomainProps(domainType).PlaylistLinks;
+        const playlistLinks = this._getDomainProps(domainType).playlistLinks;
         if (!playlistLinks || !playlistLinks.length) {
             return false;
         } else {

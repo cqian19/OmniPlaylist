@@ -4,6 +4,7 @@
 
 
 import { DOMAIN_TYPES } from './constants';
+import { keys } from '../config';
 import {
     VimeoPlayer,
     YoutubePlayer,
@@ -23,58 +24,62 @@ import {
  * For API and Player identification usage:
  * @namespace DOMAIN_PROPS
  *  @property {object} API              -Which API to connect to
- *  @property {object} Player           -Which video player to connect to
- *  @property {array}  [VideoLinks]      -URL patterns for videos on this domain
- *  @property {array}  [PlaylistLinks]   -URL patterns for playlists on this domain
+ *  @property {object} player           -Which video player to connect to
+ *  @property {string} key              -API authentication key
+ *  @property {array}  [videoLinks]     -URL patterns for videos on this domain
+ *  @property {array}  [playlistLinks]  -URL patterns for playlists on this domain
  */
 
 export const DOMAIN_PROPS = {
     [DOMAIN_TYPES.YOUTUBE]: {
         'API': YoutubeAPI,
-        'Player': YoutubePlayer,
-        'VideoLinks': [
+        'player': YoutubePlayer,
+        'key': keys.YOUTUBE_KEY,
+        'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/watch\?.*?v=[0-9._\-A-Za-z]+$/
         ],
-        'PlaylistLinks': [
+        'playlistLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/[0-9.\-A-Za-z]+\?[-a-zA-Z0-9_@:%+.~#?&\/=]*?list=[0-9.\-A-Za-z_]+/
         ]
     },
     [DOMAIN_TYPES.VIMEO]: {
         'API': VimeoAPI,
-        'Player': VimeoPlayer,
-        'VideoLinks': [
+        'player': VimeoPlayer,
+        'key': keys.VIMEO_KEY,
+        'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?vimeo\.com\/[0-9]+$/,
             /^(?:https?:\/\/)?(?:w{3}\.)?vimeo\.com\/album\/[0-9]+\/video\/[0-9]+$/,
             /^(?:https?:\/\/)?(?:w{3}\.)?player.vimeo\.com\/video\/[0-9]+$/
         ],
-        'PlaylistLinks': [
+        'playlistLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?vimeo\.com\/album\/[0-9]+$/
         ]
     },
     [DOMAIN_TYPES.SOUNDCLOUD]: {
         'API': SoundCloudAPI,
-        'Player': CustomPlayer,
-        'VideoLinks': [
+        'player': CustomPlayer,
+        'key': keys.SOUNDCLOUD_KEY,
+        'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?soundcloud.com\/([a-z0-9-_]+\/[a-z0-9-_]+)$/
         ],
-        'PlaylistLinks': [
+        'playlistLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?soundcloud.com\/[a-z0-9-_]+\/sets\/[a-z0-9-_]+$/
         ]
     },
     [DOMAIN_TYPES.USTREAM]: {
         'API': UstreamAPI,
-        'Player': UstreamPlayer,
-        'VideoLinks': [
+        'player': UstreamPlayer,
+        'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?ustream.tv\/recorded\/\d+$/
         ],
     },
     [DOMAIN_TYPES.DAILYMOTION]: {
         'API': DailymotionAPI,
-        'Player': DailymotionPlayer,
-        'VideoLinks': [
+        'player': DailymotionPlayer,
+        'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?dailymotion.com\/video\/[a-z0-9]+$/
         ],
-        'PlaylistLinks': [
+        'playlistLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?dailymotion.com\/playlist\/[a-z0-9]+(_.*)?$/
         ]
     }
