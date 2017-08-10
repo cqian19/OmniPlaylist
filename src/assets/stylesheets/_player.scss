@@ -10,17 +10,16 @@
 
   .resizable-video-container {
 
+    border: 1px white solid;
     margin: 3px;
-    padding: 3px;
+
+    &:hover {
+      border: 2px solid $grey-0;
+    }
 
     #player-video {
-      border: 1px white solid;
       height: inherit;
       width: inherit;
-
-      &:hover {
-        border: 1px black solid;
-      }
     }
 
     iframe {

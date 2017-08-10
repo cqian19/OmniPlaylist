@@ -16,6 +16,7 @@
   .playlist-video__title {
     @include text-truncate(2);
     margin-left: 1px;
+    padding-left: 3px;
   }
 
   button {
