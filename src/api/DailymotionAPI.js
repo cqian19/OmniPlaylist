@@ -19,7 +19,7 @@ const DOMAIN_TYPE = DOMAIN_TYPES.DAILYMOTION;
 export class DailymotionVideo extends BaseVideo {
 
     constructor(response, renderType) {
-        super(DOMAIN_TYPE);
+        super(DOMAIN_TYPE, renderType);
         this.title = response.title;
         this.thumbnail = response.thumbnail_url;
         this.linkId = response.id;

@@ -17,7 +17,7 @@ const DOMAIN_TYPE = DOMAIN_TYPES.FACEBOOK;
 export class FacebookVideo extends BaseVideo {
 
     constructor(link, renderType) {
-        super(DOMAIN_TYPE);
+        super(DOMAIN_TYPE, renderType);
         this.linkId = /\/\d+\//.exec(link)[0];
         this.title = "Facebook Video";
         this.thumbnail = defaultThumbnail;

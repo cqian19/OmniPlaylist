@@ -19,7 +19,7 @@ const DOMAIN_TYPE = DOMAIN_TYPES.VIMEO;
 export class VimeoVideo extends BaseVideo {
 
     constructor(videoResponse, renderType) {
-        super(DOMAIN_TYPE);
+        super(DOMAIN_TYPE, renderType);
         this.duration = videoResponse.duration * 1000;
         if (renderType === RENDER_TYPES.VIDEO) { // Response from album get
             this.title = videoResponse.title;

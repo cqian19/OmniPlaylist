@@ -11,14 +11,16 @@ export const DOMAIN_TYPES = {
     'SOUNDCLOUD': 'SOUNDCLOUD',
     'USTREAM': 'USTREAM',
     'DAILYMOTION': 'DAILYMOTION',
-    'FACEBOOK': 'FACEBOOK'
+    'FACEBOOK': 'FACEBOOK',
+    'TWITCH': 'TWITCH'
 };
 
 // Determines if link is to a playlist or to a videoplayer, or to neither
 export const RENDER_TYPES = {
     'INVALID': 'INVALID',
     'VIDEO': 'VIDEO',
-    'PLAYLIST': 'PLAYLIST'
+    'PLAYLIST': 'PLAYLIST',
+    'STREAM': 'STREAM'
 };
 
 export const DRAG_TYPES = {

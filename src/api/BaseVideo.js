@@ -8,19 +8,20 @@ import { UUID } from '../utils';
 
 class BaseVideo {
 
-    constructor(domainType) {
+    constructor(domainType, renderType) {
         this._domain = domainType;
+        this._renderType = renderType || "";
         this._title = this._id = this._thumbnail = "";
         this._duration = 0;
         this._uniqueID = UUID.generate();
     }
 
-    set domainType(domain) {
-        this._domain = domain;
-    }
-
     get domainType() {
         return this._domain;
+    }
+
+    get renderType() {
+        return this._renderType;
     }
 
     set title(title) {
@@ -51,14 +52,6 @@ class BaseVideo {
         return this._thumbnail;
     }
 
-    set html(html) {
-        this._html = html;
-    }
-
-    get html() {
-        return this._html;
-    }
-
     set duration(duration) {
         this._duration = duration;
     }
@@ -74,16 +67,12 @@ class BaseVideo {
         cl.thumbnail = this.thumbnail;
         cl.linkId = this.linkId;
         cl.duration = this.duration;
-        cl.html = this.html;
         return cl;
     }
 
     equals(video) {
         if(this.domainType === "") {
             return false;
-        } else if (this.html || video.html) {
-            // At least one video being compared is an OEmbed vid
-            return this.html === video.html;
         } else {
             return this.domainType === video.domainType && this.linkId === video.linkId;
         }
@@ -99,7 +88,6 @@ class BaseVideo {
             title: this.title,
             thumbnail: this.thumbnail,
             linkId: this.linkId,
-            html: this.html
         }
     }
 }

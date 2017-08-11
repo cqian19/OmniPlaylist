@@ -11,7 +11,8 @@ import {
     CustomPlayer,
     UstreamPlayer,
     DailymotionPlayer,
-    FacebookPlayer
+    FacebookPlayer,
+    TwitchPlayer
 } from '../components/video-players';
 import {
     VimeoAPI,
@@ -19,7 +20,8 @@ import {
     SoundCloudAPI,
     UstreamAPI,
     DailymotionAPI,
-    FacebookAPI
+    FacebookAPI,
+    TwitchAPI
 } from '../api';
 
 /**
@@ -30,6 +32,7 @@ import {
  *  @property {string} key              -API authentication key
  *  @property {array}  [videoLinks]     -URL patterns for videos on this domain
  *  @property {array}  [playlistLinks]  -URL patterns for playlists on this domain
+ *  @property {array}  [streamLinks]    -URL patterns for livestream on this domain
  */
 
 export const DOMAIN_PROPS = {
@@ -89,11 +92,21 @@ export const DOMAIN_PROPS = {
         'API': FacebookAPI,
         'player': FacebookPlayer,
         'key': keys.FACEBOOK_KEY,
-        'access_token': keys.FACEBOOK_ACCESS_TOKEN,
         'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?facebook.com\/[^\/]+\/videos\/v.+$/,
             /^(?:https?:\/\/)?(?:w{3}\.)?facebook.com\/[^\/]+\/videos\/\d+\/?$/,
             /^(?:https?:\/\/)?(?:w{3}\.)?facebook.com\/[^\/]+\/video.php\?v=.+$/,
+        ]
+    },
+    [DOMAIN_TYPES.TWITCH]: {
+        'API': TwitchAPI,
+        'player': TwitchPlayer,
+        'key': keys.TWITCH_KEY,
+        'videoLinks': [
+            /^(?:https?:\/\/)?(?:w{3}\.)?twitch.tv\/videos\/\d+$/
+        ],
+        'streamLinks': [
+            /^(?:https?:\/\/)?(?:w{3}\.)?twitch.tv\/[a-zA-Z0-9_]{4,25}$/
         ]
     }
 };

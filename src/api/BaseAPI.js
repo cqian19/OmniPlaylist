@@ -15,38 +15,48 @@ class BaseAPI {
         return DOMAIN_PROPS[domainType];
     }
 
+    static _isLink(link, links) {
+        if (!links || !links.length) {
+            return false;
+        } else {
+            return links.some((urlMatch) => urlMatch.test(link));
+        }
+    }
+
     static _isVideoLink(link){
         const domainType = this.DOMAIN_TYPE;
         const videoLinks = this._getDomainProps(domainType).videoLinks;
-        if (!videoLinks || !videoLinks.length) {
-            return false;
-        } else {
-            return videoLinks.some((urlMatch) => urlMatch.test(link))
-        }
-    };
+        return this._isLink(link, videoLinks);
+    }
 
     static _isPlaylistLink(link){
         const domainType = this.DOMAIN_TYPE;
         const playlistLinks = this._getDomainProps(domainType).playlistLinks;
-        if (!playlistLinks || !playlistLinks.length) {
-            return false;
-        } else {
-            return playlistLinks.some((urlMatch) => urlMatch.test(link))
-        }
-    };
+        return this._isLink(link, playlistLinks);
+    }
+
+    static _isStreamLink(link) {
+        const domainType = this.DOMAIN_TYPE;
+        const streamLinks = this._getDomainProps(domainType).streamLinks;
+        return this._isLink(link, streamLinks);
+    }
 
     static getRenderType(link, domainType){
-        return this._isVideoLink(link, domainType)    ? RENDER_TYPES.VIDEO
-            : (this._isPlaylistLink(link, domainType) ? RENDER_TYPES.PLAYLIST
-                                                      : RENDER_TYPES.INVALID);
+        return this._isVideoLink(link)    ? RENDER_TYPES.VIDEO
+            :  this._isPlaylistLink(link) ? RENDER_TYPES.PLAYLIST
+            :  this._isStreamLink(link)   ? RENDER_TYPES.STREAM
+                                          : RENDER_TYPES.INVALID;
     };
+
     static getVideoFromResponse(response){};
     static getPlaylistFromResponse(response){};
     static getPlaylistIndexFromLink(link) {
         return 0;
     };
+    static getStreamFromResponse(response){};
     static fetchPlaylist(link){};
     static fetchVideo(link){};
+    static fetchStream(link){};
 
 }
 

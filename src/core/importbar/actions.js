@@ -54,7 +54,6 @@ function importVideos(link, renderType, domainType) {
     return function(dispatch) {
         return APIHandler.fetchVideos(link, renderType, domainType).then(
             (response) => {
-                console.log(response);
                 dispatch(importSuccess());
                 switch(renderType) {
                     case RENDER_TYPES.VIDEO:
@@ -62,6 +61,9 @@ function importVideos(link, renderType, domainType) {
                         break;
                     case RENDER_TYPES.PLAYLIST:
                         dispatch(addPlaylist(link, response, domainType));
+                        break;
+                    case RENDER_TYPES.STREAM:
+                        dispatch(addStream(link, response, domainType));
                         break;
                 }
             },
@@ -83,6 +85,15 @@ function addPlaylist(link, response, domainType) {
 
 function addVideo(link, response, domainType) {
     const video = APIHandler.getVideosFromResponse(response, RENDER_TYPES.VIDEO, domainType);
+    return {
+        type: ADD_VIDEO_SUCCESS,
+        video
+    }
+}
+
+function addStream(link, response, domainType) {
+    const video = APIHandler.getVideosFromResponse(response, RENDER_TYPES.STREAM, domainType);
+    console.log(video);
     return {
         type: ADD_VIDEO_SUCCESS,
         video

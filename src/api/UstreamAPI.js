@@ -20,7 +20,7 @@ const DOMAIN_TYPE = DOMAIN_TYPES.USTREAM;
 export class UstreamVideo extends BaseVideo {
 
     constructor(response, renderType) {
-        super(DOMAIN_TYPE);
+        super(DOMAIN_TYPE, renderType);
         this.title = response.title;
         this.thumbnail = response.thumbnail.default;
         this.linkId = this._createLink(response.url);

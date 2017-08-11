@@ -19,7 +19,7 @@ const DOMAIN_TYPE = DOMAIN_TYPES.SOUNDCLOUD;
 export class SoundCloudVideo extends BaseVideo {
 
     constructor(response, renderType) {
-        super(DOMAIN_TYPE);
+        super(DOMAIN_TYPE, renderType);
         this.title = response.title;
         this.thumbnail = response.artwork_url;
         this.linkId = this._prepareUrl(response.stream_url);

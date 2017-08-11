@@ -9,3 +9,4 @@ export { CustomPlayer } from './CustomPlayer';
 export { UstreamPlayer } from './UstreamPlayer';
 export { DailymotionPlayer } from './DailymotionPlayer';
 export { FacebookPlayer } from './FacebookPlayer';
+export { TwitchPlayer } from './TwitchPlayer';

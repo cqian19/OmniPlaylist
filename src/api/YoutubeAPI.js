@@ -16,7 +16,7 @@ const DOMAIN_TYPE = DOMAIN_TYPES.YOUTUBE;
 export class YoutubeVideo extends BaseVideo {
 
     constructor(videoResponse, renderType){
-        super(DOMAIN_TYPE);
+        super(DOMAIN_TYPE, renderType);
         this.title = videoResponse.snippet.title;
         this.thumbnail = videoResponse.snippet.thumbnails.default.url;
         // videoResponse.id of playlist items returns the playlist id, not the video id

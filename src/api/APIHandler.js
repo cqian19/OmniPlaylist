@@ -8,7 +8,7 @@ import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 class APIHandler {
 
     static _getAPIFromDomain(domainType) {
-        return DOMAIN_PROPS[domainType].API || OEmbedAPI;
+        return DOMAIN_PROPS[domainType].API;
     }
 
     static getRenderAndDomainType(link) {
@@ -30,6 +30,8 @@ class APIHandler {
                 return API.getVideoFromResponse(response, domainType);
             case RENDER_TYPES.PLAYLIST:
                 return API.getPlaylistFromResponse(response, domainType);
+            case RENDER_TYPES.STREAM:
+                return API.getStreamFromResponse(response, domainType);
         }
     }
 
@@ -44,6 +46,8 @@ class APIHandler {
                 return API.fetchVideo(link, domainType);
             case RENDER_TYPES.PLAYLIST:
                 return API.fetchPlaylist(link, domainType);
+            case RENDER_TYPES.STREAM:
+                return API.fetchStream(link, domainType);
         }
     }
 }

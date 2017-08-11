@@ -8,3 +8,4 @@ export { SoundCloudAPI } from './SoundCloudAPI';
 export { UstreamAPI } from './UstreamAPI';
 export { DailymotionAPI } from './DailymotionAPI';
 export { FacebookAPI } from './FacebookAPI';
+export { TwitchAPI } from './TwitchAPI';

@@ -29,5 +29,5 @@ export function extractEndNumbers(link) {
 }
 
 export function extractEndAlnum(link) {
-    return link.match(/[a-z0-9]+$/)[0];
+    return link.match(/[a-z0-9_]+$/)[0];
 }
