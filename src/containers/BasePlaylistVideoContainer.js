@@ -20,4 +20,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BasePlaylistVideo)
+export default connect(
+    mapStateToProps, mapDispatchToProps, null, { withRef: true }
+)(BasePlaylistVideo);

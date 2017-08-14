@@ -1,5 +1,5 @@
 /**
- * Created by cqian19 on 5/30/2017.
+ * Created by cqian19 on 7/16/2017.
  */
 
 import { connect } from 'react-redux';
@@ -7,30 +7,24 @@ import { connect } from 'react-redux';
 import PlaylistVideo from '../components/PlaylistVideo';
 import {
     onVideoAdd,
-    onVideoClick,
-    onVideoUpClick,
-    onVideoDownClick,
     onVideoMove,
     onVideoRemove,
-    getIndex,
-    getPlaylistIndex
+    onVideoUpClick,
+    onVideoDownClick
 } from '../core/playlist';
 
-/**
-    @param ownProps.index - Index of element in video in playlist
-    @param ownProps.playlistIndex - Index of playlist in playlists
-    @param [ownProps.scrollTo] - Method for parent container to scroll to elem
-    @param ownProps.video - Video object this contains
+/*
+    ownProps:
+        @param index: Index of video in playlist
+        @param playlistIndex: Index of playlist this video belongs to
+        @param video: Video this contains
  */
 const mapStateToProps = (state, ownProps) => ({
-    active: getIndex(state) === ownProps.index,
     ...ownProps
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onVideoClick(event) {
-        dispatch(onVideoClick(ownProps.index));
-    },
+    onVideoClick(event) {},
     onVideoUpClick(event) {
         event.stopPropagation();
         dispatch(onVideoUpClick(ownProps.index, ownProps.playlistIndex));
@@ -45,9 +39,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     onVideoMove(startIndex, endIndex, playlistIndex) {
         dispatch(onVideoMove(startIndex, endIndex, playlistIndex));
     },
-    onVideoRemove() {
+    onVideoRemove(event) {
+        event.stopPropagation();
         dispatch(onVideoRemove(ownProps.index, ownProps.playlistIndex));
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlaylistVideo)
+export default connect(mapStateToProps, mapDispatchToProps)(PlaylistVideo);

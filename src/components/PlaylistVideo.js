@@ -26,15 +26,24 @@ class PlaylistVideo extends React.Component {
         );
     }
 
+    componentDidMount() {
+        const { active, scrollToElem } = this.props;
+        if (active && scrollToElem) {
+            scrollToElem(this);
+        }
+    }
+
     render() {
+        const { active, isDragging } = this.props;
         const playlistVideoNames = classNames({
             'playlist-video': true,
-            'active': this.props.active,
-            'dragging': this.props.isDragging
+            'active': active,
+            'dragging': isDragging
         });
         const body = this._generateBody();
         return (
-            <BasePlaylistVideoContainer {...this.props}
+            <BasePlaylistVideoContainer
+                {...this.props}
                 body={body}
                 className={playlistVideoNames}
             />
@@ -45,12 +54,14 @@ class PlaylistVideo extends React.Component {
 PlaylistVideo.propTypes = {
     active: PropTypes.bool.isRequired,
     index:  PropTypes.number.isRequired,
+    isDragging: PropTypes.bool,
     onVideoAdd:       PropTypes.func,
     onVideoClick:     PropTypes.func,
     onVideoUpClick:   PropTypes.func.isRequired,
     onVideoDownClick: PropTypes.func.isRequired,
     onVideoMove:      PropTypes.func.isRequired,
     onVideoRemove:    PropTypes.func.isRequired,
+    scrollToElem:     PropTypes.func,
     video:  PropTypes.object.isRequired
 };
 

@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onVideoAdd(video, index, playlistIndex) {
         dispatch(onVideoAdd(video, index, playlistIndex));
-    },
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaylistDisplay);

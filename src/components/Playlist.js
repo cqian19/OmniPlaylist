@@ -5,8 +5,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withScrolling from 'react-dnd-scrollzone';
-import { applyContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
+import { findDOMNode } from 'react-dom';
+import { applyContainerQuery } from 'react-container-query';
+
 
 import PlaylistVideoContainer from '../containers/PlaylistVideoContainer';
 
@@ -20,14 +22,44 @@ const query = {
 
 class Playlist extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            activeElem: null
+        }
+    }
+
+    setActiveElem = (elem) => {
+        this.state.activeElem = findDOMNode(elem);
+    };
+
+    _scrollToActiveVideo() {
+        const domNode = this.state.activeElem;
+        if (domNode) {
+            const scroll = findDOMNode(this.refs.scroll);
+            const scrollPos = domNode.offsetTop - scroll.offsetHeight / 2;
+            scroll.scrollTop = scrollPos;
+        }
+        this.state.activeElem = null;
+    }
+
+    componentDidMount() {
+        this._scrollToActiveVideo();
+    }
+
+    componentDidUpdate() {
+        this._scrollToActiveVideo();
+    }
+
     render(){
         const { playlistIndex, videos } = this.props;
         return (
-            <ScrollingComponent className={"playlist width-collapse" + classNames(this.props.containerQuery)}>
+            <ScrollingComponent ref='scroll' className={"playlist width-collapse" + classNames(this.props.containerQuery)}>
                 {videos.map((video,index) => (
                     <PlaylistVideoContainer
                         key={video.uniqueId}
                         index={index}
+                        scrollToElem={this.setActiveElem}
                         playlistIndex={playlistIndex}
                         video={video}
                     />
@@ -39,6 +71,7 @@ class Playlist extends React.Component {
 }
 
 Playlist.propTypes = {
+    containerQuery: PropTypes.object.isRequired,
     index: PropTypes.number.isRequired,
     playlistIndex: PropTypes.number.isRequired,
     videos: PropTypes.arrayOf(PropTypes.object)

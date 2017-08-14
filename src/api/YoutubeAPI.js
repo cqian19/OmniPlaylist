@@ -77,21 +77,6 @@ export class YoutubeAPI extends BaseAPI {
     };
 
     static fetchPlaylist(link) {
-        // Assumes link is valid, returns a Promise
-        /* Response form:
-         --data
-            --nextPageToken
-            --prevPageToken
-            --items
-                 --[Objects]
-                     --snippet
-                         --title <-- Video title
-                         --resourceId
-                             -- videoId <-- videoplayer link id
-                         --thumbnails
-                         --default
-                             --url <-- videoplayer thumbnail url
-                    --id <-- playlist id*/
         const key = this._getDomainProps(DOMAIN_TYPE).key;
         return axios.get("https://www.googleapis.com/youtube/v3/playlistItems", {
             params: {
@@ -101,5 +86,9 @@ export class YoutubeAPI extends BaseAPI {
                 maxResults: 50
             }
         });
+    }
+
+    static fetchStream(link) {
+
     }
 }
