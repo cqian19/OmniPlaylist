@@ -6,6 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withScrolling from 'react-dnd-scrollzone';
 import classNames from 'classnames';
+import ReactResizeDetector from 'react-resize-detector';
 import { findDOMNode } from 'react-dom';
 import { applyContainerQuery } from 'react-container-query';
 
@@ -15,18 +16,13 @@ import { scrollTo } from '../utils';
 
 const ScrollingComponent = withScrolling('div');
 
-const query = {
-    'invisible': {
-        maxWidth: 420
-    }
-};
-
 class Playlist extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            activeElem: null
+            activeElem: null,
+            minimized: false
         }
     }
 
@@ -38,7 +34,7 @@ class Playlist extends React.Component {
         const domNode = this.state.activeElem;
         if (domNode) {
             this.state.activeElem = null;
-            const scroll = findDOMNode(this.refs.scroll);
+            const scroll = this.refs.scroll;
             scrollTo(scroll, domNode);
         }
     }
@@ -51,10 +47,30 @@ class Playlist extends React.Component {
         this._scrollToActiveVideo();
     }
 
+    handleResize = (width, _) => {
+        const { changeFlexDir } = this.props;
+        const { minimized } = this.state;
+        // Move playlist below player
+        if (!minimized && width < 420) {
+            this.state.minimized = true;
+            changeFlexDir(true);
+        // Move playlist beside player
+        } else if (minimized && width > 425) {
+            this.state.minimized = false;
+            changeFlexDir(false);
+        }
+    };
+
     render(){
-        const { playlistIndex, videos } = this.props;
+        const { containerQuery, playlistIndex, videos } = this.props;
+        const { minimized } = this.state;
+        const scrollClassNames = classNames({
+            'playlist': true,
+            'playlist-snap': minimized,
+            'width-collapse': true,
+        });
         return (
-            <ScrollingComponent ref='scroll' className={"playlist width-collapse" + classNames(this.props.containerQuery)}>
+            <ScrollingComponent ref='scroll' className={scrollClassNames}>
                 {videos.map((video,index) => (
                     <PlaylistVideoContainer
                         key={video.uniqueId}
@@ -64,6 +80,7 @@ class Playlist extends React.Component {
                         video={video}
                     />
                 ))}
+                <ReactResizeDetector handleWidth onResize={this.handleResize} />
             </ScrollingComponent>
         )
     }
@@ -72,9 +89,10 @@ class Playlist extends React.Component {
 
 Playlist.propTypes = {
     containerQuery: PropTypes.object.isRequired,
+    changeFlexDir: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     playlistIndex: PropTypes.number.isRequired,
     videos: PropTypes.arrayOf(PropTypes.object)
 };
 
-export default applyContainerQuery(Playlist, query);
+export default Playlist;

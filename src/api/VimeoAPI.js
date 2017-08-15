@@ -50,7 +50,7 @@ export class VimeoAPI extends BaseAPI {
     };
 
     static fetchVideo(link) {
-        return axios.get('https://vimeo.com/api/oembed.json', {
+        return axios.get("https://vimeo.com/api/oembed.json", {
             params: {
                 url: link
             }

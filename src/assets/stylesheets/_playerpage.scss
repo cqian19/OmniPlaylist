@@ -1,0 +1,10 @@
+.lower-container {
+  display: flex;
+  flex-grow: 1;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.lower-container-vertical {
+  flex-direction: column;
+}

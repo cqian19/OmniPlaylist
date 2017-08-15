@@ -4,11 +4,8 @@
 
 import React from 'react';
 
-import NavBarContainer from '../containers/NavBarContainer';
 import ImportBarContainer from '../containers/ImportBarContainer';
-import PlayerContainer from '../containers/PlayerContainer';
-import PlaylistContainer from '../containers/PlaylistContainer';
-import SidebarPlaylistContainer from "../containers/SidebarPlaylistContainer";
+import PlayerLowerPage from '../components/PlayerLowerPage';
 
 export class PlayerPage extends React.Component {
 
@@ -16,11 +13,7 @@ export class PlayerPage extends React.Component {
         return (
             <div className="page-container">
                 <ImportBarContainer />
-                <div className="lower-container">
-                    <PlayerContainer />
-                    <PlaylistContainer />
-                    <SidebarPlaylistContainer />
-                </div>
+                <PlayerLowerPage />
             </div>
         );
     }

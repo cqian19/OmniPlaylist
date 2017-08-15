@@ -88,7 +88,4 @@ export class YoutubeAPI extends BaseAPI {
         });
     }
 
-    static fetchStream(link) {
-
-    }
 }

@@ -9,8 +9,9 @@
   'mixins',
   'navbar',
   'player',
+  'playerpage',
   'playlist',
-'playlistslot',
+  'playlistslot',
   'playlistchanger',
   'playlistitem',
   'selectableitem',
@@ -60,10 +61,6 @@ h1 {
   padding: 0;
 }
 
-.lower-container {
-  width: 100%;
-
-}
 .icon-btn {
   background-color: whitesmoke;
   border: 1px solid $blue-1;
