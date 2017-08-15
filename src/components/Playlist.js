@@ -11,6 +11,7 @@ import { applyContainerQuery } from 'react-container-query';
 
 
 import PlaylistVideoContainer from '../containers/PlaylistVideoContainer';
+import { scrollTo } from '../utils';
 
 const ScrollingComponent = withScrolling('div');
 
@@ -36,11 +37,10 @@ class Playlist extends React.Component {
     _scrollToActiveVideo() {
         const domNode = this.state.activeElem;
         if (domNode) {
+            this.state.activeElem = null;
             const scroll = findDOMNode(this.refs.scroll);
-            const scrollPos = domNode.offsetTop - scroll.offsetHeight / 2;
-            scroll.scrollTop = scrollPos;
+            scrollTo(scroll, domNode);
         }
-        this.state.activeElem = null;
     }
 
     componentDidMount() {

@@ -2,6 +2,9 @@
  * Created by cqian19 on 7/28/2017.
  */
 
+import { Tween, Easing, update } from 'es6-tween';
+import raf from 'raf';
+
 /**
  * Fast UUID generator, RFC4122 version 4 compliant.
  * @author Jeff Ward (jcward.com).
@@ -30,4 +33,32 @@ export function extractEndNumbers(link) {
 
 export function extractEndAlnum(link) {
     return link.match(/[a-z0-9_]+$/)[0];
+}
+
+export function scrollTo(scrollContainer, scrollElement, duration) {
+    const startPos = scrollContainer.scrollTop;
+    const containerHalf = scrollContainer.offsetHeight / 2;
+    const containerSize = scrollContainer.scrollHeight;
+    const endOffset = scrollElement.offsetTop;
+    let endPos;
+    // Can't scroll to middle, element is too high
+    if (endOffset <= containerHalf) {
+        endPos = 0;
+    // Can't scroll to middle, element is too low
+    } else if (endOffset + containerHalf >= containerSize) {
+        endPos = containerSize - scrollContainer.offsetHeight;
+    } else {
+        endPos = endOffset - containerHalf;
+    }
+    duration = duration || Math.abs(startPos - endPos) < 400 ? 100 : 300;
+    const t = new Tween({y: scrollContainer.scrollTop})
+        .to({y: endPos}, duration)
+        .on('update', ({y}) => {
+            scrollContainer.scrollTop = y;
+        }).start();
+    function animate() {
+        raf(animate);
+        update();
+    }
+    animate();
 }
