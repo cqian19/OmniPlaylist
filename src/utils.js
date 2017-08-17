@@ -36,21 +36,30 @@ export function extractEndAlnum(link) {
 }
 
 export function scrollTo(scrollContainer, scrollElement, duration) {
-    const startPos = scrollContainer.scrollTop;
     const containerHalf = scrollContainer.offsetHeight / 2;
     const containerSize = scrollContainer.scrollHeight;
     const endOffset = scrollElement.offsetTop;
-    let endPos;
+    let startPos = scrollContainer.scrollTop;
+    let endPos = 0;
     // Can't scroll to middle, element is too high
     if (endOffset <= containerHalf) {
         endPos = 0;
     // Can't scroll to middle, element is too low
     } else if (endOffset + containerHalf >= containerSize) {
         endPos = containerSize - scrollContainer.offsetHeight;
+    // Scroll so element is in the middle of the scrolling container
     } else {
         endPos = endOffset - containerHalf;
     }
-    duration = duration || Math.abs(startPos - endPos) < 400 ? 100 : 300;
+    // Set limit on how much to scroll
+    if (Math.abs(startPos - endPos) > 3000) {
+        if (startPos < endPos) {
+            startPos = endPos - 3000;
+        } else {
+            startPos = endPos + 3000;
+        }
+    }
+    duration = duration || Math.abs(startPos - endPos) < 800 ? 100 : 300;
     const t = new Tween({y: scrollContainer.scrollTop})
         .to({y: endPos}, duration)
         .on('update', ({y}) => {

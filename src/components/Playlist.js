@@ -34,7 +34,7 @@ class Playlist extends React.Component {
         const domNode = this.state.activeElem;
         if (domNode) {
             this.state.activeElem = null;
-            const scroll = this.refs.scroll;
+            const scroll = findDOMNode(this.refs.scroll);
             scrollTo(scroll, domNode);
         }
     }
