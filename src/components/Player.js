@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { DOMAIN_TYPES } from '../core/constants';
 import { DOMAIN_PROPS } from '../core/domain-map-constants';
 
-import ResizableVideoContainer from '../containers/ResizableVideoContainer';
+import ResizableVideoContainer from '../containers/ResizablePlayerWrapperContainer';
 import { OEmbedPlayer } from './video-players';
 
 class Player extends React.Component {
@@ -42,14 +42,13 @@ class Player extends React.Component {
                                 <span className="btn icon-btn" onClick={this.props.onPrev}>
                                     <i className="glyphicon glyphicon-fast-backward"/>
                                 </span>
-                                        {/* Skip Video Button */}
+                                {/* Skip Video Button */}
                                 <span className="btn icon-btn" onClick={this.props.onSkip}>
                                     <i className="glyphicon glyphicon-fast-forward"/>
                                 </span>
                             </div>
                         </ResizableVideoContainer>
                     </div>
-
                 </div>
             </div>
         )

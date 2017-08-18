@@ -9,6 +9,7 @@ import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import { applyContainerQuery } from 'react-container-query';
 
+
 import PlaylistVideoContainer from '../containers/PlaylistVideoContainer';
 import { scrollTo } from '../utils';
 
@@ -20,7 +21,6 @@ class Playlist extends React.Component {
         super();
         this.state = {
             activeElem: null,
-            minimized: false
         }
     }
 
@@ -47,10 +47,8 @@ class Playlist extends React.Component {
 
     render(){
         const { playlistIndex, videos } = this.props;
-        const { minimized } = this.state;
         const scrollClassNames = classNames({
             'playlist': true,
-            'playlist-snap': minimized,
             'width-collapse': true,
         });
         return (

@@ -25,3 +25,21 @@
     text-align: center;
   }
 }
+
+.resizable-wrapper {
+  position:relative;
+}
+
+.react-resizable-handle {
+  background-origin: content-box;
+  background: url('../images/arrow_bottom_right.png') no-repeat bottom right;
+  background-size: contain;
+  bottom: 0;
+  box-sizing: border-box;
+  cursor: se-resize;
+  float: right;
+  height: 20px;
+  padding: 0 3px 3px 0;
+  right: 0;
+  width: 20px;
+}

@@ -4,7 +4,7 @@
 
 import { connect } from 'react-redux';
 
-import ResizableVideo from '../components/ResizableVideo';
+import ResizableVideo from '../components/ResizablePlayerWrapper';
 import { getPlaylistCollapsed } from '../core/playlist';
 import { saveVideoSize, getVideoHeight, getVideoWidth, togglePlaylistCollapse } from '../core/videoplayer';
 

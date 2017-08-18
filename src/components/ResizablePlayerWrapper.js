@@ -4,9 +4,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Resizable from 'react-resizable-box';
+import { ResizableBox } from 'react-resizable';
 
-class ResizableVideo extends React.Component {
+class ResizablePlayerWrapper extends React.Component {
 
     constructor(props) {
         super(props);
@@ -46,9 +46,8 @@ class ResizableVideo extends React.Component {
         }
     };
 
-    _onInnerResize = (e,d, resizableElement) => {
-        const height = resizableElement.offsetHeight;
-        const width = resizableElement.offsetWidth;
+    _onInnerResize = (_, data) => {
+        const { width, height } = data.size;
         this._checkCollapse(width);
         this.setState({
             height,
@@ -85,25 +84,26 @@ class ResizableVideo extends React.Component {
     }
 
     render() {
+        const { width, height } = this.state;
         const { children } = this.props;
         return(
-            <div>
-                <Resizable
-                    minWidth={350}
-                    minHeight={350}
-                    width={this.state.width}
-                    height={this.state.height}
-                    onResize={this._onInnerResize}
+            <div className="resizable-wrapper">
+                <ResizableBox
+                    axis={'both'}
                     className="resizable-video-container"
+                    height={height}
+                    width={width}
+                    minConstraints={[150, 150]}
+                    onResize={this._onInnerResize}
                 >
-                    {this.props.children}
-                </Resizable>
+                    {children}
+                </ResizableBox>
             </div>
         );
     }
 }
 
-ResizableVideo.propTypes = {
+ResizablePlayerWrapper.propTypes = {
     children: PropTypes.object,
     height: PropTypes.number.isRequired,
     onDismount: PropTypes.func.isRequired,
@@ -113,4 +113,4 @@ ResizableVideo.propTypes = {
     width:  PropTypes.number.isRequired
 };
 
-export default ResizableVideo
+export default ResizablePlayerWrapper
