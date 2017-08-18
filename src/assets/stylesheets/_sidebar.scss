@@ -17,6 +17,7 @@
   display: table;
   height: 100%;
   left: -25px;
+  outline: 1px solid $blue-1;
   position: absolute;
   width: 25px;
 
@@ -34,10 +35,10 @@
 
 .sidebar-playlist-content {
   background-color: whitesmoke;
-  border: 1px solid $blue-1;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  outline: 1px solid $blue-1;
   width: 500px;
 }
 

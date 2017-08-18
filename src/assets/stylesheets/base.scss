@@ -149,3 +149,7 @@ h1 {
 .playlist-remove {
   @extend .remover;
 }
+
+::webkit-scrollbar {
+  height: auto;
+}
