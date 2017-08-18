@@ -9,7 +9,6 @@ import { DOMAIN_TYPES } from '../core/constants';
 import { DOMAIN_PROPS } from '../core/domain-map-constants';
 
 import ResizableVideoContainer from '../containers/ResizablePlayerWrapperContainer';
-import { OEmbedPlayer } from './video-players';
 
 class Player extends React.Component {
 
@@ -22,14 +21,14 @@ class Player extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
+    componentWillUpdate(prevProps) {
         if (prevProps.reload) {
             this.props.onPlayerReload();
         }
     }
 
     render() {
-        const { video } = this.props;
+        const { video, onPrev, onSkip } = this.props;
         if (!video) { return null; }
         return (
             <div className="player">
@@ -39,11 +38,11 @@ class Player extends React.Component {
                             {this.playerSection()}
                             <div className="player__footer display-row">
                                 {/* Previous Video Button */}
-                                <span className="btn icon-btn" onClick={this.props.onPrev}>
+                                <span className="btn icon-btn" onClick={onPrev}>
                                     <i className="glyphicon glyphicon-fast-backward"/>
                                 </span>
                                 {/* Skip Video Button */}
-                                <span className="btn icon-btn" onClick={this.props.onSkip}>
+                                <span className="btn icon-btn" onClick={onSkip}>
                                     <i className="glyphicon glyphicon-fast-forward"/>
                                 </span>
                             </div>
@@ -59,6 +58,7 @@ Player.propTypes = {
     index:   PropTypes.number.isRequired,
     onEnded: PropTypes.func.isRequired,
     onPlayerReload: PropTypes.func.isRequired,
+    onPrev:  PropTypes.func.isRequired,
     onSkip:  PropTypes.func.isRequired,
     onStart: PropTypes.func.isRequired,
     reload:  PropTypes.bool.isRequired,

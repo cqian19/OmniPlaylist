@@ -20,7 +20,7 @@ class PlayerLowerPage extends React.Component {
         });
         return (
             <div className={pageClassNames}>
-                <PlayerContainer/>
+                <PlayerContainer />
                 <PlaylistContainer />
                 <SidebarPlaylistContainer />
             </div>
