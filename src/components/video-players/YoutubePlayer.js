@@ -35,8 +35,8 @@ export class YoutubePlayer extends BasePlayer {
         return player;
     }
 
-    _playVideo(props=this.props) {
-        this.player.loadVideoById(props.video.linkId);
+    _playVideo(video) {
+        this.player.loadVideoById(video.linkId);
     }
 
     componentDidMount() {
@@ -45,7 +45,7 @@ export class YoutubePlayer extends BasePlayer {
     }
 
     componentWillUpdate(nextProps) {
-        this._playVideo(nextProps);
+        this._playVideo(nextProps.video);
     }
 
 
@@ -53,13 +53,6 @@ export class YoutubePlayer extends BasePlayer {
         this.player.destroy();
     }
 
-    /* Long note here:
-     Apparently the youtube-player.destroy method is not called synchronously and will cause a
-     "DOMexception: Failed to execute 'removeChild' ... The node to be removed is not a child of this node"
-     when componentWillUnmount is called, since it can't undo the transformation of the div
-     into an iframe in time, and that original div won't be found. So the current solution is to wrap
-     the player-video div in another div, which will be found.
-     */
     render() {
         return (
             <div id="player-video">

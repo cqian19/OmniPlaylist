@@ -1,8 +1,9 @@
 /**
  * Created by cqian19 on 5/23/2017.
  */
+import axios from 'axios';
 
-import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
+import { RENDER_TYPES, DOMAIN_TYPES, API_URL } from '../core/constants';
 import { DOMAIN_PROPS } from '../core/domain-map-constants';
 
 /* An abstract class for APIs */
@@ -48,6 +49,24 @@ class BaseAPI {
                                           : RENDER_TYPES.INVALID;
     };
 
+    static getBackendAPIURL(renderType) {
+        let resource = '';
+        switch(renderType) {
+            case RENDER_TYPES.VIDEO:
+                resource = 'video';
+                break;
+            case RENDER_TYPES.PLAYLIST:
+                resource = 'playlist';
+                break;
+            case RENDER_TYPES.STREAM:
+                resource = 'stream';
+                break;
+        }
+        return `${API_URL}/${this.DOMAIN_TYPE}/${resource}`;
+    }
+
+
+
     static getVideoFromResponse(response){};
     static getPlaylistFromResponse(response){};
     static getPlaylistIndexFromLink(link) {
@@ -57,6 +76,9 @@ class BaseAPI {
     static fetchPlaylist(link){};
     static fetchVideo(link){};
     static fetchStream(link){};
+    static fetchKey() {
+        return axios.get(`${API_URL}/${this.DOMAIN_TYPE}/key`);
+    }
 
 }
 

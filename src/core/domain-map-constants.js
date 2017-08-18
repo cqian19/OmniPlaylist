@@ -8,11 +8,11 @@ import { keys } from '../config';
 import {
     VimeoPlayer,
     YoutubePlayer,
-    CustomPlayer,
+    SoundCloudPlayer,
     UstreamPlayer,
     DailymotionPlayer,
     FacebookPlayer,
-    TwitchPlayer
+    TwitchPlayer,
 } from '../components/video-players';
 import {
     VimeoAPI,
@@ -29,7 +29,6 @@ import {
  * @namespace DOMAIN_PROPS
  *  @property {object} API              -Which API to connect to
  *  @property {object} player           -Which video player to connect to
- *  @property {string} key              -API authentication key
  *  @property {array}  [videoLinks]     -URL patterns for videos on this domain
  *  @property {array}  [playlistLinks]  -URL patterns for playlists on this domain
  *  @property {array}  [streamLinks]    -URL patterns for livestream on this domain
@@ -39,7 +38,6 @@ export const DOMAIN_PROPS = {
     [DOMAIN_TYPES.YOUTUBE]: {
         'API': YoutubeAPI,
         'player': YoutubePlayer,
-        'key': keys.YOUTUBE_KEY,
         'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/watch\?.*?v=[0-9._\-A-Za-z]+$/
         ],
@@ -50,7 +48,6 @@ export const DOMAIN_PROPS = {
     [DOMAIN_TYPES.VIMEO]: {
         'API': VimeoAPI,
         'player': VimeoPlayer,
-        'key': keys.VIMEO_KEY,
         'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?vimeo\.com\/[0-9]+$/,
             /^(?:https?:\/\/)?(?:w{3}\.)?vimeo\.com\/album\/[0-9]+\/video\/[0-9]+$/,
@@ -62,8 +59,7 @@ export const DOMAIN_PROPS = {
     },
     [DOMAIN_TYPES.SOUNDCLOUD]: {
         'API': SoundCloudAPI,
-        'player': CustomPlayer,
-        'key': keys.SOUNDCLOUD_KEY,
+        'player': SoundCloudPlayer,
         'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?soundcloud.com\/([a-z0-9-_]+\/[a-z0-9-_]+)$/
         ],
@@ -91,7 +87,6 @@ export const DOMAIN_PROPS = {
     [DOMAIN_TYPES.FACEBOOK]: {
         'API': FacebookAPI,
         'player': FacebookPlayer,
-        'key': keys.FACEBOOK_KEY,
         'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?facebook.com\/[^\/]+\/videos\/v.+$/,
             /^(?:https?:\/\/)?(?:w{3}\.)?facebook.com\/[^\/]+\/videos\/\d+\/?$/,
@@ -101,7 +96,6 @@ export const DOMAIN_PROPS = {
     [DOMAIN_TYPES.TWITCH]: {
         'API': TwitchAPI,
         'player': TwitchPlayer,
-        'key': keys.TWITCH_KEY,
         'videoLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?twitch.tv\/videos\/\d+$/
         ],

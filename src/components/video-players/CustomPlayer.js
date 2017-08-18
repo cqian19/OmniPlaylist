@@ -79,13 +79,13 @@ export class CustomPlayer extends BasePlayer {
     };
 
     render() {
-        const { video, onEnded } = this.props;
+        const { video, videoSource, onEnded } = this.props;
         const { playStatus, timeElapsed } = this.state;
         return (
             <div id="player-video" className="custom-player">
                 <img className="player-img" src={video.thumbnail}/>
                 <Sound
-                    url={video.linkId}
+                    url={videoSource || video.linkId}
                     playStatus={playStatus}
                     onPlaying={this.handleSongPlaying}
                     position={timeElapsed} // Video start time
@@ -111,5 +111,6 @@ export class CustomPlayer extends BasePlayer {
 
 CustomPlayer.propTypes = {
     onEnded: PropTypes.func.isRequired,
-    video: PropTypes.object.isRequired
+    video: PropTypes.object.isRequired,
+    videoSource: PropTypes.string
 };

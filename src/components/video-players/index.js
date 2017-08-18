@@ -4,6 +4,7 @@
 
 export { YoutubePlayer  }from './YoutubePlayer';
 export { VimeoPlayer }from './VimeoPlayer';
+export { SoundCloudPlayer } from './SoundCloudPlayer'
 export { OEmbedPlayer } from './OEmbedPlayer';
 export { CustomPlayer } from './CustomPlayer';
 export { UstreamPlayer } from './UstreamPlayer';

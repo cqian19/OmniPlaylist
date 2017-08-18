@@ -51,20 +51,20 @@ export class TwitchAPI extends BaseAPI {
 
     static fetchVideo(link) {
         const id = extractEndNumbers(link);
-        const key = this._getDomainProps(DOMAIN_TYPE).key;
-        return axios.get(`https://api.twitch.tv/kraken/videos/${id}`, {
-            headers: {
-                'Client-ID': key
+        const endpoint = this.getBackendAPIURL(RENDER_TYPES.VIDEO);
+        return axios.get(endpoint, {
+            params: {
+                id
             }
         });
     }
 
     static fetchStream(link) {
         const username = extractEndAlnum(link);
-        const key = this._getDomainProps(DOMAIN_TYPE).key;
-        return axios.get(`https://api.twitch.tv/kraken/channels/${username}`,{
-            headers: {
-                'Client-ID': key
+        const endpoint = this.getBackendAPIURL(RENDER_TYPES.STREAM);
+        return axios.get(endpoint,{
+            params: {
+                username
             }
         });
     }

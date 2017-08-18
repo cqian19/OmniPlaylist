@@ -93,7 +93,6 @@ function addVideo(link, response, domainType) {
 
 function addStream(link, response, domainType) {
     const video = APIHandler.getVideosFromResponse(response, RENDER_TYPES.STREAM, domainType);
-    console.log(video);
     return {
         type: ADD_VIDEO_SUCCESS,
         video

@@ -34,13 +34,6 @@ export class YoutubeAPI extends BaseAPI {
         return response.snippet.thumbnails;
     }
 
-    static getRenderType(link){
-        const renderType = this._isVideoLink(link)    ? RENDER_TYPES.VIDEO
-                        : (this._isPlaylistLink(link) ? RENDER_TYPES.PLAYLIST
-                                                      : RENDER_TYPES.INVALID);
-        return renderType;
-    };
-
     static getVideoIdFromLink(link) {
         return getUrlParams(link)['v'];
     }
@@ -66,24 +59,20 @@ export class YoutubeAPI extends BaseAPI {
     }
 
     static fetchVideo(link){
-        const key = this._getDomainProps(DOMAIN_TYPE).key;
-        return axios.get("https://www.googleapis.com/youtube/v3/videos", {
+        const endpoint = this.getBackendAPIURL(RENDER_TYPES.VIDEO);
+        return axios.get(endpoint, {
             params: {
-                part: 'snippet',
-                id: this.getVideoIdFromLink(link),
-                key
+                id: this.getVideoIdFromLink(link)
             }
         });
     };
 
     static fetchPlaylist(link) {
         const key = this._getDomainProps(DOMAIN_TYPE).key;
-        return axios.get("https://www.googleapis.com/youtube/v3/playlistItems", {
+        const endpoint = this.getBackendAPIURL(RENDER_TYPES.PLAYLIST);
+        return axios.get(endpoint, {
             params: {
-                part: 'snippet',
-                playlistId: this.getPlaylistIdFromLink(link),
-                key,
-                maxResults: 50
+                playlistId: this.getPlaylistIdFromLink(link)
             }
         });
     }

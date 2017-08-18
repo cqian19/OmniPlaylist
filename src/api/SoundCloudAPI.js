@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 
-import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
+import { RENDER_TYPES, DOMAIN_TYPES, API_URL } from '../core/constants';
 
 import Playlist from '../core/classes/Playlist';
 import BaseAPI from './BaseAPI';
@@ -22,10 +22,16 @@ export class SoundCloudVideo extends BaseVideo {
         super(DOMAIN_TYPE, renderType);
         this.title = response.title;
         this.thumbnail = response.artwork_url;
-        this.linkId = this._prepareUrl(response.stream_url);
         this.duration = response.duration;
+        this.linkId = response.stream_url;
     }
 
+    _prepareURL(url) {
+        SoundCloudAPI.fetchKey().then((response) => {
+            const client_id = response.data.key;
+            this.linkId = `${url}?client_id=${client_id}`;
+        });
+    }
 }
 
 export class SoundCloudAPI extends BaseAPI {
@@ -45,23 +51,15 @@ export class SoundCloudAPI extends BaseAPI {
     };
 
     static fetchVideo(link) {
-        const client_id = this._getDomainProps(DOMAIN_TYPE).key;
-        return axios.get("http://api.soundcloud.com/resolve", {
+        const endpoint = this.getBackendAPIURL(RENDER_TYPES.VIDEO);
+        return axios.get(endpoint, {
             params: {
                 url: link,
-                client_id
             }
         });
     }
 
-    static fetchPlaylist(link) {
-        const client_id = this._getDomainProps(DOMAIN_TYPE).key;
-        return axios.get("http://api.soundcloud.com/resolve", {
-            params: {
-                url: link,
-                client_id
-            }
-        });
-    }
+    // Soundcloud resolves what is being retrieved, endpoint is the same
+    static fetchPlaylist = SoundCloudAPI.fetchVideo;
 
 }

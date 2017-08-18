@@ -6,34 +6,52 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Facebook from 'react-facebook-player';
 
-import { DOMAIN_TYPES } from '../../core/constants';
+import { DOMAIN_TYPES, API_URL } from '../../core/constants';
 import { DOMAIN_PROPS } from '../../core/domain-map-constants';
 import BasePlayer from './BasePlayer';
+import { FacebookAPI } from '../../api';
 
-/**
+
+    /**
  * Facebook Player API:
  *  @link https://developers.facebook.com/docs/plugins/embedded-video-player
  *  @link https://github.com/fmedinac/react-facebook-player
  */
 
+let key = ''; // Facebook app ids are public
+
 export class FacebookPlayer extends BasePlayer {
 
-    _getKey() {
-        return DOMAIN_PROPS[DOMAIN_TYPES.FACEBOOK].key;
+    constructor() {
+        super();
+        this.state = {
+            key
+        }
+    }
+
+    componentWillMount() {
+        if(!key) {
+            FacebookAPI.fetchKey().then((response) => {
+                key = response.data.key;
+                this.setState({key});
+            });
+        }
     }
 
     render() {
         const { video, onEnded } = this.props;
-        const key = this._getKey();
+        const { key } = this.state;
         return (
             <div id="player-video">
-                <Facebook
-                    appId={key}
-                    videoId={video.linkId}
-                    onFinishedPlaying={onEnded}
-                    autoplay={true}
-                    allowfullscreen={true}
-                />
+                {key ? (
+                    <Facebook
+                        appId={key}
+                        videoId={video.linkId}
+                        onFinishedPlaying={onEnded}
+                        autoplay={true}
+                        allowfullscreen={true}
+                    />
+                ) : 'Loading Facebook video...'}
             </div>
         );
     }

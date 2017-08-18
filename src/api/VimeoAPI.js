@@ -59,9 +59,9 @@ export class VimeoAPI extends BaseAPI {
 
     static fetchPlaylist(link) {
         // Untested
-        const key = this._getDomainProps(DOMAIN_TYPE).key;
         const albumId = extractEndNumbers(link);
-        return axios.get(`https://api.vimeo.com/albums/${albumId}/videos`, {
+        const endpoint = this.getBackendAPIURL(RENDER_TYPES.PLAYLIST);
+        return axios.get(endpoint, {
             params: {
                 access_token: key
             }
