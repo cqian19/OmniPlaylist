@@ -29,24 +29,27 @@ class Player extends React.Component {
     }
 
     render() {
+        const { video } = this.props;
+        if (!video) { return null; }
         return (
             <div className="player">
                 <div className="player__inner">
                     <div className="player__main">
                         <ResizableVideoContainer>
                             {this.playerSection()}
+                            <div className="player__footer display-row">
+                                {/* Previous Video Button */}
+                                <span className="btn icon-btn" onClick={this.props.onPrev}>
+                                    <i className="glyphicon glyphicon-fast-backward"/>
+                                </span>
+                                        {/* Skip Video Button */}
+                                <span className="btn icon-btn" onClick={this.props.onSkip}>
+                                    <i className="glyphicon glyphicon-fast-forward"/>
+                                </span>
+                            </div>
                         </ResizableVideoContainer>
                     </div>
-                    <div className="player__footer display-row">
-                        {/* Previous Video Button */}
-                        <span className="btn icon-btn" onClick={this.props.onPrev}>
-                            <i className="glyphicon glyphicon-fast-backward"/>
-                        </span>
-                        {/* Skip Video Button */}
-                        <span className="btn icon-btn" onClick={this.props.onSkip}>
-                            <i className="glyphicon glyphicon-fast-forward"/>
-                        </span>
-                    </div>
+
                 </div>
             </div>
         )

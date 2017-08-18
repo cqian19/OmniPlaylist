@@ -22,6 +22,10 @@ export function getVideos(store) {
     return getPlaylistReducer(store).videos;
 }
 
+export function getPlaylistCollapsed(store) {
+    return getPlaylistReducer(store).collapsed;
+}
+
 export function getReload(store) {
     return getPlaylistReducer(store).reload;
 }

@@ -6,10 +6,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withScrolling from 'react-dnd-scrollzone';
 import classNames from 'classnames';
-import ReactResizeDetector from 'react-resize-detector';
 import { findDOMNode } from 'react-dom';
 import { applyContainerQuery } from 'react-container-query';
-
 
 import PlaylistVideoContainer from '../containers/PlaylistVideoContainer';
 import { scrollTo } from '../utils';
@@ -47,22 +45,8 @@ class Playlist extends React.Component {
         this._scrollToActiveVideo();
     }
 
-    handleResize = (width, _) => {
-        const { changeFlexDir } = this.props;
-        const { minimized } = this.state;
-        // Move playlist below player
-        if (!minimized && width < 420) {
-            this.state.minimized = true;
-            changeFlexDir(true);
-        // Move playlist beside player
-        } else if (minimized && width > 425) {
-            this.state.minimized = false;
-            changeFlexDir(false);
-        }
-    };
-
     render(){
-        const { containerQuery, playlistIndex, videos } = this.props;
+        const { playlistIndex, videos } = this.props;
         const { minimized } = this.state;
         const scrollClassNames = classNames({
             'playlist': true,
@@ -80,7 +64,6 @@ class Playlist extends React.Component {
                         video={video}
                     />
                 ))}
-                <ReactResizeDetector handleWidth onResize={this.handleResize} />
             </ScrollingComponent>
         )
     }
@@ -88,7 +71,6 @@ class Playlist extends React.Component {
 }
 
 Playlist.propTypes = {
-    containerQuery: PropTypes.object.isRequired,
     changeFlexDir: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     playlistIndex: PropTypes.number.isRequired,

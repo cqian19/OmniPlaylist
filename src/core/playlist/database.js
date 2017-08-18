@@ -8,7 +8,7 @@ import { onPlaylistsLoad } from './actions';
 import { getDb } from '../../database';
 
 export function initializePlaylists() {
-    return getDb().then((db) => {
+    getDb().then((db) => {
         db.playlist.find().sort({ playlistIndex: 1 }).exec().then((playlistDocs) => {
             console.log(playlistDocs);
             store.dispatch(onPlaylistsLoad(
@@ -16,4 +16,5 @@ export function initializePlaylists() {
             );
         });
     });
+    return [];
 }

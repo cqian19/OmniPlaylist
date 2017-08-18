@@ -23,21 +23,22 @@ export class SoundCloudPlayer extends CustomPlayer {
         return `${url}?client_id=${key}`
     }
 
-    render() {
+    _generatePlayer() {
         const { video } = this.props;
-        return (
-            <div>
-                {key ? (
+        return (key ? (
                     <CustomPlayer {...this.props}
-                       videoSource={this._prepareURL(video.linkId)}
+                        videoSource={this._prepareURL(video.linkId)}
                     />
                 ) : (
-                    'Loading SoundCloud video...'
-                )}
-            </div>
-        );
+                    <div>
+                        'Loading SoundCloud video...'
+                    </div>
+                ));
     }
 
+    render() {
+        return this._generatePlayer();
+    }
 
 }
 

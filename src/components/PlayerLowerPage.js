@@ -12,32 +12,24 @@ import SidebarPlaylistContainer from "../containers/SidebarPlaylistContainer";
 
 class PlayerLowerPage extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            collapsed: false
-        }
-    }
-    changeFlexDir = (shouldCollapse) => {
-        this.setState({collapsed: shouldCollapse});
-    };
-
     render() {
-        const { collapsed } = this.state;
+        const { playlistCollapsed } = this.props;
         const pageClassNames = classNames({
             'lower-container': true,
-            'lower-container-vertical': collapsed
+            'lower-container-vertical': playlistCollapsed
         });
         return (
             <div className={pageClassNames}>
-                <PlayerContainer />
-                <PlaylistContainer
-                    changeFlexDir={this.changeFlexDir}
-                />
+                <PlayerContainer/>
+                <PlaylistContainer />
                 <SidebarPlaylistContainer />
             </div>
         )
     }
 }
+
+PlayerLowerPage.propTypes = {
+    playlistCollapsed:  PropTypes.bool.isRequired
+};
 
 export default PlayerLowerPage;

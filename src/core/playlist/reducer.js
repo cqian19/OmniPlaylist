@@ -19,7 +19,8 @@ import {
     ON_PLAYLIST_REMOVE,
     ON_PLAYLIST_CHANGE,
     ON_PLAYLIST_NAME_CHANGE,
-    ON_PLAYLISTS_LOAD
+    ON_PLAYLISTS_LOAD,
+    ON_VIDEO_COLLAPSE_TOGGLE
 } from '../constants';
 import Playlist from '../classes/Playlist';
 import {
@@ -32,8 +33,9 @@ import { initializePlaylists } from './database';
 import * as rfuncs from './utils';
 
 const defaultState = {
+    collapsed: false,
     index: 0,
-    playlists: initializePlaylists() && [],
+    playlists: initializePlaylists(),
     playlistIndex: 0,
     reload: false,
     videos: [],
@@ -72,6 +74,8 @@ export function playlistReducer(state = defaultState, action) {
             return onPlaylistNameChange(state, stateItems, action);
         case ON_PLAYLISTS_LOAD:
             return onPlaylistsLoad(state, stateItems, action);
+        case ON_VIDEO_COLLAPSE_TOGGLE:
+            return onVideoCollapseToggle(state, stateItems, action);
         case ON_VIDEO_ACTION_FAILED:
         default:
             return state;
@@ -235,5 +239,10 @@ function onPlaylistNameChange(state, stateItems, action) {
 
 function onPlaylistsLoad(state, stateItems, action) {
     const { playlists } = action;
-    return {...state, playlists, ...playlists.length && { videos: playlists[0].videos  }}
+    return {...state, playlists, ...playlists.length && { videos: playlists[0].videos  }};
+}
+
+function onVideoCollapseToggle(state, stateItems, action) {
+    const { collapse } = action;
+    return {...state, collapsed: collapse};
 }

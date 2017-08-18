@@ -26,6 +26,7 @@ export {
     getVideos,
     getPlaylistIndex,
     getPlaylists,
+    getPlaylistCollapsed,
     getStateVideos,
     getStateIndex,
     getStatePlaylists,

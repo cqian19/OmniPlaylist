@@ -5,7 +5,7 @@
 import React from 'react';
 
 import ImportBarContainer from '../containers/ImportBarContainer';
-import PlayerLowerPage from '../components/PlayerLowerPage';
+import PlayerLowerPageContainer from '../containers/PlayerLowerPageContainer';
 
 export class PlayerPage extends React.Component {
 
@@ -13,7 +13,7 @@ export class PlayerPage extends React.Component {
         return (
             <div className="page-container">
                 <ImportBarContainer />
-                <PlayerLowerPage />
+                <PlayerLowerPageContainer />
             </div>
         );
     }

@@ -3,5 +3,5 @@
  */
 
 export { getVideoPlayer, getVideoHeight, getVideoWidth } from './selectors';
-export { saveVideoSize } from './actions';
+export { saveVideoSize, togglePlaylistCollapse } from './actions';
 export { videoplayerReducer } from './reducer';

@@ -28,9 +28,28 @@ class ResizableVideo extends React.Component {
         window.removeEventListener('resize', this._doWindowResize);
     }
 
+    /**
+     * @description Checks whether the playlist should snap to the side or bottom of the player
+     * @private
+     * @param playerWidth - Width of the resizable container
+     */
+    _checkCollapse = (playerWidth) => {
+        const { onTogglePlaylistCollapse, playlistCollapsed } = this.props;
+        const windowWidth = window.innerWidth;
+        const spaceBetween = windowWidth - playerWidth;
+        // Snap playlist to bottom of player
+        if (!playlistCollapsed && spaceBetween < 420) {
+            onTogglePlaylistCollapse(true);
+        // Move playlist beside player
+        } else if (playlistCollapsed && spaceBetween > 425) {
+            onTogglePlaylistCollapse(false);
+        }
+    };
+
     _onInnerResize = (e,d, resizableElement) => {
         const height = resizableElement.offsetHeight;
         const width = resizableElement.offsetWidth;
+        this._checkCollapse(width);
         this.setState({
             height,
             innerHeight: height,
@@ -66,6 +85,7 @@ class ResizableVideo extends React.Component {
     }
 
     render() {
+        const { children } = this.props;
         return(
             <div>
                 <Resizable
@@ -84,9 +104,12 @@ class ResizableVideo extends React.Component {
 }
 
 ResizableVideo.propTypes = {
+    children: PropTypes.object,
     height: PropTypes.number.isRequired,
     onDismount: PropTypes.func.isRequired,
     onResize:   PropTypes.func.isRequired,
+    onTogglePlaylistCollapse: PropTypes.func.isRequired,
+    playlistCollapsed: PropTypes.bool.isRequired,
     width:  PropTypes.number.isRequired
 };
 

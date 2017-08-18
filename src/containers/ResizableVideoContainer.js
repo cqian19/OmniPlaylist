@@ -3,10 +3,13 @@
  */
 
 import { connect } from 'react-redux';
-import { onVideoResize, saveVideoSize, getVideoHeight, getVideoWidth } from '../core/videoplayer';
+
 import ResizableVideo from '../components/ResizableVideo';
+import { getPlaylistCollapsed } from '../core/playlist';
+import { saveVideoSize, getVideoHeight, getVideoWidth, togglePlaylistCollapse } from '../core/videoplayer';
 
 const mapStateToProps = (state) => ({
+    playlistCollapsed: getPlaylistCollapsed(state),
     height: getVideoHeight(state),
     width: getVideoWidth(state)
 });
@@ -17,6 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onDismount: (size) => {
         dispatch(saveVideoSize(size));
+    },
+    onTogglePlaylistCollapse(collapse) {
+        dispatch(togglePlaylistCollapse(collapse));
     }
 });
 
