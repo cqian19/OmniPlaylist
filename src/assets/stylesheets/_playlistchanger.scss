@@ -40,6 +40,7 @@
 .playlist-display {
   border: 1px solid;
   min-width: 300px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
   width: 60%
 }

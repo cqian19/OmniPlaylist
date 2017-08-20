@@ -2,12 +2,11 @@
   padding: 0 !important;
 
   .resizable-video-container {
-    border: 1px white solid;
     display: inline-table;
     margin: 3px;
 
     &:hover {
-      border: 2px solid $grey-0;
+      outline: 2px solid $grey-0;
     }
 
     #player-video {

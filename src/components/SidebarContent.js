@@ -11,7 +11,7 @@ class SidebarContent extends React.Component {
 
     render() {
         return(
-            <div className="sidebar-playlist-content">
+            <div className="sidebar-playlist__content">
                 {this.props.playlists.map((playlist, index) => (
                     <SidebarItemContainer
                         index={index}

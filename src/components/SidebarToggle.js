@@ -10,14 +10,14 @@ class SidebarToggle extends React.Component {
 
 
     render() {
+        const { onSidebarToggle, toggled } = this.props;
         const sidebarNames = classNames({
             'glyphicon': true,
-            'glyphicon-menu-right': this.props.toggled,
-            'glyphicon-menu-left': !this.props.toggled
+            'glyphicon-chevron-down': toggled,
+            'glyphicon-chevron-up': !toggled
         });
-
         return (
-            <div className="sidebar-playlist-toggle" onClick={this.props.onSidebarToggle}>
+            <div className="sidebar-playlist__toggle" onClick={onSidebarToggle}>
                 <i className={sidebarNames}/>
             </div>
         )
