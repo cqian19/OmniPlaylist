@@ -10,62 +10,62 @@ import Error from './Error';
 
 class ImportBar extends React.Component {
 
-    state = {
-        error: '',
-        value: '',
-        validationState: null,
-        resetForm: null
-    };
+    constructor() {
+        super();
+        this.state = {
+            value: '',
+            resetForm: null
+        };
+    }
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
-        const link = this.state.value;
-        this.props.doImport(link);
+        const { importing, doImport } = this.props;
+        const { value } = this.state;
+        if (!importing) {
+            doImport(value);
+        }
     };
 
     handleChange = (event) => {
         this.state.value = event.target.value;
     };
 
-    componentWillUpdate = (nextProps) => {
-        const oldValidationState = this.props.validationState;
+    componentWillUpdate(nextProps) {
         const newValidationState = nextProps.validationState;
-        if (newValidationState === 'success' || newValidationState === 'error'){
+        if (newValidationState === 'success' || newValidationState === 'error') {
             this.state.validationState = newValidationState;
-            if (newValidationState === 'success') {
-                this.state.error = '';
-            }
             this.textInput.value = "";
-            this.props.resetForm();
             if (this.state.resetForm) {
                 clearTimeout(this.state.resetForm);
             }
             this.state.resetForm = setTimeout(() => {
-                this.setState({
-                    error: '',
-                    validationState: null,
-                    resetForm: null
-                });
+                this.props.resetForm();
             }, 3000)
         }
-    };
+    }
+
+    componentDidUpdate() {
+        this.textInput.focus();
+    }
 
     render() {
-        this.state.error = this.props.error || this.state.error;
+        const { error, importing, validationState } = this.props;
         return (
             <div className="import-bar">
                 <form onSubmit={this.handleSubmit} className="height-collapse-small import-form">
                     <button className="btn btn-inverse import-button col-xs-2" type="submit">
                         Import
                     </button>
-                    <FormGroup className="col-xs-10" validationState={this.state.validationState}>
+                    <FormGroup className="col-xs-10" validationState={validationState}>
                         <FormControl
-                             className= "search-bar"
+                             className="search-bar"
+                             disabled={importing}
                              inputRef={(input) => { this.textInput = input; }}
                              type="text"
                              onChange={this.handleChange}
                         />
-                        <Error error={this.state.error}/>
+                        <Error error={error}/>
                     </FormGroup>
                 </form>
             </div>
@@ -76,6 +76,7 @@ class ImportBar extends React.Component {
 ImportBar.propTypes = {
     error:      PropTypes.string,
     doImport:   PropTypes.func.isRequired,
+    importing:  PropTypes.bool.isRequired,
     resetForm:  PropTypes.func.isRequired,
     validationState: PropTypes.string
 };

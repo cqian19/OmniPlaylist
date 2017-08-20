@@ -9,6 +9,7 @@ import {
     ADD_VIDEO_SUCCESS,
     IMPORT_SUCCESS,
     IMPORT_FAILED,
+    IMPORT_START,
     RESET_IMPORT_FORM
 } from '../constants';
 import { getPlaylists,  onPlaylistMake, onVideoAdd } from '../playlist';
@@ -41,6 +42,12 @@ function linkFailed() {
     }
 }
 
+function importStart() {
+    return {
+        type: IMPORT_START
+    }
+}
+
 export function doImport(link) {
     let [ renderType, domainType ] = APIHandler.getRenderAndDomainType(link);
     if (renderType === RENDER_TYPES.INVALID) {
@@ -52,6 +59,7 @@ export function doImport(link) {
 
 function importVideos(link, renderType, domainType) {
     return function(dispatch) {
+        dispatch(importStart());
         return APIHandler.fetchVideos(link, renderType, domainType).then(
             (response) => {
                 dispatch(importSuccess());

@@ -13,3 +13,7 @@ export function getError(store){
 export function getValidationState(store){
     return getImportBar(store).validationState;
 }
+
+export function getImporting(store) {
+    return getImportBar(store).importing;
+}

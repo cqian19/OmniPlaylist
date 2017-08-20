@@ -16,7 +16,7 @@ class Error extends React.Component {
                     <Tooltip placement="bottom" className="in tooltip-error" id="tooltip-bottom">
                         { error }
                     </Tooltip>
-                ):(<div></div>)}
+                ): null}
             </div>
         )
     }

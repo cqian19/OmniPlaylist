@@ -5,6 +5,7 @@
 import { connect } from 'react-redux';
 import {
     getError,
+    getImporting,
     getValidationState,
     doImport,
     resetForm
@@ -13,6 +14,7 @@ import ImportBar from '../components/ImportBar';
 
 const mapStateToProps = (state) => ({
     error: getError(state),
+    importing: getImporting(state),
     validationState: getValidationState(state),
 });
 

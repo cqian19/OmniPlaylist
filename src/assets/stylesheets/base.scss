@@ -150,6 +150,7 @@ h1 {
   @extend .remover;
 }
 
-::webkit-scrollbar {
-  height: auto;
+.tooltip-inner {
+  max-width: none;
+  width: auto;
 }
