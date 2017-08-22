@@ -15,7 +15,8 @@
   'playlistchanger',
   'playlistitem',
   'selectableitem',
-  'sidebar'
+  'sidebar',
+  'titlebar'
 ;
 
 html, body {
@@ -88,13 +89,14 @@ h1 {
 .draggable {
   &.dragging {
     background-color: $yellow-0 !important;
-    -webkit-transform: scale(1.25, 1.25);
-    transform: scale(1.05, 1.05);
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: scale(1.05, 1.05);
+    transform-origin: left;
+    -webkit-transform: scale(1.05, 1.05);
   }
 }
 
-.remover {
+.icon {
   cursor: pointer;
 
   &:hover {
@@ -144,10 +146,6 @@ h1 {
 
 .centered-text {
   text-align: center;
-}
-
-.playlist-remove {
-  @extend .remover;
 }
 
 .tooltip-inner {

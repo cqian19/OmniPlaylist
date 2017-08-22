@@ -75,7 +75,7 @@ function importVideos(link, renderType, domainType) {
                         break;
                 }
             },
-            error => dispatch(importError(error))
+            (error) => dispatch(importError(error))
         )
     }
 }

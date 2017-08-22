@@ -2,11 +2,11 @@
 .playlist-item {
   @extend .selectable-item;
 
-  .glyphicon-remove {
-    @extend .remover;
-  }
-
   .renamable, .renamable-selected {
     font-size: 25px;
+  }
+
+  .playlist-remove {
+    @extend .icon;
   }
 }

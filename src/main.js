@@ -1,14 +1,7 @@
 'use strict';
 
 const electron = require('electron');
-// Module to control application life.
-const app = require('app');
-// Module to create native browser window.
-const BrowserWindow = require('browser-window',{
-    "web-preferences": {
-        "web-security": false
-    }
-});
+const {Menu, app, BrowserWindow} = electron;
 
 require('./electron-config')('https://www.youtube.com/');
 require('electron-debug')({showDevTools: true});
@@ -23,17 +16,16 @@ function createWindow () {
       width: 1000,
       height: 700,
       minWidth: 515,
-      minHeight: 335,
-      title: 'Player'
+      minHeight: 400,
+      title: 'Player',
+      frame: false
   });
-  // Hide top menu bar
-  mainWindow.setMenu(null);
+
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
-
+  mainWindow.webContents.openDevTools();
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
     // Dereference the window object, usually you would store windows

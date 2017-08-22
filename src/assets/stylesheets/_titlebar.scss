@@ -1,0 +1,39 @@
+.titlebar {
+  background-color: $purple-2;
+  border-bottom: 2px solid $blue-0;
+  box-shadow: 0 -1px 0 $blue-1;
+  height: 30px;
+  opacity: 0.9;
+  margin-top: 1px;
+  margin-bottom: 5px;
+  padding-top: 5px;
+  width: 100%;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.titlebar__header {
+  color: whitesmoke;
+  left: 10px;
+}
+
+.titlebar__menu {
+  display: flex;
+  height: 100%;
+  float: right;
+  position: relative;
+  right: 10px;
+  width: auto;
+  -webkit-app-region: no-drag;
+  & > span {
+    height: 30px;
+    width: 30px;
+    & > i {
+      @extend .icon;
+    }
+
+    &.active {
+      color: white;
+    }
+  }
+}

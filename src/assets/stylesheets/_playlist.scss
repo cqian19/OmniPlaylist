@@ -1,6 +1,7 @@
 .playlist {
   flex: 1 1 auto;
   margin-left: 2px;
+  max-width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -24,6 +25,7 @@
   }
 
   .playlist-remove {
+    @extend .icon;
     margin-left: 6px;
     vertical-align: middle;
   }
