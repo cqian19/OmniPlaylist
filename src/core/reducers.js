@@ -4,7 +4,7 @@
 
 import { combineReducers } from 'redux';
 
-import { headerReducer } from './header';
+import { appReducer } from './app';
 import { importbarReducer } from './importbar';
 import { navbarReducer } from './navbar';
 import { playlistReducer } from './playlist';
@@ -13,7 +13,7 @@ import { sidebarReducer } from './sidebar';
 import { videoplayerReducer } from './videoplayer';
 
 export default combineReducers({
-    header: headerReducer,
+    app: appReducer,
     navbar: navbarReducer,
     importbar: importbarReducer,
     playlist: playlistReducer,

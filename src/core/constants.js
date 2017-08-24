@@ -30,7 +30,7 @@ export const DRAG_TYPES = {
 };
 
 /* CONSTANTS */
-export const APP_TITLE = 'Youtube Playlist Manager';
+export const APP_TITLE = 'Player';
 export const BASE_VIDEO_HEIGHT = 400;
 export const BASE_VIDEO_WIDTH = 600;
 
@@ -39,6 +39,7 @@ export const API_URL = 'https://allinoneplaylist.herokuapp.com/api';
 
 /* ACTION TYPES */
 export const APP_LOAD = 'APP_LOAD';
+export const TOGGLE_HIDE_EXTRA = 'TOGGLE_HIDE_EXTRA';
 
 export const LINK_FAILED = 'LINK_FAILED';
 export const ADD_PLAYLIST_SUCCESS = 'ADD_PLAYLIST_SUCCESS';

@@ -3,6 +3,7 @@
  */
 
 import { connect } from 'react-redux';
+import { getHideExtra } from '../core/app';
 import { getPlaylistCollapsed } from '../core/playlist';
 
 import PlayerLowerPage from '../components/PlayerLowerPage';

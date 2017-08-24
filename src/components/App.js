@@ -7,7 +7,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { DragDropContext } from 'react-dnd';
 
 import Header from './Header';
-import TitleBar from './TitleBar';
+import TitleBarContainer from '../containers/TitleBarContainer';
 import NavBarContainer from '../containers/NavBarContainer';
 
 class App extends React.Component {
@@ -22,7 +22,7 @@ class App extends React.Component {
             <BrowserRouter history={createHistory()}>
                 <div>
                     { isElectron ?
-                        (<TitleBar />) : null
+                        (<TitleBarContainer />) : null
                     }
                     <div className="container-fluid">
                         <NavBarContainer />

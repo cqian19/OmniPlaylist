@@ -8,9 +8,10 @@ import SidebarPlaylist from '../components/SidebarPlaylist';
 import { getPlaylists } from '../core/playlist';
 import { onSidebarToggle, getSidebarToggled } from '../core/sidebar';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
     toggled: getSidebarToggled(state),
-    playlists: getPlaylists(state)
+    playlists: getPlaylists(state),
+    ...ownProps
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -46,10 +46,11 @@ class Playlist extends React.Component {
     }
 
     render(){
-        const { playlistIndex, videos } = this.props;
+        const { playlistIndex, videos, hideExtra } = this.props;
         const scrollClassNames = classNames({
             'playlist': true,
             'width-collapse': true,
+            'hidden': hideExtra
         });
         return (
             <ScrollingComponent ref='scroll' className={scrollClassNames}>
@@ -70,6 +71,7 @@ class Playlist extends React.Component {
 
 Playlist.propTypes = {
     changeFlexDir: PropTypes.func.isRequired,
+    hideExtra: PropTypes.bool.isRequired,
     index: PropTypes.number.isRequired,
     playlistIndex: PropTypes.number.isRequired,
     videos: PropTypes.arrayOf(PropTypes.object)

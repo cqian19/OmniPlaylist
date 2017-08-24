@@ -4,6 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -11,9 +12,15 @@ import { LinkContainer } from 'react-router-bootstrap';
 class NavBar extends React.Component {
 
     render() {
-        const currentPath = this.props.location.pathname;
+        const { hideExtra, location } = this.props;
+        const currentPath = location.pathname;
+        const navClassNames = classNames({
+            'navbar': true,
+            'height-collapse': true,
+            'hidden': hideExtra
+        });
         return (
-            <div className="navbar height-collapse">
+            <div className={navClassNames}>
                 <Nav bsStyle="pills" justified activeKey={currentPath}>
                     <LinkContainer exact to="/">
                         <NavItem eventKey="/">
@@ -32,6 +39,7 @@ class NavBar extends React.Component {
 }
 
 NavBar.propTypes = {
+    hideExtra: PropTypes.bool.isRequired,
     history:  PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     match:    PropTypes.object.isRequired

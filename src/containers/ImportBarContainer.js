@@ -3,6 +3,8 @@
  */
 
 import { connect } from 'react-redux';
+
+import { getHideExtra } from '../core/app';
 import {
     getError,
     getImporting,
@@ -14,6 +16,7 @@ import ImportBar from '../components/ImportBar';
 
 const mapStateToProps = (state) => ({
     error: getError(state),
+    hideExtra: getHideExtra(state),
     importing: getImporting(state),
     validationState: getValidationState(state),
 });

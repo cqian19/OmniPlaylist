@@ -8,6 +8,7 @@ import App from '../components/App';
 import { APP_LOAD } from '../core/constants';
 
 const mapStateToProps = (state, ownProps) => ({
+
     ...ownProps
 });
 

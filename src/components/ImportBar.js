@@ -4,6 +4,7 @@
 import React from 'react';
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import APIHandler from '../api/APIHandler';
 import Error from './Error';
@@ -50,9 +51,13 @@ class ImportBar extends React.Component {
     }
 
     render() {
-        const { error, importing, validationState } = this.props;
+        const { error, importing, validationState, hideExtra } = this.props;
+        const importClassNames = classNames({
+           'import-bar': true,
+            'hidden': hideExtra
+        });
         return (
-            <div className="import-bar">
+            <div className={importClassNames}>
                 <form onSubmit={this.handleSubmit} className="height-collapse-small import-form">
                     <button className="btn btn-inverse import-button col-xs-2" type="submit">
                         Import
@@ -76,6 +81,7 @@ class ImportBar extends React.Component {
 ImportBar.propTypes = {
     error:      PropTypes.string,
     doImport:   PropTypes.func.isRequired,
+    hideExtra:  PropTypes.bool.isRequired,
     importing:  PropTypes.bool.isRequired,
     resetForm:  PropTypes.func.isRequired,
     validationState: PropTypes.string
