@@ -1,7 +1,10 @@
 var webpack = require('webpack');
 var path = require('path');
+var webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
+var argv = require('minimist')(process.argv.slice(2));
+const isWeb = (argv && argv.target === 'web');
 
-module.exports = {
+let options  = {
   entry: [
       'regenerator-runtime/runtime',
       'react-hot-loader/patch',
@@ -15,7 +18,7 @@ module.exports = {
       { test: /\.s?css$/, loader: 'style!css!sass' },
       { test: /\.json$/,  loader: 'json-loader' },
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader', options: { limit: 8192 }}
-    ]
+    ],
   },
   resolve: {
     extensions: ['', '.js']
@@ -28,7 +31,6 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  target: 'electron',
   devServer: {
     contentBase: './dist',
     hot: true
@@ -47,3 +49,11 @@ module.exports = {
     })
   ]
 };
+
+if (isWeb) {
+    options.node = {
+        fs: 'empty'
+    }
+}
+options.target = webpackTargetElectronRenderer(options);
+module.exports = options;

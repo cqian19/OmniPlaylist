@@ -1,8 +1,6 @@
 'use strict';
-
 const electron = require('electron');
-const {Menu, app, BrowserWindow} = electron;
-
+const {app, BrowserWindow} = electron;
 require('./electron-config')('https://www.youtube.com/');
 require('electron-debug')({showDevTools: true});
 

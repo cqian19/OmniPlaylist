@@ -3,7 +3,6 @@
  */
 'use strict';
 const electron = require('electron');
-
 function create(win, referer) {
     const requestFilter = {
         urls: ['https://www.youtube.com/get_video_info?*eurl&*']
@@ -42,7 +41,6 @@ module.exports = (referer, win) => {
     (electron.BrowserWindow || electron.remote.BrowserWindow).getAllWindows().forEach(win => {
         create(win, referer);
     });
-
     (electron.app || electron.remote.app).on('browser-window-created', (e, win) => {
         create(win, referer);
     });
