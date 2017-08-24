@@ -152,3 +152,8 @@ h1 {
   max-width: none;
   width: auto;
 }
+
+#root > [data-reactroot] {
+  height: inherit;
+  width: inherit;
+}
