@@ -70,7 +70,7 @@ class TitleBar extends React.Component {
                     </span>
                     {/* Hide extra button */}
                     <span className={hideClassNames} onClick={this.handleAppHideExtra}>
-                        <i className="glyphicon glyphicon-eye-close" />
+                        <i className="glyphicon glyphicon-fullscreen" />
                     </span>
                     {/* Full screen button */}
                     <span className={fullScreenClassNames} onClick={this.handleFullScreen}>

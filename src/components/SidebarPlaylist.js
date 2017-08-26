@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import SidebarToggle from './SidebarToggle';
 import SidebarContent from './SidebarContent';
@@ -10,8 +11,14 @@ import SidebarContent from './SidebarContent';
 class SidebarPlaylist extends React.Component {
 
     render() {
+        const { hideExtra, toggled } = this.props;
+        const sidebarClassNames = classNames({
+            'sidebar-playlist': true,
+            'active': toggled,
+            'hidden': hideExtra
+        });
         return(
-            <div className={"sidebar-playlist " + (this.props.toggled ? "active" : "")}>
+            <div className={sidebarClassNames}>
                 <SidebarToggle {...this.props} />
                 <SidebarContent {...this.props} />
             </div>
@@ -20,6 +27,7 @@ class SidebarPlaylist extends React.Component {
 }
 
 SidebarPlaylist.propTypes = {
+    hideExtra: PropTypes.bool.isRequired,
     playlists: PropTypes.arrayOf(PropTypes.object).isRequired,
     onSidebarToggle: PropTypes.func.isRequired,
     toggled: PropTypes.bool.isRequired,

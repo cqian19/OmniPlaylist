@@ -17,9 +17,14 @@ import {
 
 const mapStateToProps = function(state) {
     const videos = getVideos(state);
-    const index = getIndex(state);
+    const index =  getIndex(state);
     const reload = getReload(state);
-    return {videos, index, reload, ...videos.length && {video: videos[index]}}
+    return {
+        videos,
+        index,
+        reload,
+        ...videos.length && {video: videos[index]}
+    }
 };
 
 const mapDispatchToProps = (dispatch) => ({

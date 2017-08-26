@@ -39,7 +39,7 @@ export const DOMAIN_PROPS = {
         'API': YoutubeAPI,
         'player': YoutubePlayer,
         'videoLinks': [
-            /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/watch\?.*?v=[0-9._\-A-Za-z]+$/
+            /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/watch\?.*?v=[0-9._\-A-Za-z]+.*$/
         ],
         'playlistLinks': [
             /^(?:https?:\/\/)?(?:w{3}\.)?youtube\.com\/[0-9.\-A-Za-z]+\?[-a-zA-Z0-9_@:%+.~#?&\/=]*?list=[0-9.\-A-Za-z_]+/

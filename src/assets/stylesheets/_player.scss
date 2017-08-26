@@ -2,28 +2,35 @@
   padding: 0 !important;
   z-index: 2;
 
-  .resizable-video-container {
-    display: inline-table;
-    margin: 3px;
-
-    &:hover {
-      outline: 2px solid $grey-0;
-    }
-
-    #player-video {
-      height: inherit;
-      width: inherit;
-    }
-
-    iframe {
-      height: inherit;
-      width: inherit;
-    }
-  }
-
   .player__footer {
     text-align: center;
   }
+}
+
+.resizable-video-container {
+  display: inline-table;
+  margin: 3px; // Remember to change MARGIN in ResizablePlayerWrapper
+
+  &:hover {
+    outline: 2px solid $grey-0;
+  }
+
+  #player-video {
+    height: inherit;
+    width: inherit;
+  }
+
+  iframe {
+    height: inherit;
+    width: inherit;
+  }
+}
+
+.resizable-video-container-full {
+  left: 0;
+  margin: 0 !important;
+  position: fixed;
+  top: 30px;
 }
 
 .resizable-wrapper {
