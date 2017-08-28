@@ -61,8 +61,7 @@ class BaseVideo {
     }
 
     clone() {
-        const cl = new BaseVideo;
-        cl.domainType = this.domainType;
+        const cl = new BaseVideo(this.domainType, this.renderType);
         cl.title = this.title;
         cl.thumbnail = this.thumbnail;
         cl.linkId = this.linkId;
