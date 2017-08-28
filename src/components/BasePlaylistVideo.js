@@ -145,7 +145,7 @@ class BasePlaylistVideo extends React.Component {
             <div className={playlistVideoNames} onClick={onVideoClick}>
                 <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>
                 <div className="playlist-video__desc content">
-                    <div className="playlist-video__title">
+                    <div className="playlist-video__title title">
                         {video.title}
                     </div>
                     { body }

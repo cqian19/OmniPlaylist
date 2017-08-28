@@ -13,7 +13,7 @@ class PlaylistSlot extends React.Component {
         const { playlists, playlistIndex, playlistValid, focusDropdown } = this.props;
         const playlist = playlists[playlistIndex];
         return (
-            <button type="button" id="playlist-slot" className="btn btn-basic" onClick={focusDropdown}>
+            <button type="button" className="playlist-slot btn btn-basic" onClick={focusDropdown}>
                 {playlistValid ? (
                     <PlaylistItemContainer
                         playlist={playlist}

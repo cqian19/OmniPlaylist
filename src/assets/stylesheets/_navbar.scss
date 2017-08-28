@@ -8,12 +8,13 @@
 .navbar {
   margin-bottom: 0;
   // Buttons in navigation
-  .nav li[role=presentation] {
-    a[role=button] {
-      border: 2px solid $purple-0;
+  .nav li {
+    a {
+      color: $purple-2;
       &:hover {
-        background-color: $purple-1;
+        background-color: $purple-2;
         color: white;
+        opacity: 0.6;
       }
       &:active {
         background-color: $purple-2;
@@ -21,8 +22,13 @@
       }
     }
 
-    &.active a[role=button]{
+    &.active a {
       background-color: $purple-2;
+      color: white;
+      &:hover, &:active {
+        opacity: 1;
+        color: white;
+      }
     }
   }
 }

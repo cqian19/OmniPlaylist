@@ -126,9 +126,9 @@ class ResizablePlayerWrapper extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        const { hideExtra } = this.props;
         const { height, width } = this.state;
         this._checkCollapse(width);
-        const { hideExtra } = this.props;
         const oldHideExtra = prevProps.hideExtra;
         // Make player fit after exiting from full screen
         if (!hideExtra && oldHideExtra) {
