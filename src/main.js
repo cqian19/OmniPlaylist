@@ -1,6 +1,7 @@
 'use strict';
 const electron = require('electron');
 const {app, BrowserWindow} = electron;
+
 require('./electron-config')('https://www.youtube.com/');
 require('electron-debug')({showDevTools: true});
 
@@ -18,7 +19,6 @@ function createWindow () {
       title: 'Player',
       frame: false
   });
-
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
