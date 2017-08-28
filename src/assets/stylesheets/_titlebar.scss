@@ -15,6 +15,7 @@
 .titlebar__header {
   color: whitesmoke;
   left: 10px;
+  position: relative;
 }
 
 .titlebar__menu {
@@ -22,7 +23,7 @@
   height: 100%;
   float: right;
   position: relative;
-  right: 5px;
+  right: 3px;
   width: auto;
   -webkit-app-region: no-drag;
   & > span {
