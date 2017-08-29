@@ -2,17 +2,16 @@
   flex: 1 1 auto;
   margin-left: 2px;
   max-width: 100%;
+  padding-top: 3px;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.playlist-video {
-  @extend .selectable, .selectable-item, .hoverable, .draggable;
-  margin-bottom: 5px;
+.base-playlist-video {
+  @extend .selectable, .hoverable, .draggable;
 
-  .thumbnail {
-    width: 175px;
-  }
+  margin-bottom: 5px;
+  padding-top: 5px;
 
   .playlist-video__title {
     @include text-truncate(2);
@@ -29,5 +28,19 @@
     margin-left: 6px;
     vertical-align: middle;
   }
+}
+.playlist-video {
+  @extend .selectable-item, .base-playlist-video;
 
+  .thumbnail {
+    margin-top: 4px !important;
+  }
+}
+
+.playlist-video-mini {
+  @extend .selectable-item-mini, .base-playlist-video;
+
+  .thumbnail {
+    margin-top: 0 !important;
+  }
 }

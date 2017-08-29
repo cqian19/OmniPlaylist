@@ -21,7 +21,7 @@
   width: 100%;
 
   &:hover {
-    opacity: .97;
+    opacity: .95;
   }
 
   i {
@@ -42,22 +42,57 @@
   width: 475px;
 }
 
+.base-sidebar-item {
+    @extend .hoverable, .selectable, .draggable;
+    margin: 5px;
+    padding: 2px;
+    width: 98%;
+
+    .sidebar-item__title {
+      width: 420px;
+
+      .renamable {
+        @include text-truncate(1);
+        display: inline-block;
+        max-width: 420px;
+      }
+
+    }
+
+    .playlist-remove {
+      float: right;
+      margin-right: 5px;
+    }
+
+    .sidebar-item__thumbnails {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+
+    .sidebar-mini-thumbnail {
+      display: flex;
+      margin: 3px;
+      width: 20%;
+
+      img {
+        flex: 1;
+        height: inherit;
+        width: inherit;
+      }
+    }
+}
 .sidebar-playlist__content .playlist-item {
-  @extend .hoverable, .selectable, .draggable, .selectable-item;
-  height: 130px;
-  margin: 5px;
-  padding: 2px;
-  width: 98%;
+  @extend .base-sidebar-item, .selectable-item;
 
   .sidebar-item__title {
     height: 37.5px;
-    width: 420px;
 
     .renamable {
-      @include text-truncate(1);
       display: inline-block;
       font-size: 22px;
-      max-width: 420px;
     }
 
     .renamable-selected {
@@ -65,29 +100,28 @@
     }
   }
 
-  .playlist-remove {
-    float: right;
-    margin-right: 5px;
+  .sidebar-mini-thumbnail {
+    height: 80px;
   }
+}
 
-  .sidebar-item__thumbnails {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin-left: 3px;
-    margin-right: 3px;
+.sidebar-playlist__content .playlist-item-mini {
+  @extend .base-sidebar-item, .selectable-item-mini;
+
+  .sidebar-item__title {
+    height: 25.5px;
+
+    .renamable {
+      display: inline-block;
+      font-size: 18px;
+    }
+
+    .renamable-selected {
+      font-size: 18px;
+    }
   }
 
   .sidebar-mini-thumbnail {
-    display: flex;
-    height: 75px;
-    margin: 3px;
-    width: 20%;
-
-    img {
-      flex: 1;
-      height: inherit;
-      width: inherit;
-    }
+    height: 60px;
   }
 }

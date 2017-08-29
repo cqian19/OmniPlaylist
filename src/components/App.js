@@ -3,6 +3,7 @@ import '../assets/stylesheets/base.scss';
 import React from 'react';
 import createHistory from 'history/createBrowserHistory'
 import HTML5Backend from 'react-dnd-html5-backend';
+import isElectron from 'is-electron';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { DragDropContext } from 'react-dnd';
 
@@ -17,11 +18,10 @@ class App extends React.Component {
     }
 
     render() {
-        const isElectron = process.versions.electron;
         return(
             <BrowserRouter history={createHistory()}>
                 <div>
-                    { isElectron ?
+                    { isElectron() ?
                         (<TitleBarContainer />) : null
                     }
                     <div className="container-fluid">

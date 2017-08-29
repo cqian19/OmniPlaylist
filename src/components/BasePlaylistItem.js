@@ -5,6 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isElectron from 'is-electron';
 
 import { confirmAlert } from './Confirm';
 
@@ -32,7 +33,8 @@ class BasePlaylistItem extends React.Component {
             playlist,
         } = this.props;
         const playlistItemNames = classNames({
-            'playlist-item': true,
+            'playlist-item': !isElectron(),
+            'playlist-item-mini': isElectron(),
             'active': active
         });
         return (

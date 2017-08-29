@@ -9,6 +9,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isElectron from 'is-electron';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
 
@@ -137,7 +138,8 @@ class BasePlaylistVideo extends React.Component {
     render() {
         const { body, className, video, dropTarget, dragSource, onVideoClick } = this.props;
         const playlistVideoNames = classNames({
-            'playlist-video': true,
+            'playlist-video': !isElectron(),
+            'playlist-video-mini': isElectron(),
             'active': this.props.active,
             'dragging': this.props.isDragging
         });

@@ -1,17 +1,17 @@
 
 .selectable-item {
   display: inline-block;
-  height: 120px;
+  height: 140px;
   width: 100%;
 
   .thumbnail {
-    height: 115px;
-    margin: 5px;
     float: left;
+    height: 120px;
+    margin: 5px;
+    width: 175px;
   }
 
   .title {
-    display: inline;
     font-size: 19px;
   }
 
@@ -20,5 +20,18 @@
     margin-left: 1px;
     width: 100%;
   }
+}
 
+.selectable-item-mini {
+  @extend .selectable-item;
+  height: 100px;
+
+  .thumbnail {
+    height: 90px;
+    width: 140px;
+  }
+
+  .title {
+    font-size: 17px;
+  }
 }

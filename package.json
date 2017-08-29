@@ -49,6 +49,7 @@
     "fs": "0.0.1-security",
     "history": "^4.6.3",
     "is-ad": "^0.1.0",
+    "is-electron": "^2.1.0",
     "json-loader": "^0.5.4",
     "load-script": "^1.0.0",
     "pouchdb-adapter-http": "^6.3.4",

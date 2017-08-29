@@ -10,3 +10,7 @@
     @extend .icon;
   }
 }
+
+.playlist-item-mini {
+  @extend .selectable-item-mini;
+}

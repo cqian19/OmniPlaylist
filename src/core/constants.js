@@ -1,7 +1,7 @@
 /**
  * Created by cqian19 on 5/21/2017.
  */
-
+import isElectron from 'is-electron';
 
 /* ENUMS */
 // Determines domain of videoplayer and how it should be played
@@ -31,8 +31,8 @@ export const DRAG_TYPES = {
 
 /* CONSTANTS */
 export const APP_TITLE = 'Player';
-export const BASE_VIDEO_HEIGHT = 400;
-export const BASE_VIDEO_WIDTH = 600;
+export const BASE_VIDEO_HEIGHT = isElectron() ? 400 : window.innerHeight * .525;
+export const BASE_VIDEO_WIDTH = isElectron() ? 600 : window.innerWidth * 2/3;
 
 /* API Backend URL */
 export const API_URL = 'https://allinoneplaylist.herokuapp.com/api';

@@ -9,6 +9,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isElectron from 'is-electron';
 import { findDOMNode } from 'react-dom';
 import { DropTarget, DragSource } from 'react-dnd';
 
@@ -99,7 +100,8 @@ class ReorderablePlaylistItem extends React.Component {
             isDragging
         } = this.props;
         const reorderableItemNames = classNames({
-            'playlist-item': true,
+            'playlist-item': !isElectron(),
+            'playlist-item-mini': isElectron(),
             'active': active,
             'dragging': isDragging
         });

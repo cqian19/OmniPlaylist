@@ -4,6 +4,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import isElectron from 'is-electron';
 
 import PlaylistItemContainer from '../containers/PlaylistItemContainer';
 
@@ -12,8 +14,14 @@ class PlaylistSlot extends React.Component {
     render() {
         const { playlists, playlistIndex, playlistValid, focusDropdown } = this.props;
         const playlist = playlists[playlistIndex];
+        const slotClassNames = classNames({
+            'playlist-slot': !isElectron(),
+            'playlist-slot-mini': isElectron(),
+            'btn': true,
+            'btn-basic': true
+        });
         return (
-            <button type="button" className="playlist-slot btn btn-basic" onClick={focusDropdown}>
+            <button type="button" className={slotClassNames} onClick={focusDropdown}>
                 {playlistValid ? (
                     <PlaylistItemContainer
                         playlist={playlist}
