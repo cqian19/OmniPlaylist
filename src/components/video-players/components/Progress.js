@@ -5,7 +5,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ProgressBar, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { ProgressBar } from 'react-bootstrap';
+import ProgressTooltip from './ProgressTooltip';
 
 import { formatMilliseconds } from './utils';
 
@@ -15,7 +16,8 @@ class Progress extends React.Component {
         super(props);
         this.state = {
             hover: false,
-            hoverElapsed: '00:00'
+            hoverElapsed: '00:00',
+            mouseX: 50,
         }
     }
 
@@ -24,7 +26,7 @@ class Progress extends React.Component {
         const progressBarRect = document.getElementById("player-progress").getBoundingClientRect();
         const clickX = event.pageX;
         const percentDone = (clickX - progressBarRect.left) / progressBarRect.width;
-        return percentDone
+        return percentDone;
     }
 
     handleClick = (event) => {
@@ -44,40 +46,36 @@ class Progress extends React.Component {
         const newTimeElapsed = percentDone * video.duration;
         this.setState({
             hover: true,
-            hoverElapsed: formatMilliseconds(newTimeElapsed)
-        })
+            hoverElapsed: formatMilliseconds(newTimeElapsed),
+            mouseX: event.clientX,
+        });
     };
 
     handleMouseLeave = () => {
         this.setState({hover: false});
     };
 
-    _generateTooltip = () => {
-        const { hoverElapsed } = this.state;
-        return (
-            <Tooltip style={{'left': '50px', 'position': 'fixed'}} placement="top" className="in" id="tooltip-top">
-                {hoverElapsed}
-            </Tooltip>
-        );
-    };
-
     render() {
         const { position, elapsed, total } = this.props;
-        const { hover, hoverElapsed } = this.state;
-        const tooltip = this._generateTooltip();
+        const { hover, hoverElapsed, mouseX } = this.state;
         return (
             <div className="player__time">
                 <span className="player__time-elapsed">{elapsed}</span>
-                <OverlayTrigger placement="top" overlay={tooltip}>
-                    <ProgressBar
-                        onClick={this.handleClick}
-                        onMouseMove={this.handleHover}
-                        onMouseLeave={this.handleMouseLeave}
-                        now={position}
-                        max={1}
-                        id="player-progress"
-                    />
-                </OverlayTrigger>
+                <ProgressTooltip
+                    display={hover}
+                    hoverElapsed={hoverElapsed}
+                    progressBar={this.progressBar}
+                    mouseX={mouseX}
+                />
+                <ProgressBar
+                    id="player-progress"
+                    ref={(e) => {this.progressBar = e; }}
+                    onClick={this.handleClick}
+                    onMouseMove={this.handleHover}
+                    onMouseLeave={this.handleMouseLeave}
+                    now={position}
+                    max={1}
+                />
                 <span className="player__time-total">{total}</span>
             </div>
         )

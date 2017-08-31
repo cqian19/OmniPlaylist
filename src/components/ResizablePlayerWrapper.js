@@ -8,7 +8,12 @@ import classNames from 'classnames';
 import { ResizableBox } from 'react-resizable';
 import { findDOMNode } from 'react-dom';
 
-import { BASE_VIDEO_HEIGHT, BASE_VIDEO_WIDTH } from '../core/constants';
+import {
+    BASE_VIDEO_HEIGHT,
+    BASE_VIDEO_WIDTH,
+    VIDEO_MIN_HEIGHT,
+    VIDEO_MIN_WIDTH
+} from '../core/constants';
 
 const MARGIN = 3; // Margin around player
 const MENU_BAR_SPACE = 60; // Space for buttons
@@ -167,7 +172,7 @@ class ResizablePlayerWrapper extends React.Component {
                     className={resizeClassNames}
                     height={height}
                     width={width}
-                    minConstraints={[150, 150]}
+                    minConstraints={[VIDEO_MIN_WIDTH, VIDEO_MIN_HEIGHT]}
                     maxConstraints={this._generateMaxConstraints()}
                     onResize={this._onInnerResize}
                     ref={(e) => { this.resizable = e; }}
