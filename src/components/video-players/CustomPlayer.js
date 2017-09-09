@@ -14,7 +14,7 @@ import { formatMilliseconds } from './components/utils';
 // Sound object play statuses
 const SOUNDS = {
     STOPPED: Sound.status.STOPPED,
-    PAUSED: Sound.status.PAUSED,
+    PAUSED:  Sound.status.PAUSED,
     PLAYING: Sound.status.PLAYING
 };
 

@@ -36,7 +36,25 @@ export class YoutubePlayer extends BasePlayer {
     }
 
     _playVideo(props=this.props) {
-        this.player.loadVideoById(props.video.linkId);
+        const { video, playerStartTime, reload } = props;
+        console.log(this.state.lastVideo);
+        if (video === this.state.lastVideo) {
+            // Resume video that was saved before navigating off page
+            this.state.lastVideo = null;
+            this.player.loadVideoById(video.linkId, playerStartTime);
+        } else if (reload && video.equals(this.props.video)) {
+            // Playing same video but on a different video object, restart
+            this.player.loadVideoById(video.linkId, 0);
+        } else {
+            this.player.loadVideoById(video.linkId);
+        }
+    }
+
+    savePlayerTime() {
+        const { savePlayerTime } = this.props;
+        return this.player.getCurrentTime().then((timeInSeconds) => {
+            savePlayerTime(timeInSeconds);
+        });
     }
 
     componentDidMount() {
@@ -50,6 +68,7 @@ export class YoutubePlayer extends BasePlayer {
 
 
     componentWillUnmount() {
+        super.componentWillUnmount();
         this.player.destroy();
     }
 
@@ -65,8 +84,10 @@ export class YoutubePlayer extends BasePlayer {
 }
 
 YoutubePlayer.propTypes = {
+    playerStartTime: PropTypes.number,
     onEnded: PropTypes.func.isRequired,
     reload: PropTypes.bool.isRequired,
+    savePlayerTime: PropTypes.func.isRequired,
     video:  PropTypes.object.isRequired,
     videos: PropTypes.arrayOf(PropTypes.object).isRequired
 };

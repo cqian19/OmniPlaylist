@@ -5,7 +5,7 @@
   "description": "An example React + Electron application",
   "scripts": {
     "start": "webpack webpack.config.js && electron ./src/main.js",
-    "web": "webpack --target web webpack.config.js && webpack-dev-server --target web",
+    "web": "webpack-dev-server --target web",
     "postinstall": "webpack -p --config webpack.config.js"
   },
   "devDependencies": {

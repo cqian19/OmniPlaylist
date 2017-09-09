@@ -30,6 +30,10 @@ export function getReload(store) {
     return getPlaylistReducer(store).reload;
 }
 
+export function getSavedPlayerTime(store) {
+    return getPlaylistReducer(store).savedPlayerTime;
+}
+
 export function getStateIndex(state) {
     return state.index;
 }

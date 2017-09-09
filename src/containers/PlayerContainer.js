@@ -8,21 +8,25 @@ import {
     getVideos,
     getIndex,
     getReload,
+    getSavedPlayerTime,
     onVideoEnd,
     onVideoPrev,
     onVideoSkip,
-    onPlayerReload
+    onPlayerReload,
+    savePlayerTime
 } from '../core/playlist';
 
 
 const mapStateToProps = function(state) {
     const videos = getVideos(state);
-    const index =  getIndex(state);
+    const index  = getIndex(state);
     const reload = getReload(state);
+    const playerStartTime = getSavedPlayerTime(state);
     return {
         videos,
         index,
         reload,
+        playerStartTime,
         ...videos.length && {video: videos[index]}
     }
 };
@@ -39,6 +43,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onPlayerReload() {
         dispatch(onPlayerReload());
+    },
+    savePlayerTime(timeInSeconds) {
+        dispatch(savePlayerTime(timeInSeconds));
     }
 });
 

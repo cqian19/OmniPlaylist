@@ -17,7 +17,8 @@ export {
     onPlaylistMove,
     onPlaylistRemove,
     onPlaylistSwitch,
-    onPlaylistNameChange
+    onPlaylistNameChange,
+    savePlayerTime
 } from './actions';
 export { playlistReducer } from './reducer';
 export {
@@ -31,7 +32,8 @@ export {
     getStateIndex,
     getStatePlaylists,
     getStatePlaylistIndex,
-    getReload
+    getReload,
+    getSavedPlayerTime
 } from './selectors';
 export {
     chooseNextIndex,

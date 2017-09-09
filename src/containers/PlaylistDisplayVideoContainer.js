@@ -2,6 +2,10 @@
  * Created by cqian19 on 7/16/2017.
  */
 
+/**
+ * @file
+ * Contains playlist videos from the selected playlist on the playlist tab
+ */
 import { connect } from 'react-redux';
 
 import PlaylistVideo from '../components/PlaylistVideo';
@@ -39,8 +43,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     onVideoMove(startIndex, endIndex, playlistIndex) {
         dispatch(onVideoMove(startIndex, endIndex, playlistIndex));
     },
-    onVideoRemove(event) {
-        event.stopPropagation();
+    onVideoRemove() {
         dispatch(onVideoRemove(ownProps.index, ownProps.playlistIndex));
     }
 });

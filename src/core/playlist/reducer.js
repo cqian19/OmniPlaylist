@@ -20,7 +20,8 @@ import {
     ON_PLAYLIST_CHANGE,
     ON_PLAYLIST_NAME_CHANGE,
     ON_PLAYLISTS_LOAD,
-    ON_VIDEO_COLLAPSE_TOGGLE
+    ON_VIDEO_COLLAPSE_TOGGLE,
+    SAVE_PLAYER_TIME
 } from '../constants';
 import Playlist from '../classes/Playlist';
 import {
@@ -38,6 +39,7 @@ const defaultState = {
     playlists: initializePlaylists(),
     playlistIndex: 0,
     reload: false,
+    savedPlayerTime: 0, // Time to start video in seconds
     videos: [],
 };
 
@@ -76,6 +78,8 @@ export function playlistReducer(state = defaultState, action) {
             return onPlaylistsLoad(state, stateItems, action);
         case ON_VIDEO_COLLAPSE_TOGGLE:
             return onVideoCollapseToggle(state, stateItems, action);
+        case SAVE_PLAYER_TIME:
+            return savePlayerTime(state, stateItems, action);
         case ON_VIDEO_ACTION_FAILED:
         default:
             return state;
@@ -245,4 +249,9 @@ function onPlaylistsLoad(state, stateItems, action) {
 function onVideoCollapseToggle(state, stateItems, action) {
     const { collapse } = action;
     return {...state, collapsed: collapse};
+}
+
+function savePlayerTime(state, stateItems, action) {
+    const { timeInSeconds } = action;
+    return {...state, savedPlayerTime: timeInSeconds};
 }

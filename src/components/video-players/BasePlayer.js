@@ -7,6 +7,15 @@ import PropTypes from 'prop-types';
 
 class BasePlayer extends React.Component {
 
+    static state = {
+        lastVideo: null
+    };
+
+    constructor() {
+        super();
+        this.state = BasePlayer.state;
+    }
+
     shouldComponentUpdate(nextProps) {
          if (nextProps.reload || !this.props.videos.length || !nextProps.videos.length) {
              return true;
@@ -16,11 +25,21 @@ class BasePlayer extends React.Component {
          }
     }
 
+    componentWillUnmount() {
+        this.state.lastVideo = this.props.video;
+    }
+
+    savePlayerTime() {
+        const { savePlayerTime } = this.props;
+        savePlayerTime(0);
+    }
+
     render() {}
 }
 
 BasePlayer.propTypes = {
     reload: PropTypes.bool.isRequired,
+    savePlayerTime: PropTypes.func.isRequired,
     video:  PropTypes.object.isRequired,
     videos: PropTypes.arrayOf(PropTypes.object).isRequired
 };

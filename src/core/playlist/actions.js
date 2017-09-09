@@ -17,7 +17,8 @@ import {
     ON_PLAYLIST_REMOVE,
     ON_PLAYLIST_CHANGE,
     ON_PLAYLIST_NAME_CHANGE,
-    ON_PLAYLISTS_LOAD
+    ON_PLAYLISTS_LOAD,
+    SAVE_PLAYER_TIME
 } from '../constants';
 import { getIndex, getVideos, getPlaylists } from '.';
 import { onPlaylistSelectedChange } from '../playlistselector';
@@ -166,5 +167,12 @@ export function onPlaylistsLoad(playlists) {
     return {
         type: ON_PLAYLISTS_LOAD,
         playlists
+    }
+}
+
+export function savePlayerTime(timeInSeconds) {
+    return {
+        type: SAVE_PLAYER_TIME,
+        timeInSeconds
     }
 }

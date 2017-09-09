@@ -12,19 +12,26 @@ import ResizableVideoContainer from '../containers/ResizablePlayerWrapperContain
 
 class Player extends React.Component {
 
-    playerSection() {
+    generatePlayerSection = () =>{
         const { video, videos } = this.props;
         if (videos.length) {
             const videoDomain = video.domainType;
             const DomainPlayer = DOMAIN_PROPS[videoDomain].player;
-            return (<DomainPlayer {...this.props} />);
+            return (<DomainPlayer
+                ref={(e) => { this.player = e; }}
+                {...this.props}
+            />);
         }
-    }
+    };
 
     componentWillUpdate(prevProps) {
         if (prevProps.reload) {
             this.props.onPlayerReload();
         }
+    }
+
+    componentWillUnmount() {
+        this.player.savePlayerTime();
     }
 
     render() {
@@ -35,7 +42,7 @@ class Player extends React.Component {
                 <div className="player__inner">
                     <div className="player__main">
                         <ResizableVideoContainer>
-                            {this.playerSection()}
+                            {this.generatePlayerSection()}
                             <div className="player__footer display-row">
                                 {/* Previous Video Button */}
                                 <span className="btn icon-btn" onClick={onPrev}>
@@ -62,6 +69,7 @@ Player.propTypes = {
     onSkip:  PropTypes.func.isRequired,
     onStart: PropTypes.func.isRequired,
     reload:  PropTypes.bool.isRequired,
+    savePlayerTime: PropTypes.func.isRequired,
     video:   PropTypes.object,
     videos:  PropTypes.arrayOf(PropTypes.object)
 };
