@@ -25,6 +25,7 @@ class ImportBar extends React.Component {
         const { value } = this.state;
         if (!importing) {
             doImport(value);
+            this.forceUpdate();
         }
     };
 
@@ -35,8 +36,8 @@ class ImportBar extends React.Component {
     componentWillUpdate(nextProps) {
         const newValidationState = nextProps.validationState;
         if (newValidationState === 'success' || newValidationState === 'error') {
-            this.state.validationState = newValidationState;
             this.textInput.value = "";
+            this.state.validationState = newValidationState;
             if (this.state.resetForm) {
                 clearTimeout(this.state.resetForm);
             }
@@ -79,8 +80,8 @@ class ImportBar extends React.Component {
 }
 
 ImportBar.propTypes = {
-    error:      PropTypes.string,
     doImport:   PropTypes.func.isRequired,
+    error:      PropTypes.string,
     hideExtra:  PropTypes.bool.isRequired,
     importing:  PropTypes.bool.isRequired,
     resetForm:  PropTypes.func.isRequired,
