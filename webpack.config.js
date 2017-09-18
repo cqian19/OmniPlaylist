@@ -27,12 +27,12 @@ let options  = {
       warnings: false
   },
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/src'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: './src',
     hot: true
   },
   plugins: [
@@ -47,7 +47,7 @@ let options  = {
             NODE_ENV: JSON.stringify("production")
         }
     })
-  ]
+  ],
 };
 
 if (isWeb) {

@@ -1,12 +1,40 @@
 {
-  "name": "react-electron-starter",
+  "name": "All-In-One-Playlist",
   "version": "0.1.0",
   "main": "main.js",
-  "description": "An example React + Electron application",
+  "description": "A single player and playlist manager for videos, music, and livestreams from many websites",
+  "author": {
+    "name": "Christopher Qian",
+    "email": "cqian019@gmail.com"
+  },
   "scripts": {
     "start": "webpack webpack.config.js && electron ./src/main.js",
     "web": "webpack-dev-server --target web",
-    "postinstall": "webpack -p --config webpack.config.js"
+    "preinstall": "npm install -g electron-builder",
+    "postinstall": "webpack -p --config webpack.config.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.electron.app",
+    "productName": "All-In-One Playlist",
+    "asar": true,
+    "copyright": "Copyright © 2017 Christopher Qian",
+    "directories": {
+      "buildResources": "build/",
+      "output": "dist/",
+      "app": "src/"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.tools"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "deb"
+    }
   },
   "devDependencies": {
     "babel-core": "^6.7.6",
@@ -19,7 +47,10 @@
     "babel-preset-react": "^6.5.0",
     "css-loader": "^0.23.1",
     "devtron": "^1.4.0",
+    "electron": "^1.7.5",
+    "electron-debug": "^1.1.0",
     "electron-prebuilt": "^0.37.0",
+    "electron-rebuild": "^1.6.0",
     "express": "^4.13.4",
     "minimist": "^1.2.0",
     "node-sass": "^3.4.2",
@@ -35,13 +66,12 @@
   },
   "dependencies": {
     "@vimeo/player": "^2.1.0",
+    "ad-block": "^3.0.3",
     "axios": "^0.16.1",
-    "babel-polyfill": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
-    "electron": "^1.7.5",
     "electron-ad-blocker": "^0.1.3",
     "electron-debug": "^1.1.0",
-    "electron-rebuild": "^1.6.0",
     "electron-referer": "^0.3.0",
     "es6-promise-promise": "^1.0.0",
     "es6-tween": "^3.1.0",
