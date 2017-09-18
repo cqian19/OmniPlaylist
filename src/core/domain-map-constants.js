@@ -4,7 +4,6 @@
 
 
 import { DOMAIN_TYPES } from './constants';
-import { keys } from '../config';
 import {
     VimeoPlayer,
     YoutubePlayer,

@@ -10,7 +10,6 @@ import { getDb } from '../../database';
 export function initializePlaylists() {
     getDb().then((db) => {
         db.playlist.find().sort({ playlistIndex: 1 }).exec().then((playlistDocs) => {
-            console.log(playlistDocs);
             store.dispatch(onPlaylistsLoad(
                 playlistDocs.map(PlaylistFactory.createPlaylistFromDbObject))
             );

@@ -3,6 +3,7 @@
  */
 'use strict';
 const electron = require('electron');
+// electron-rebuid ad-block to your electron version
 const { initialize, isAd, client } = require('is-ad');
 
 initialize();
@@ -22,8 +23,8 @@ function create(win, referer) {
     win.webContents.session.webRequest.onBeforeSendHeaders(headerFilter, (detail, cb) => {
         let {requestHeaders} = detail;
         requestHeaders = Object.assign(requestHeaders, {
-            Referer: requestHeaders.Referer || referer,
-            Origin: requestHeaders.Origin || referer});
+            Referer: requestHeaders.Referer || 'https://www.youtube.com/',
+            Origin: requestHeaders.Origin || 'https://www.youtube.com/'});
         cb({requestHeaders});
     }, {
         urls: ['<all_urls>'],
@@ -32,6 +33,7 @@ function create(win, referer) {
 }
 
 function _handleYtBeforeRequest(url, callback) {
+    // Parameter spoofing for embedding videos
     const pattern = /https:\/\/www\.youtube\.com\/get_video_info\?.*eurl&.*/;
     if (pattern.test(url)) {
         callback({
@@ -50,20 +52,17 @@ function _handleAdBlockBeforeRequest(url, callback) {
     callback({ cancel: isAd(url) });
 }
 
-module.exports = (referer, win) => {
-    if (typeof referer !== 'string') {
-        throw new TypeError('Expected a string');
-    }
+module.exports = (win) => {
 
     if (win) {
-        create(win, referer);
+        create(win);
         return;
     }
 
     (electron.BrowserWindow || electron.remote.BrowserWindow).getAllWindows().forEach(win => {
-        create(win, referer);
+        create(win);
     });
     (electron.app || electron.remote.app).on('browser-window-created', (e, win) => {
-        create(win, referer);
+        create(win);
     });
 };
