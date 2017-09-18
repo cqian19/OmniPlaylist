@@ -2,9 +2,8 @@
 const electron = require('electron');
 const {app, BrowserWindow} = electron;
 
-require('./electron-config')('https://www.youtube.com/');
+require('./electron-config')();
 require('electron-debug')({showDevTools: true});
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
