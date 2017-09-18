@@ -37,7 +37,6 @@ export class YoutubePlayer extends BasePlayer {
 
     _playVideo(props=this.props) {
         const { video, playerStartTime, reload } = props;
-        console.log(this.state.lastVideo);
         if (video === this.state.lastVideo) {
             // Resume video that was saved before navigating off page
             this.state.lastVideo = null;
@@ -69,6 +68,7 @@ export class YoutubePlayer extends BasePlayer {
 
     componentWillUnmount() {
         super.componentWillUnmount();
+        this.savePlayerTime();
         this.player.destroy();
     }
 

@@ -18,7 +18,6 @@ class Player extends React.Component {
             const videoDomain = video.domainType;
             const DomainPlayer = DOMAIN_PROPS[videoDomain].player;
             return (<DomainPlayer
-                ref={(e) => { this.player = e; }}
                 {...this.props}
             />);
         }
@@ -28,10 +27,6 @@ class Player extends React.Component {
         if (prevProps.reload) {
             this.props.onPlayerReload();
         }
-    }
-
-    componentWillUnmount() {
-        this.player.savePlayerTime();
     }
 
     render() {

@@ -32,7 +32,7 @@ class Playlist extends React.Component {
         const domNode = this.state.activeElem;
         if (domNode) {
             this.state.activeElem = null;
-            const scroll = findDOMNode(this.refs.scroll);
+            const scroll = findDOMNode(this.scroll);
             scrollTo(scroll, domNode);
         }
     }
@@ -53,7 +53,7 @@ class Playlist extends React.Component {
             'hidden': hideExtra
         });
         return (
-            <ScrollingComponent ref='scroll' className={scrollClassNames}>
+            <ScrollingComponent ref={(e) => { this.scroll = e; }} className={scrollClassNames}>
                 {videos.map((video,index) => (
                     <PlaylistVideoContainer
                         key={video.uniqueId}

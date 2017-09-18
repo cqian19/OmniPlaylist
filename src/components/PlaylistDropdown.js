@@ -44,7 +44,7 @@ class PlaylistDropdown extends React.Component {
     };
 
     handleFocus = () => {
-        this.refs.typeahead.getInstance().clear();
+        this.typeahead.getInstance().clear();
     };
 
     handleItemChange = (playlistObj) => {
@@ -60,7 +60,7 @@ class PlaylistDropdown extends React.Component {
     };
 
     handleSlotClick = () => {
-        this.refs.typeahead.getInstance().focus();
+        this.typeahead.getInstance().focus();
     };
 
     render() {
@@ -74,7 +74,7 @@ class PlaylistDropdown extends React.Component {
                         onFocus={this.handleFocus}
                         options={playlists}
                         placeholder="Select a playlist..."
-                        ref="typeahead"
+                        ref={(e) => { this.typeahead = e; }}
                         renderMenu={this._renderMenu}
                     />
                     <PlaylistAddButtonContainer select={true} />

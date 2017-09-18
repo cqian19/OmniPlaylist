@@ -60,7 +60,7 @@ class PaginatedList extends React.Component {
         itemsPerPaginate = itemsPerPaginate || PaginatedList.itemsPerPaginate;
         contents = contents.slice(0, pages * itemsPerPaginate);
         return (
-            <div className='paginated-list' onScroll={this.handleScroll} ref='list'>
+            <div className='paginated-list' onScroll={this.handleScroll}>
                 <div className={className}>
                     {contents}
                 </div>
