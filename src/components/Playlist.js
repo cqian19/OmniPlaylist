@@ -53,17 +53,27 @@ class Playlist extends React.Component {
             'hidden': hideExtra
         });
         return (
-            <ScrollingComponent ref={(e) => { this.scroll = e; }} className={scrollClassNames}>
-                {videos.map((video,index) => (
-                    <PlaylistVideoContainer
-                        key={video.uniqueId}
-                        index={index}
-                        scrollToElem={this.setActiveElem}
-                        playlistIndex={playlistIndex}
-                        video={video}
-                    />
-                ))}
-            </ScrollingComponent>
+            <div className="playlist-wrapper">
+                {videos.length ?
+                    (<ScrollingComponent ref={(e) => {
+                        this.scroll = e;
+                    }} className={scrollClassNames}>
+                        {videos.map((video, index) => (
+                            <PlaylistVideoContainer
+                                key={video.uniqueId}
+                                index={index}
+                                scrollToElem={this.setActiveElem}
+                                playlistIndex={playlistIndex}
+                                video={video}
+                            />
+                        ))}
+                    </ScrollingComponent>)
+                    :
+                    (<div className="centered-text playlist-placeholder">
+                        Empty playlist
+                    </div>)
+                }
+            </div>
         )
     }
 

@@ -17,9 +17,11 @@ class Player extends React.Component {
         if (videos.length) {
             const videoDomain = video.domainType;
             const DomainPlayer = DOMAIN_PROPS[videoDomain].player;
-            return (<DomainPlayer
-                {...this.props}
-            />);
+            return (
+                <DomainPlayer
+                    {...this.props}
+                />
+            );
         }
     };
 
@@ -30,14 +32,14 @@ class Player extends React.Component {
     }
 
     render() {
-        const { video, onPrev, onSkip } = this.props;
-        if (!video) { return null; }
+        const { videos, video, onPrev, onSkip } = this.props;
+        const playerSection = this.generatePlayerSection();
         return (
             <div className="player">
                 <div className="player__inner">
-                    <div className="player__main">
+                    {videos.length ? (
                         <ResizableVideoContainer>
-                            {this.generatePlayerSection()}
+                            {playerSection}
                             <div className="player__footer display-row">
                                 {/* Previous Video Button */}
                                 <span className="btn icon-btn" onClick={onPrev}>
@@ -49,7 +51,10 @@ class Player extends React.Component {
                                 </span>
                             </div>
                         </ResizableVideoContainer>
-                    </div>
+                    ) : (
+                        <div className="player-placeholder "></div>
+                    )
+                    }
                 </div>
             </div>
         )

@@ -6,6 +6,16 @@
   }
 }
 
+.player-placeholder {
+  height: inherit;
+  width: 65vw;
+}
+
+.player__main {
+  height: inherit;
+  width: inherit;
+}
+
 .resizable-video-container {
   display: inline-table;
   margin: 3px; // Remember to change MARGIN in ResizablePlayerWrapper

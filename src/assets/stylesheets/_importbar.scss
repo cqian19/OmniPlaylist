@@ -1,12 +1,16 @@
 
 
 .import-bar {
+  display: flex;
+  margin-bottom: 6px;
   margin-top: 1px;
   padding-left: 2px;
 }
 
 .import-form {
+  flex: 1;
   height: 40px;
+  margin-right: 9px;
 
   .import-button {
     background-color: $blue-3;

@@ -8,6 +8,7 @@ import classNames from 'classnames';
 
 import APIHandler from '../api/APIHandler';
 import Error from './Error';
+import PlaylistAddButtonContainer from '../containers/PlaylistAddButtonContainer';
 
 class ImportBar extends React.Component {
 
@@ -74,6 +75,7 @@ class ImportBar extends React.Component {
                         <Error error={error}/>
                     </FormGroup>
                 </form>
+                <PlaylistAddButtonContainer/>
             </div>
         )
     }
