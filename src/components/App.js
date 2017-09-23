@@ -1,4 +1,4 @@
-import '../assets/stylesheets/base.scss';
+import '../assets/stylesheets/main.scss';
 
 import React from 'react';
 import createHistory from 'history/createBrowserHistory'

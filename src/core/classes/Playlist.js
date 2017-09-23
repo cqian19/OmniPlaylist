@@ -4,12 +4,13 @@
 
 import { UUID } from '../../utils';
 import { getDb } from '../../database';
+import defaultThumbnail from '../../assets/images/default_video_img.png';
 
 class Playlist {
 
     constructor(videos, playlistIndex=0, name="Unnamed Playlist", uniqueId="", document="") {
         this._name = name;
-        this._thumbnail = videos.length && videos[0].thumbnail || "";
+        this._thumbnail = videos.length && videos[0].thumbnail || defaultThumbnail;
         this._videos = videos;
         this._uniqueId = uniqueId || UUID.generate();
         this._document = document || this._saveToDb(playlistIndex);

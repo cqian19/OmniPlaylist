@@ -2,43 +2,58 @@
  * Created by cqian19 on 7/14/2017.
  */
 
-#playlist-changer {
+.playlist-changer {
   display: flex;
-  flex-grow: 1;
-  min-height: 300px;
-  margin: 3px;
+  flex-grow: .89;
+  margin: 0 1px 10px;
+  outline: 2px solid $purple-2;
   width: 100%;
 }
 
-.search-input {
-  width: 350px;
-
-  .search {
-    width: inherit;
-  }
-}
-
 .searched-video {
-  @extend .selectable-item, .hoverable;
+  @extend .selectable-item-mini, .hoverable;
   margin-bottom: 4px;
 }
 
 .video-searcher {
-  border: 1px solid;
+  border-right: 1.5px solid $purple-2;
   width: 40%;
 
   .video-searcher__head {
-    position: fixed;
+    position: relative;
+    width: 100%;
   }
+}
 
-  .video-searcher__body {
-    margin-top: 40px;
+.search-input::before {
+  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAQJJREFUKBWVkr2uQUEUhf3ET6GRaC5aFRoJKrf1BKpb8SwqovYGXkCj00k0QnRKEYkILYobvpUYmeMMyVnJl7P3mjN7Zu9zwiGv2qRFyMMSRrAFp6JPN8XzBj+wgDkUYAg7WINTYdwpDECxrRLJHeq2accdkgm8bzTvNAg2EDOGeUYI1KNO1gkuzTA1g8T7ojbn4ONQWPuHPWgeHmnzCqoe15tkSNPgPEAn68oVcOmA2XMtGK9FoE/VhOTTVNExqLCGZnxCv2pYauEC6lF0oQxX6IOvb7yX9NPEQafan+aPXDdQC18LsO6Tip5BBY6gIQaSbnMCFRCBZRcIvFkbsvCr4AFGOCxQy+JdGQAAAABJRU5ErkJggg==');
+  display: block;
+  font-size: 20px;
+  left: 5px;
+  opacity: 0.6;
+  position: absolute;
+  width: 15px;
+  z-index: 3;
+}
+
+.search-input {
+  border-bottom: 1.5px solid $purple-2;
+  height: 30px;
+  width: inherit;
+  input[type="search"] {
+    border: none;
+    height: 100%;
+    padding-left: 23px;
+    width: inherit;
   }
 }
 
 .playlist-display {
-  border: 1px solid;
   overflow-x: hidden;
   overflow-y: scroll;
   width: 60%
+}
+
+.playlist-display-placeholder {
+  margin-top: 5px;
 }

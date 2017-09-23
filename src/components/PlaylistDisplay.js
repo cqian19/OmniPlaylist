@@ -54,10 +54,10 @@ class PlaylistDisplay extends React.Component {
                             )
                         })
                     ) : (
-                        <div className="centered-text">Drag videos here</div>
+                        <div className="playlist-display-placeholder centered-text">Drag videos here</div>
                     )
                 ) : (
-                    <div className="centered-text">No playlist selected</div>
+                    <div className="playlist-display-placeholder centered-text">Playlist videos will appear here</div>
                 )}
             </div>
         );

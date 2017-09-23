@@ -10,9 +10,10 @@ import SidebarItemContainer from '../containers/SidebarItemContainer';
 class SidebarContent extends React.Component {
 
     render() {
+        const { playlists } = this.props;
         return(
             <div className="sidebar-playlist__content">
-                {this.props.playlists.map((playlist, index) => (
+                {playlists.map((playlist, index) => (
                     <SidebarItemContainer
                         index={index}
                         key={playlist.uniqueId}

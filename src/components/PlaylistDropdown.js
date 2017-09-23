@@ -73,7 +73,7 @@ class PlaylistDropdown extends React.Component {
                         labelKey="name"
                         onFocus={this.handleFocus}
                         options={playlists}
-                        placeholder="Select a playlist..."
+                        placeholder="Select a playlist to modify..."
                         ref={(e) => { this.typeahead = e; }}
                         renderMenu={this._renderMenu}
                     />

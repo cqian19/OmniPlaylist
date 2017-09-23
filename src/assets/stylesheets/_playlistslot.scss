@@ -27,6 +27,7 @@
 }
 
 .base-playlist-slot {
+  border: 1.5px solid $purple-2;
   color: black;
   cursor: pointer;
   margin-top: 12px;
@@ -39,10 +40,7 @@
   }
 
   .playlist-item, .playlist-item-mini {
-    .thumbnail {
-      position: absolute !important;
-    }
-
+    width: 400px;
     .glyphicon-remove {
       font-size: 22px;
       line-height: 2;

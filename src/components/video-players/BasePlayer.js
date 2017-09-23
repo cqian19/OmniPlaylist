@@ -16,8 +16,10 @@ class BasePlayer extends React.Component {
         this.state = BasePlayer.state;
     }
 
-    shouldComponentUpdate(nextProps) {
-         if (nextProps.reload || !this.props.videos.length || !nextProps.videos.length) {
+    shouldComponentUpdate(nextProps, nextState) {
+         if (nextState !== this.state) {
+             return true;
+         } else if (nextProps.reload || !this.props.videos.length || !nextProps.videos.length) {
              return true;
          } else {
              // Update if the next video being shown is not the one currently on

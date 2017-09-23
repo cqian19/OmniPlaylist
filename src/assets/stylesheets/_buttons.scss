@@ -27,6 +27,24 @@
   }
 }
 
-.playlist-remove {
+.icon-btn {
+  background-color: whitesmoke;
+  border: 1px solid $blue-1;
+  color: black;
+
+  &:hover {
+    background-color: $yellow-0;
+    color: black;
+    opacity: 0.7;
+  }
+}
+
+.playlist-remove-button {
   @extend .icon;
+}
+
+.playlist-add-button {
+  @extend .icon-btn;
+  border: 2px solid $blue-1;
+  top: 0;
 }

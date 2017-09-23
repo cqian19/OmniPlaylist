@@ -11,7 +11,7 @@ class PlaylistChanger extends React.Component {
 
     render() {
         return (
-            <div id="playlist-changer">
+            <div className="playlist-changer">
                 <VideoSearcherContainer />
                 <PlaylistDisplayContainer />
             </div>

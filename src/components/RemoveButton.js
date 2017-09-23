@@ -12,7 +12,7 @@ class PlaylistRemoveButton extends React.Component {
     handleRemove = (event) => {
         event.stopPropagation();
         const { confirm, onRemove } = this.props;
-        if (this.props.confirm) {
+        if (confirm) {
             confirmAlert({
                 message: 'Do you want to delete this playlist?',
                 confirmLabel: 'Confirm',
@@ -26,7 +26,7 @@ class PlaylistRemoveButton extends React.Component {
 
     render() {
         return (
-            <span className="playlist-remove" onClick={this.handleRemove}>
+            <span className="playlist-remove-button" onClick={this.handleRemove}>
                 <i className="glyphicon glyphicon-remove" />
             </span>
         );

@@ -83,7 +83,10 @@ class VideoSearcher extends React.Component {
         return (
             <div className='video-searcher'>
                   <div className='video-searcher__head'>
-                      <SearchInput className='search-input' onChange={this._searchUpdated} />
+                      <SearchInput
+                          className='search-input'
+                          placeholder="Search videos"
+                          onChange={this._searchUpdated} />
                   </div>
                   <PaginatedList
                       className='video-searcher__body'
