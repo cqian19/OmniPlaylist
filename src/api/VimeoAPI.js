@@ -9,6 +9,8 @@ import BaseVideo from './BaseVideo';
 import { RENDER_TYPES, DOMAIN_TYPES } from '../core/constants';
 import { extractEndNumbers } from '../utils';
 
+import defaultThumbnail from '../assets/images/default_video_img.png';
+
 /** API reference:
  * @link https://developer.vimeo.com/apis/oembed/
  * @link https://developer.vimeo.com/api/endpoints/albums
@@ -25,7 +27,7 @@ export class VimeoVideo extends BaseVideo {
             this.title = videoResponse.title;
             this.linkId = videoResponse.video_id;
             // Replace with placeholder thumbnail
-            this.thumbnail = videoResponse.thumbnail_url ? decodeURIComponent(videoResponse.thumbnail_url) : ""
+            this.thumbnail = videoResponse.thumbnail_url ? decodeURIComponent(videoResponse.thumbnail_url) : defaultThumbnail
         } else {
             this.title = videoResponse.name;
             this.linkId = extractEndNumbers(videoResponse.link);

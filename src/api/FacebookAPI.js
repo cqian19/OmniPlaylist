@@ -18,7 +18,7 @@ export class FacebookVideo extends BaseVideo {
 
     constructor(link, renderType) {
         super(DOMAIN_TYPE, renderType);
-        this.linkId = /\/\d+\//.exec(link)[0];
+        this.linkId = /\/(\d+)\//.exec(link)[1];
         this.title = "Facebook Video";
         this.thumbnail = defaultThumbnail;
     }

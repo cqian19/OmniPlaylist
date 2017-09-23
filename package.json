@@ -11,7 +11,7 @@
     "start": "webpack webpack.config.js && electron ./src/main.js",
     "web": "webpack-dev-server --target web",
     "preinstall": "npm install -g electron-builder",
-    "postinstall": "webpack -p --config webpack.config.js",
+    "postinstall": "electron-builder install-app-deps && webpack -p --config webpack.config.js",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
@@ -48,6 +48,7 @@
     "css-loader": "^0.23.1",
     "devtron": "^1.4.0",
     "electron": "^1.7.5",
+    "electron-builder": "^19.27.7",
     "electron-debug": "^1.1.0",
     "electron-prebuilt": "^0.37.0",
     "electron-rebuild": "^1.6.0",
@@ -66,9 +67,8 @@
   },
   "dependencies": {
     "@vimeo/player": "^2.1.0",
-    "ad-block": "^3.0.3",
     "axios": "^0.16.1",
-    "babel-polyfill": "^6.26.0",
+    "babel-polyfill": "^6.23.0",
     "classnames": "^2.2.5",
     "electron-ad-blocker": "^0.1.3",
     "electron-debug": "^1.1.0",
