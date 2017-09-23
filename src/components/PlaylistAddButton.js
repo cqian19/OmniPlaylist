@@ -17,6 +17,7 @@ class PlaylistAddButton extends React.Component {
     }
 
     render() {
+        const { onClick } = this.props;
         return (
             <OverlayTrigger placement="bottom" overlay={this._createTooltip()} >
                 <Button className = "btn playlist-add-button" bsClass="glyphicon" onClick={this.props.onClick} >

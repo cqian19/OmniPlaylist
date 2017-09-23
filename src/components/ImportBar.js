@@ -75,7 +75,7 @@ class ImportBar extends React.Component {
                         <Error error={error}/>
                     </FormGroup>
                 </form>
-                <PlaylistAddButtonContainer/>
+                <PlaylistAddButtonContainer swapPlay={true}/>
             </div>
         )
     }
