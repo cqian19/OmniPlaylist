@@ -75,6 +75,18 @@ h1 {
   }
 }
 
+.invisible {
+  visibility: hidden;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
 .draggable {
   &.dragging {
     background-color: $yellow-0 !important;

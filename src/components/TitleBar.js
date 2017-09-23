@@ -17,7 +17,8 @@ class TitleBar extends React.Component {
         this.state = {
             hideActive: false,
             pinActive: false,
-            fullScreenActive: false
+            fullScreenActive: false,
+            isHidden: false
         };
     }
 
@@ -31,7 +32,7 @@ class TitleBar extends React.Component {
         const { onHideToggle } = this.props;
         const { hideActive } = this.state;
         onHideToggle();
-        this.setState({hideActive: !hideActive});
+        this.setState({hideActive: !hideActive, isHidden: !hideActive});
     };
 
     handleFullScreen = () => {
@@ -44,8 +45,30 @@ class TitleBar extends React.Component {
         this.browserWindow.close();
     };
 
+    handleMouseDown = () => {
+      const { hideExtra } = this.props;
+      const { isHidden } = this.state;
+
+      if (hideExtra && isHidden) {
+          this.setState({isHidden: false});
+          setTimeout(() => {
+              const { hideExtra } = this.props;
+              if (hideExtra){
+                  this.setState({isHidden: true});
+              }
+          }, 3000);
+      }
+    };
+
     render() {
-        const { pinActive, fullScreenActive, hideActive } = this.state;
+        const { hideExtra } = this.props;
+        const { pinActive, fullScreenActive, hideActive, isHidden } = this.state;
+        const barClassNames = classNames({
+            'titlebar': true,
+            'titlebar-show': !isHidden,
+            'titlebar-hidden': isHidden,
+            'fixed': !isHidden && hideExtra
+        });
         const pinClassNames = classNames({
             'app-pin-button': true,
             'active': pinActive
@@ -59,7 +82,7 @@ class TitleBar extends React.Component {
             'active': fullScreenActive
         });
         return (
-            <div className="titlebar">
+            <div className={barClassNames} onMouseDown={this.handleMouseDown}>
                 <span className="titlebar__header">
                     {APP_TITLE}
                 </span>
@@ -87,6 +110,7 @@ class TitleBar extends React.Component {
 }
 
 TitleBar.propTypes = {
+    hideExtra: PropTypes.bool.isRequired,
     onHideToggle: PropTypes.func.isRequired
 };
 export default TitleBar;

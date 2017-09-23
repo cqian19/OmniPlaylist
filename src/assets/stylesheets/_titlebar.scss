@@ -2,13 +2,31 @@
   background-color: $purple-2;
   box-shadow: 0 -1px 0 $blue-1;
   height: 30px;
-  opacity: 0.9;
   margin-top: 1px;
   margin-bottom: 5px;
   padding-top: 5px;
   width: 100%;
+  z-index: 2;
+
+}
+
+.titlebar-show {
+  opacity: 1;
   -webkit-user-select: none;
   -webkit-app-region: drag;
+}
+
+.titlebar-hidden {
+  opacity: 0;
+  position: absolute;
+
+  &:hover {
+    opacity: .6;
+  }
+}
+
+.opaque {
+  opacity: 0;
 }
 
 .titlebar__header {

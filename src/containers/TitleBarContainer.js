@@ -4,11 +4,12 @@
 
 import { connect } from 'react-redux';
 
-import { onHideExtraToggle } from '../core/app';
+import { onHideExtraToggle, getHideExtra } from '../core/app';
 import TitleBar from '../components/TitleBar';
 
 const mapStateToProps = (state, ownProps) => ({
-    ...ownProps
+    ...ownProps,
+    hideExtra: getHideExtra(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

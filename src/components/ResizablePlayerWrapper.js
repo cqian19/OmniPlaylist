@@ -162,7 +162,7 @@ class ResizablePlayerWrapper extends React.Component {
         });
         // Fullscreen
         if (hideExtra) {
-            height = window.innerHeight - 30; //  Subtract top bar height
+            height = window.innerHeight;
             width = window.innerWidth ;
         }
         return(
