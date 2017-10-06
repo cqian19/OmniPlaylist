@@ -71,6 +71,7 @@ class ImportBar extends React.Component {
                              inputRef={(input) => { this.textInput = input; }}
                              type="text"
                              onChange={this.handleChange}
+                             placeholder="Paste URL (Ex. youtube.com/watch?v=...)"
                         />
                         <Error error={error}/>
                     </FormGroup>

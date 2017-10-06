@@ -5,6 +5,9 @@
   right: 50%;
   transform: translate(50%, 100%);
   transition: transform 0.25s ease-in-out;
+  width: 50%;
+  max-width: 800px;
+  min-width: 475px;
 
   &.active {
     transform: translate(50%, 0%);
@@ -36,10 +39,11 @@
 .sidebar-playlist__content {
   background-color: whitesmoke;
   height: 350px;
+  min-width: 475px;
   overflow-x: hidden;
   overflow-y: scroll;
   outline: 1px solid $blue-1;
-  width: 475px;
+  width: 100%;
 }
 
 .base-sidebar-item {

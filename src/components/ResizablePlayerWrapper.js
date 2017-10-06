@@ -59,10 +59,10 @@ class ResizablePlayerWrapper extends React.Component {
         const windowWidth = window.innerWidth;
         const spaceBetween = windowWidth - playerWidth;
         // Snap playlist to bottom of player
-        if (!playlistCollapsed && spaceBetween < 400) {
+        if (!playlistCollapsed && spaceBetween < 350) {
             onTogglePlaylistCollapse(true);
         // Move playlist beside player
-        } else if (playlistCollapsed && spaceBetween > 405) {
+        } else if (playlistCollapsed && spaceBetween > 355) {
             onTogglePlaylistCollapse(false);
         }
     };

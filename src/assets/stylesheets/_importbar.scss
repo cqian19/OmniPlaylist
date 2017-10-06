@@ -5,6 +5,11 @@
   margin-bottom: 6px;
   margin-top: 1px;
   padding-left: 2px;
+
+  input.search-bar.form-control::placeholder {
+    color: white;
+    opacity: .78;
+  }
 }
 
 .import-form {
