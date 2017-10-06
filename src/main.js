@@ -1,9 +1,11 @@
 'use strict';
 const electron = require('electron');
-const {app, BrowserWindow} = electron;
+const { app, BrowserWindow } = electron;
+const { autoUpdater } = require('electron-updater');
+const isDev = require('electron-is-dev');
 
 require('./electron-config')();
-// require('electron-debug')({showDevTools: true});
+require('electron-debug')({showDevTools: isDev});
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -33,9 +35,52 @@ function createWindow () {
   });
 }
 
+// Initialize autoupdater
+autoUpdater.on('update-downloaded', (info) => {
+    setTimeout(function() {
+        autoUpdater.quitAndInstall();
+    }, 3000)
+});
+// Update messages
+function sendStatusToWindow(text) {
+    mainWindow.webContents.send('message', text);
+}
+
+autoUpdater.on('checking-for-update', () => {
+    sendStatusToWindow('Checking for update...');
+});
+
+autoUpdater.on('update-available', (info) => {
+    sendStatusToWindow('Update available.');
+});
+
+autoUpdater.on('update-not-available', (info) => {
+    sendStatusToWindow('Update not available.');
+});
+
+autoUpdater.on('error', (err) => {
+    sendStatusToWindow('Error in auto-updater.');
+});
+
+autoUpdater.on('download-progress', (progressObj) => {
+    let log_message = "Download speed: " + progressObj.bytesPerSecond;
+    log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+    log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+    sendStatusToWindow(log_message);
+});
+
+autoUpdater.on('update-downloaded', (info) => {
+    sendStatusToWindow('Update downloaded; will install in 3 seconds');
+});
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
-app.on('ready', createWindow);
+app.on('ready', () => {
+    createWindow();
+    if (!isDev) {
+        autoUpdater.checkForUpdates();
+    }
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
