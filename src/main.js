@@ -20,7 +20,7 @@ function createWindow () {
       icon: __dirname + '/assets/images/omniplaylist-icon.ico'
   });
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
+  mainWindow.loadURL('file://' + __dirname + '/home/index.html');
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();

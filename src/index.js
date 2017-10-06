@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
 import store from './core/store';
-import routes from './routes';
+import routes from './home/routes';
 import App from './containers/AppContainer';
 
 const render = (appRoutes) => {
@@ -21,8 +21,8 @@ const render = (appRoutes) => {
 render(routes);
 
 if (module.hot) {
-    module.hot.accept('./routes', () => {
-        const newRoutes = require('./routes').default;
+    module.hot.accept('./home/routes', () => {
+        const newRoutes = require('./home/routes').default;
         render(newRoutes);
     })
 }
