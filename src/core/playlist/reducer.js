@@ -172,13 +172,13 @@ function onVideoSwitch(state, stateItems, action) {
 function onVideoNext(state, stateItems, action) {
     const { curVideos, curIndex } = stateItems;
     const index = rfuncs.nextVideoIndex(curVideos, curIndex);
-    return {...state, index};
+    return {...state, index, reload: true};
 }
 
 function onVideoPrev(state, stateItems, action) {
     const { curVideos, curIndex } = stateItems;
     const index = rfuncs.prevVideoIndex(curVideos, curIndex);
-    return {...state, index};
+    return {...state, index, reload: true};
 }
 
 function onPlayerReload(state, stateItems, action) {
