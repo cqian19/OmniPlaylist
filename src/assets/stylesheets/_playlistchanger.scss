@@ -11,6 +11,15 @@
 }
 
 .searched-video {
+  @extend .selectable-item, .hoverable;
+  margin-bottom: 4px;
+
+  .searched-video__title {
+    margin-top: 5px;
+  }
+}
+
+.searched-video-mini {
   @extend .selectable-item-mini, .hoverable;
   margin-bottom: 4px;
 }

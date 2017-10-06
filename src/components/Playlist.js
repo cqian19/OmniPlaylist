@@ -55,9 +55,7 @@ class Playlist extends React.Component {
         return (
             <div className="playlist-wrapper">
                 {videos.length ?
-                    (<ScrollingComponent ref={(e) => {
-                        this.scroll = e;
-                    }} className={scrollClassNames}>
+                    (<ScrollingComponent ref={(e) => { this.scroll = e;}} className={scrollClassNames}>
                         {videos.map((video, index) => (
                             <PlaylistVideoContainer
                                 key={video.uniqueId}

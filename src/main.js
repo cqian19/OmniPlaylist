@@ -15,8 +15,9 @@ function createWindow () {
       height: 700,
       minWidth: 515,
       minHeight: 400,
-      title: 'Player',
-      frame: false
+      title: 'OmniPlaylist',
+      frame: false,
+      icon: __dirname + '/assets/images/omniplaylist-icon.ico'
   });
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html');

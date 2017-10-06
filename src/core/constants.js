@@ -30,7 +30,7 @@ export const DRAG_TYPES = {
 };
 
 /* CONSTANTS */
-export const APP_TITLE = 'Player';
+export const APP_TITLE = 'OmniPlaylist';
 export const BASE_VIDEO_HEIGHT = isElectron() ? 400 : window.innerHeight * .525;
 export const BASE_VIDEO_WIDTH  = isElectron() ? 600 : window.innerWidth * 2/3;
 export const VIDEO_MIN_HEIGHT = 250;

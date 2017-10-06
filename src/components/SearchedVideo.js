@@ -4,6 +4,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import isElectron from 'is-electron';
 import { DragSource } from 'react-dnd';
 
 import { DRAG_TYPES } from '../core/constants';
@@ -39,6 +41,10 @@ class SearchedVideo extends React.Component {
 
     render() {
         const { dragSource, video } = this.props;
+        const searchedVideoNames = {
+          "searched-video": !isElectron(),
+          "searched-video-mini": isElectron()
+        };
         return dragSource(
             <div className="searched-video">
                 <img className="thumbnail thumbnail-mini" src={video.thumbnail}/>

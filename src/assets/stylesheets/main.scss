@@ -91,9 +91,9 @@ h1 {
   &.dragging {
     background-color: $yellow-0 !important;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transform: scale(1.05, 1.05);
+    transform: scale(1.00, 1.05);
     transform-origin: left;
-    -webkit-transform: scale(1.05, 1.05);
+    -webkit-transform: scale(1.00, 1.05);
   }
 }
 
