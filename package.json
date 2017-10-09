@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "main": "main.js",
   "description": "A single player and playlist manager for videos, music, and livestreams from many websites",
+  "repository": "https://github.com/cqian19/OmniPlaylist/",
   "author": {
     "name": "Christopher Qian",
     "email": "cqian019@gmail.com"
@@ -39,7 +40,10 @@
       ]
     },
     "linux": {
-      "target": "deb"
+      "target":[
+        "AppImage",
+        "deb"
+      ]
     }
   },
   "devDependencies": {
