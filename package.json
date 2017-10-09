@@ -17,7 +17,7 @@
   },
   "build": {
     "appId": "com.electron.app",
-    "productName": "All-In-One Playlist",
+    "productName": "OmniPlaylist",
     "asar": true,
     "copyright": "Copyright © 2017 Christopher Qian",
     "directories": {
@@ -36,8 +36,7 @@
       "target": "nsis",
       "publish": [
         "github"
-      ],
-      "remoteReleases": "https://github.com/cqian19/OmniPlaylist"
+      ]
     },
     "linux": {
       "target": "deb"
