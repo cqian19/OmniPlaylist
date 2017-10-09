@@ -56,7 +56,7 @@ class ImportBar extends React.Component {
         const { error, importing, validationState, hideExtra } = this.props;
         const importClassNames = classNames({
            'import-bar': true,
-            'hidden': hideExtra
+           'hidden': hideExtra
         });
         return (
             <div className={importClassNames}>

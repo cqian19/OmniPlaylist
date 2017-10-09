@@ -6,7 +6,7 @@
   margin-top: 1px;
   padding-left: 2px;
 
-  input.search-bar.form-control::placeholder {
+  @include placeholder {
     color: white;
     opacity: .78;
   }

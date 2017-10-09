@@ -1,26 +1,33 @@
 
-.bootstrap-typeahead {
+.playlist-dropdown {
   @include placeholder {
-    font-style:italic;
     color: white;
+    font-style:italic;
     font-weight:100;
+    left: 10px;
   }
   flex: 1;
   margin-right: 8px;
 }
 
-.bootstrap-typeahead-input {
-  input, input:focus {
-    @extend .search-bar;
-  }
+.playlist-dropdown-input {
+  @extend .search-bar;
+  border-radius: 4px;
+  height: 100%;
+  text-indent: 8px;
+  width: 100%;
 }
 
-.bootstrap-typeahead-menu {
-  background-color: white;
-  border: 1px solid black;
-  margin-top: 5px;
-  min-height: 300px;
-
+.playlist-dropdown-menu {
+  border-radius: 3px;
+  background: whitesmoke;
+  padding: 2px 0;
+  font-size: 90%;
+  position: fixed;
+  overflow: auto;
+  max-height: 350px;
+  width: 95%;
+  z-index: 10;
   .playlist-item__title {
     line-height: 2;
   }

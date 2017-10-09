@@ -1,6 +1,6 @@
 
 .playlist-item {
-  @extend .selectable-item;
+  @extend .selectable-item, .hoverable;
 
   .renamable, .renamable-selected {
     font-size: 25px;
@@ -9,5 +9,5 @@
 }
 
 .playlist-item-mini {
-  @extend .selectable-item-mini;
+  @extend .selectable-item-mini, .hoverable;
 }

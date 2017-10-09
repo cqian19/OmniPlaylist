@@ -1,12 +1,12 @@
 @import
   'utilities/_colors.scss',
+  'utilities/_mixins',
   'app',
   'buttons',
   'confirm',
   'customplayer',
   'importbar',
   'list',
-  'mixins',
   'navbar',
   'player',
   'playerpage',
@@ -115,7 +115,7 @@ h1 {
   background-color: $blue-0;
   border: 4px solid $blue-1;
   color: white;
-  height: inherit;
+  height: 100%;
   min-width: 300px;
 }
 
