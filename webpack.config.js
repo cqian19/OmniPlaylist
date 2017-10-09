@@ -27,12 +27,12 @@ let options  = {
       warnings: false
   },
   output: {
-    path: path.join(__dirname, '/src'),
+    path: path.join(__dirname, '/src/home'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './src',
+    contentBase: './src/home',
     hot: true
   },
   plugins: [

@@ -12,10 +12,10 @@ var compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'src/home')));
 
 app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/src/assets/pages/index.html')
+  response.sendFile(__dirname + '/src/home/index.html')
 });
 
 app.listen(PORT, function(error) {

@@ -4,4 +4,4 @@ node_modules/
 dist/bundle.js
 .idea/
 src/config.js
-/src/bundle.js
+/src/home/bundle.js
