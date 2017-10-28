@@ -10,16 +10,18 @@
 And there goes another of your favorite songs on YouTube. Maybe now you'll actually have to pay for it. But perhaps you found it on another site, and you don't want the hassle of constantly switching between playlists on different websites. Then this app is for you.
 
 OmniPlaylist allows you to create, manage, and play content from different websites all from one place. Importing videos/playlists is as easy as entering a URL. A single playlist can contain videos, songs, and even livestreams from supported websites. Playlists save automatically.
-### Download
+
+## Download
 [Latest Release](https://github.com/cqian19/OmniPlaylist/releases/latest)
-### Features
+
+## Features
 - **Create, and manage playlists of content from 7+ websites and play that content directly from the app**
 - **Resizable video player** - make the player whatever size you want, with built-in full screen option
 - **Easy to import content** - just paste a supported URL and the app will detect what you are importing!
-- Intuitive **drag and drop components** for reordering playlists
+- **Intuitive drag and drop components** for reordering playlists
 - **Pin the app**, so you can watch videos while doing other stuff
 
-### Currently Supported Websites:
+## Currently Supported Websites:
  - YouTube
  - SoundCloud
  - Vimeo
