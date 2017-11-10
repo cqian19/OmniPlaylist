@@ -1,8 +1,8 @@
 {
   "name": "OmniPlaylist",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "main.js",
-  "description": "A single player and playlist manager for videos, music, and livestreams from many websites",
+  "description": "OmniPlaylist - All-in-one Player",
   "repository": "https://github.com/cqian19/OmniPlaylist/",
   "author": {
     "name": "Christopher Qian",
