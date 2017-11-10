@@ -8,7 +8,8 @@ import { getHideExtra } from '../core/app';
 import {
     getIndex,
     getVideos,
-    getPlaylistIndex
+    getPlaylistIndex,
+    getPlaylists
 } from '../core/playlist';
 import {
     getVideoWidth,
@@ -17,12 +18,11 @@ import {
 import Playlist from '../components/Playlist';
 
 const mapStateToProps = (state, ownProps) => ({
-    // playerHeight: getVideoHeight(state),
-    // playerWidth: getVideoWidth(state),
-    videos: getVideos(state),
+    hideExtra: getHideExtra(state),
     index: getIndex(state),
     playlistIndex: getPlaylistIndex(state),
-    hideExtra: getHideExtra(state)
+    playlists: getPlaylists(state),
+    videos: getVideos(state),
 });
 
 export default connect(mapStateToProps)(Playlist);
