@@ -4,10 +4,6 @@
 
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-
-import AppContainer from '../containers/AppContainer';
 import { PlayerPage, PlaylistPage } from '../pages/index';
 
 const routes = () => {
