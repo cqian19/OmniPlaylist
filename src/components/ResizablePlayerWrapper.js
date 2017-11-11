@@ -54,8 +54,9 @@ class ResizablePlayerWrapper extends React.Component {
      * @private
      * @param playerWidth - Width of the resizable container
      */
-    _checkCollapse = (playerWidth) => {
+    _checkCollapse = () => {
         const { onTogglePlaylistCollapse, playlistCollapsed } = this.props;
+        const playerWidth = this.state.width;
         const windowWidth = window.innerWidth;
         const spaceBetween = windowWidth - playerWidth;
         // Snap playlist to bottom of player
@@ -116,13 +117,14 @@ class ResizablePlayerWrapper extends React.Component {
             if (topMargin + MARGIN + this.state.height > height || topMargin + MARGIN + height <= this.state.innerHeight) {
                 this.setState({height: height - topMargin - MARGIN});
             }
+            this._checkCollapse();
         }
     };
 
     componentDidMount() {
         const { width } = this.state;
         this._setupResize();
-        this._checkCollapse(width);
+        this._checkCollapse();
         const rectangle = this._getResizeBounds();
         this.saved = {
             marginLeft: rectangle.left,
@@ -133,7 +135,7 @@ class ResizablePlayerWrapper extends React.Component {
     componentDidUpdate(prevProps) {
         const { hideExtra } = this.props;
         const { height, width } = this.state;
-        this._checkCollapse(width);
+        this._checkCollapse();
         const oldHideExtra = prevProps.hideExtra;
         // Make player fit after exiting from full screen
         if (!hideExtra && oldHideExtra) {
