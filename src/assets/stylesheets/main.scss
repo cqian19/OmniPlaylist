@@ -119,6 +119,10 @@ h1 {
   min-width: 300px;
 }
 
+.search-bar-component {
+  display: flex;
+  flex-grow: 1;
+}
 .dropdown-menu {
   width: 100%;
 }

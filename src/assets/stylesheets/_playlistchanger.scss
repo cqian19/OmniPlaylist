@@ -58,6 +58,7 @@
 }
 
 .playlist-display {
+  @extend .search-bar-component;
   overflow-x: hidden;
   overflow-y: scroll;
   width: 60%

@@ -56,7 +56,7 @@ class PlaylistDropdown extends React.Component {
         const playlists = this._convertPlaylistToDict(this.props.playlists);
         return (
             <div>
-                <div className="flex-container-row">
+                <div className="search-bar-component">
                     <Autocomplete
                         getItemValue={(item) => item.name}
                         items={playlists}
