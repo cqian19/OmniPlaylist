@@ -216,7 +216,8 @@ function onPlaylistRemove(state, stateItems, action) {
     reload = isCurrentPlaylist;
     playlist.removeFromDb();
     playlists = rfuncs.removeAtIndex(curPlaylists, removePlaylistIndex);
-    if (playlists.length) {
+    // Removed playlist is not the last playlist, update index of playlists in db after removed playlist
+    if (playlists.length && removePlaylistIndex < playlists.length) {
         rfuncs.updatePlaylistIndexes(playlists, removePlaylistIndex, playlists.length - 1);
     }
     playlistIndex = rfuncs.chooseAfterRemoveIndex(curPlaylists, removePlaylistIndex, curPlaylistIndex);
