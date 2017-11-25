@@ -1,6 +1,6 @@
 {
   "name": "OmniPlaylist",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./main.js",
   "description": "A single player and playlist manager for videos, music, and livestreams from many websites",
   "author": {
