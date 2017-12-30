@@ -3,19 +3,16 @@
  */
 'use strict';
 const electron = require('electron');
-// electron-rebuid ad-block to your electron version
-const { initialize, isAd, client } = require('is-ad');
 
-initialize();
 /*
-    Allows embedding of unembeddable Youtube videos, ad blocking
- */
+   Allows embedding of unembeddable Youtube videos, ad blocking
+*/
 function create(win, referer) {
-    win.webContents.session.webRequest.onBeforeRequest(['*://*./*'], (details, callback) => {
+    win.webContents.session.webRequest.onBeforeRequest(['*://*./*'], (details, cb) => {
         const url = details.url;
-        const handledYt = _handleYtBeforeRequest(url, callback);
+        const handledYt = _handleYtBeforeRequest(url, cb);
         if (handledYt) { return; }
-        _handleAdBlockBeforeRequest(url, callback);
+        cb({cancel: false});
     });
     const headerFilter = {
         urls: ['https://www.youtube.com/*']
@@ -44,21 +41,11 @@ function _handleYtBeforeRequest(url, callback) {
     return false;
 }
 
-/**
- * From electron-ad-blocker:
- *  @link https://github.com/Jense5/electron-ad-blocker/blob/master/src/index.js
- */
-function _handleAdBlockBeforeRequest(url, callback) {
-    callback({ cancel: isAd(url) });
-}
-
 module.exports = (win) => {
-
     if (win) {
         create(win);
         return;
     }
-
     (electron.BrowserWindow || electron.remote.BrowserWindow).getAllWindows().forEach(win => {
         create(win);
     });
